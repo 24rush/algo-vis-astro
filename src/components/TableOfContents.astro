@@ -1,12 +1,32 @@
 ---
-	const { headers } = Astro.props;
 ---
-<ul class="flex flex-col gap-4 mt-24">
-	{ headers.map(({ slug, text }) => {
-		return (
-		<li class="text-slate-400 hover:text-slate-800 hover:text-slate-900">
-			#<a href={`#${slug}`}>{text}</a>
-		</li>
-		) 
-	}) }
+
+<ul class="toc flex flex-col gap-2 mt-24">
 </ul>
+
+<script is:inline>
+if (!String.format) {
+	String.format = function (format) {
+		var args = Array.prototype.slice.call(arguments, 1);
+		return format.replace(/{(\d+)}/g, function (match, number) {
+			return typeof args[number] != "undefined" ? args[number] : match;
+		});
+	};
+}
+
+let toc = document.querySelector(".toc");
+if (toc) {
+	let headings = document.querySelectorAll("[id^=toc]");
+
+	for (let heading of headings) {
+		let templateElement = document.createElement("div");
+		let templateStr = String.format(
+			`<li class="text-slate-400 hover:text-slate-800 hover:text-slate-900"><a href=#{0}>#{1}</a ></li>`,
+			heading.id,
+			heading.textContent
+		);
+		templateElement.innerHTML = templateStr.trim();
+		toc.append(templateElement.firstChild);
+	}
+}
+</script>

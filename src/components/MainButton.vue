@@ -2,18 +2,19 @@
   <button
     class="px-4 py-2 rounded-md transition-all shadow-sm hover:bg-opacity-80 font-medium"
     :class="classes"
-  >
-    <slot></slot>
+  >      
+  <slot />  
   </button>
 </template>
 
 <script setup lang="ts">
+
 import { defineProps } from "vue";
 
 const props = defineProps<{
   primary: boolean;
   secondary: boolean;
-  text: boolean;
+  text: boolean;  
 }>();
 
 const classes = {
@@ -23,4 +24,5 @@ const classes = {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

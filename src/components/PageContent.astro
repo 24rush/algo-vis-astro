@@ -1,7 +1,7 @@
 ---
 const { content, githubEditUrl } = Astro.props;
 const title = content.title;
-// const headers = content.astro.headers;
+const headers = content.astro ? content.astro.headers : undefined;
 ---
 
 <article id="article" class="content">

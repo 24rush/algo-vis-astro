@@ -1,5 +1,5 @@
 {
-  "name": "@example/docs",
+  "name": "@algovis/docs",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,20 +10,23 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.13.0",
-    "@astrojs/vue": "^0.0.2",
+    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/vue": "^2.0.1",
     "@docsearch/css": "^3.0.0",
     "@docsearch/react": "^3.0.0",
     "@types/react": "^17.0.43",
+    "bootstrap": "^5.3.1",
+    "mustache": "^4.2.0",
     "preact": "^10.7.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "sass": "^1.50.0",
-    "vue": "3.2"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@astrojs/preact": "^0.0.2",
     "@astrojs/react": "^0.1.0",
-    "@astrojs/tailwind": "^0.1.0",
-    "astro": "^1.0.0-beta.5"
+    "@astrojs/tailwind": "^4.0.0",
+    "astro": "^2.10.12"
   }
 }

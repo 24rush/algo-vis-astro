@@ -22,7 +22,15 @@
   h4 {
     font-size: 13pt;
   }
+
+  ol {
+    padding-left: 1rem;
+    list-style: decimal;
+  }
+  
+  li,
   p {
+    text-align: justify;
     margin-top: 0.77rem;
     color: theme("colors.slate.600");
   }
@@ -57,5 +65,14 @@
   .astro-code {
     padding: 1rem;
     border-radius: 0.44rem;
+  }
+
+  @layer utilities {
+    .visible {
+      visibility: visible;
+    }
+    .invisible {
+      visibility: hidden;
+    }
   }
 }

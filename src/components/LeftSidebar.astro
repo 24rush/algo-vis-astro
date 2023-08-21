@@ -1,44 +1,97 @@
 ---
-import { SIDEBAR } from '../config';
+import { SIDEBAR } from "../config";
 const { currentPage } = Astro.props;
 const currentPageMatch = currentPage.slice(1);
 
 const isCurrentPage = (item) => {
-	if (item.link) {
-		return item.link.includes(currentPageMatch);
-	}
-	return false;
+  if (item.link) {
+    return item.link.includes(currentPageMatch);
+  }
+  return false;
 };
 
 const getLinkClasses = (link) => {
-	const baseClasses = "block py-2 px-6  my-1 transition-colors border-l hover:border-slate-400 text-slate-500 hover:text-slate-900"
+  const baseClasses =
+    "block py-2 px-6  my-1 transition-colors border-l hover:border-slate-400 text-slate-500 hover:text-slate-900";
 
-	if (isCurrentPage(link)) {
-		return baseClasses + " border-slate-500 text-slate-900";
-	} else {
-		return baseClasses;
-	}
-}
+  if (isCurrentPage(link)) {
+    return baseClasses + " border-slate-500 text-slate-900";
+  } else {
+    return baseClasses;
+  }
+};
+
+const randId = () => {
+     return Math.random().toString(36).replace(/[^a-z]+/g, '').slice(2, 10);
+};
+
 ---
+
 <aside title="Site Navigation">
-	<!-- <Debug content={navigation} /> -->
-	<nav aria-labelledby="grid-left" class="w-64 p-4 border-r">
-		<ul>
-			{SIDEBAR.map(item => (item.header ? 
-				<h2 class="mt-4 font-semibold text-slate-700">{item.text}</h2> : 
-				<li class={getLinkClasses(item)}>
-					<a href={item.link}>{item.text}</a>
-				</li>))}
-		</ul>
-	</nav>
+  <!-- <Debug content={navigation} /> -->
+  <nav aria-labelledby="grid-left" class="w-64 p-4 border-r">
+    <div class="accordion accordion-flush open menu__box">
+      {
+        Object.keys(SIDEBAR).map((header) => {
+		  let headingId = "flush-heading" + randId();
+		  let collapseId = "flush-collapse" + randId();
+          return (
+            <div class="accordion-item">
+              <h2 class="accordion-header" id={headingId}>
+                <button
+                  class="accordion-button accordion-button-flush"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target=`#${collapseId}`
+                  aria-expanded="false"
+                  aria-controls={collapseId}
+                >
+                  {header}
+                </button>
+              </h2>
+
+              <div
+                id={collapseId}
+                class="accordion-collapse collapse show"
+                aria-labelledby={headingId}
+              >
+                <div class="accordion-body accordion-body-flush">
+                  <ul>
+                    {SIDEBAR[header].map((item) => {
+                      return (
+                        <li class={getLinkClasses(item)}>
+                          <a href={item.link}>{item.text}</a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </nav>
 </aside>
 
 <script is:inline>
-	window.addEventListener('DOMContentLoaded', (event) => {
-		var target = document.querySelector('[aria-current="page"]');
-		if (target && target.offsetTop > window.innerHeight - 100) {
-			document.querySelector('.nav-groups').scrollTop = target.offsetTop;
-		}
-	});
+window.addEventListener("DOMContentLoaded", (event) => {
+	var target = document.querySelector('[aria-current="page"]');
+	if (target && target.offsetTop > window.innerHeight - 100) {
+		document.querySelector(".nav-groups").scrollTop = target.offsetTop;
+	}
+});
 </script>
 
+<style scoped>
+
+.accordion-body-flush {
+	padding-top: 0!important;
+	padding-bottom: 0em!important;
+}
+
+.accordion-button-flush {
+	padding-bottom: 0.25em!important;
+}
+</style>

@@ -1,12 +1,11 @@
 import { defineConfig } from "astro/config";
+
+import mdx from "@astrojs/mdx";
 import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 
-// https://astro.build/config
 export default defineConfig({
+  site: "https://primiipasi.info",
   integrations: [
-    // Enable Preact to support Preact JSX components.
-    vue(),
-    tailwind(),
-  ],
+  mdx(), vue(), tailwind()]
 });
