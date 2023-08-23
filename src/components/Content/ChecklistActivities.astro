@@ -20,6 +20,7 @@ const sanitizedCurrentPage = currentPage.replace(/\/$/, '').replace(/^\//, '');
 const hasQuiz = sanitizedCurrentPage in QUIZZES && 'quiz' in QUIZZES[sanitizedCurrentPage];
 const hasExercise = sanitizedCurrentPage in QUIZZES && 'exercise' in QUIZZES[sanitizedCurrentPage];
 ---
+
 <div class={onMainPage ? 'show-only-mobile' : 'hide-mobile'}>
 {
   (hasQuiz || hasExercise) && (<span style="font-weight: 600;" class="text-slate-600">Activități:</span>)
