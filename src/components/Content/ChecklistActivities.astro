@@ -5,21 +5,21 @@ const currentPage = Astro.url.pathname;
 const { onMainPage } = Astro.props;
 
 const QUIZZES = {
-  "/notiuni_de_baza/programarea": {quiz: "programarea.json"},
-  "/notiuni_de_baza/structura": {quiz: "structura.json"},  
-  "/notiuni_de_baza/functii": {quiz: "functii.json", exercise: "../exercitii/functii"},
-  "/notiuni_de_baza/obiecte": {quiz: "obiecte.json", exercise: "../exercitii/obiecte"},
-  "/notiuni_de_baza/operatori": {quiz: "operatori.json", exercise: "../exercitii/operatori"},
-  "/notiuni_de_baza/scopuri": {quiz: "scopuri.json"},
-  "/notiuni_de_baza/structuri-control": {quiz: "structuri-control.json", exercise: "../exercitii/structuri-control"},
-  "/notiuni_de_baza/tipuri-date": {quiz: "tipuri-date.json", exercise: "../exercitii/tipuri-date"},
-  "/notiuni_de_baza/vectori": {quiz: "vectori.json", exercise: "../exercitii/vectori"},
+  "notiuni_de_baza/programarea": {quiz: "programarea.json"},
+  "notiuni_de_baza/structura": {quiz: "structura.json"},  
+  "notiuni_de_baza/functii": {quiz: "functii.json", exercise: "../exercitii/functii"},
+  "notiuni_de_baza/obiecte": {quiz: "obiecte.json", exercise: "../exercitii/obiecte"},
+  "notiuni_de_baza/operatori": {quiz: "operatori.json", exercise: "../exercitii/operatori"},
+  "notiuni_de_baza/scopuri": {quiz: "scopuri.json"},
+  "notiuni_de_baza/structuri-control": {quiz: "structuri-control.json", exercise: "../exercitii/structuri-control"},
+  "notiuni_de_baza/tipuri-date": {quiz: "tipuri-date.json", exercise: "../exercitii/tipuri-date"},
+  "notiuni_de_baza/vectori": {quiz: "vectori.json", exercise: "../exercitii/vectori"},
 };
 
-const hasQuiz = currentPage in QUIZZES && 'quiz' in QUIZZES[currentPage];
-const hasExercise = currentPage in QUIZZES && 'exercise' in QUIZZES[currentPage];
+const sanitizedCurrentPage = currentPage.replace(/\/$/, '').replace(/^\//, '');
+const hasQuiz = sanitizedCurrentPage in QUIZZES && 'quiz' in QUIZZES[sanitizedCurrentPage];
+const hasExercise = sanitizedCurrentPage in QUIZZES && 'exercise' in QUIZZES[sanitizedCurrentPage];
 ---
-
 <div class={onMainPage ? 'show-only-mobile' : 'hide-mobile'}>
 {
   (hasQuiz || hasExercise) && (<span style="font-weight: 600;" class="text-slate-600">Activități:</span>)
@@ -29,7 +29,7 @@ const hasExercise = currentPage in QUIZZES && 'exercise' in QUIZZES[currentPage]
 {
   hasExercise && 
     <MainButton text class="mt-2 mb-2">
-      <a href={QUIZZES[currentPage].exercise} target="_blank" rel="noopener">
+      <a href={QUIZZES[sanitizedCurrentPage].exercise} target="_blank" rel="noopener">
         Exersează 
       </a>
     </MainButton>
@@ -37,7 +37,7 @@ const hasExercise = currentPage in QUIZZES && 'exercise' in QUIZZES[currentPage]
 }
 {
   hasQuiz && (
-      <MainButton text config-id={QUIZZES[currentPage].quiz} class="av-quiz">
+      <MainButton text config-id={QUIZZES[sanitizedCurrentPage].quiz} class="av-quiz">
         Quizz!
       </MainButton>
   )  
