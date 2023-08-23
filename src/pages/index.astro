@@ -1,4 +1,5 @@
 ---
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../../public/assets/styles/av-wp-styles.css";
 import "../../public/assets/styles/av-styles.css";
 import "../styles/main.scss";
@@ -25,6 +26,8 @@ const { content = {} } = Astro.props;
           : CONFIG.SITE.title
       }
     </title>
+      
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&amp;display=swap" rel="stylesheet">
   </head>
   <body>
 <div class="text-center">
@@ -36,8 +39,8 @@ const { content = {} } = Astro.props;
       <span>de la 0 la 100 în programare pe fast-forward</span>
     </h1>
     <p class="text-lg mt-8 text-slate-300">
-      Vezi cum funcționează un program 'pe interior' rulând pas cu pas fiecare
-      instrucțiune. În ritmul tău.
+      Vezi cum funcționează un program 'pe interior' rulând fiecare
+      instrucțiune pas cu pas. În ritmul tău.
     </p>
 
     <div class="counters mt-8">        

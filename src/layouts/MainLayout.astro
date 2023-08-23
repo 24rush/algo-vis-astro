@@ -1,4 +1,9 @@
 ---
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../public/assets/styles/av-wp-styles.css";
+import "../../public/assets/styles/av-styles.css";
+import "../styles/main.scss";
+
 import HeadCommon from "../components/HeadCommon.astro";
 import HeadSEO from "../components/HeadSEO.astro";
 import Header from "../components/Header/Header.astro";
@@ -6,9 +11,6 @@ import PageContent from "../components/PageContent.astro";
 import LeftSidebar from "../components/LeftSidebar.astro";
 import RightSidebar from "../components/RightSidebar.astro";
 import * as CONFIG from "../config";
-import "../../public/assets/styles/av-wp-styles.css";
-import "../../public/assets/styles/av-styles.css";
-import "../styles/main.scss";
 
 const { content = {} } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
@@ -38,7 +40,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         </div>
       </div>
 
-      <main class="col-span-main-mobile py-4 px-8 pb-32 overflow-auto">
+      <main class="col-span-main-mobile py-4 px-16 pb-32 overflow-auto">
         <div>
           <PageContent content={content}>
             <slot />
