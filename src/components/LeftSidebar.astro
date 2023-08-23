@@ -30,7 +30,7 @@ const randId = () => {
 <aside title="Site Navigation">
   <!-- <Debug content={navigation} /> -->
   <nav aria-labelledby="grid-left" class="w-64 p-4">
-    <div class="accordion accordion-flush open menu__box">
+    <div class="accordion accordion-flush open menu__box" style="position: absolute;overflow-y: scroll;height: 100vh;">
       {
         Object.keys(SIDEBAR).map((header) => {
 		  let headingId = "flush-heading" + randId();
