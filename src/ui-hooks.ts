@@ -79,8 +79,8 @@ export class UIHooks {
         // Move counters below the logo
         let counters = document.querySelector('[class=counters]');
         if (counters) {
-            let logo = document.querySelector('[class=flex-container]');
-            logo.after(counters);
+            //let logo = document.querySelector('[class=flex-container]');
+            //logo.after(counters);
         }
     }
 }

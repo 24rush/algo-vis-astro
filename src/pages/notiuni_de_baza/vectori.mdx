@@ -6,12 +6,13 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.vue'
 import Heading from '../../components/Content/Heading.vue'
 import Arrow from '../../components/Content/Arrow.vue'
+import Check from '../../components/Content/Check.vue'
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
-<br/>- ce reprezintă tipul vector / array
-<br/>- la ce ne ajută acest tip de dată
-<br/>- ce operații sunt disponibile asupra variabilelor de tip array
+<br/><Check/>ce reprezintă tipul vector / array
+<br/><Check/>la ce ne ajută acest tip de dată
+<br/><Check/>ce operații sunt disponibile asupra variabilelor de tip array
 </Box>
 
 Un tip de obiect foarte des utilizat în programele Javascript este **array** (_ro._ vector sau listă) ce poate stoca o colecție ordonată de valori de orice tip. Elementele sale sunt stocate în ordinea introducerii lor în colecție și pot fi accesate folosind poziția lor din colecție. Acest tip este definit de o lungime și de posibilitatea de a accesa orice element al său specificând poziția pe care ne-o dorim folosind parantezele pătrate (```[ ]```) între care vom specifica această poziție.
@@ -59,16 +60,9 @@ Pentru a șterge un element dintr-un vector, va trebui să folosim funcțiile <c
 
 <Box attention>
 <strong>Rezumat:</strong>
-- Tipul de date vector ne permite să stocăm o <strong>colecție de valori</strong>
-- Accesarea (scrierea sau citirea) elementelor se face folosind poziția lor în vector
-- <strong>Pozițiile în vectori încep de la 0</strong>
-- Un vector este definit de lungimea sa (câte elemente conține)
-- Sunt disponibile numeroase funcții de prelucrare a vectorilor
+<br/><Arrow/>Tipul de date vector ne permite să stocăm o <strong>colecție de valori</strong>
+<br/><Arrow/>Accesarea (scrierea sau citirea) elementelor se face folosind poziția lor în vector
+<br/><Arrow/><strong>Pozițiile în vectori încep de la 0</strong>
+<br/><Arrow/>Un vector este definit de lungimea sa (câte elemente conține)
+<br/><Arrow/>Sunt disponibile numeroase funcții de prelucrare a vectorilor
 </Box>
-
-<div class="has-text-align-center">
-<p>Acum că ai finalizat articolul, verifică-ți cunoștințele cu următorul quiz:</p>
-<a config-id="vectori.json" class="av-quiz av-btn-sm">Deschide quiz</a>
-<p>iar apoi folosește ce ai învățat rezolvând următoarele exerciții:</p>
-<a class="av-btn-sm" href="/exercitii-vectori/" target="_blank" rel="noopener">Deschide exerciții</a>
-</div>

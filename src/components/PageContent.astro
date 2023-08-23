@@ -1,4 +1,6 @@
 ---
+import ChecklistActivities from '../components/Content/ChecklistActivities.astro'
+
 const { content, githubEditUrl } = Astro.props;
 const title = content.title;
 const headers = content.astro ? content.astro.headers : undefined;
@@ -9,6 +11,6 @@ const headers = content.astro ? content.astro.headers : undefined;
 		<nav class="block sm:hidden">
 		</nav>
 		<slot />
+		<ChecklistActivities onMainPage/>
 	</section>
 </article>
-

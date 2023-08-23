@@ -49,27 +49,30 @@ const props = defineProps<{
 .attention-box {
     position: relative;
     background: #ffdd0012;
-    border-color: #ff9d00 !important;
+    --box-content-color: #ff9d00;
+    border-color: var(--box-content-color) !important;
     padding: 10px 20px;
-    margin: 1.5rem 0rem 1rem 1rem;
+    margin: 2rem 0rem 1rem 0rem;
     border-left: 5px solid;
 }
 
 .knowledge-box {
     position: relative;
     background: #00cc880f;
-    border-color: #00cc88 !important;
+    --box-content-color:#00cc88;
+    border-color: var(--box-content-color) !important;
     padding: 10px 20px;
-    margin: 1.5rem 0rem 1rem 1rem;
+    margin: 2rem 0rem 1rem 0rem;
     border-left: 5px solid;
 }
 
 .info-box {
     position: relative;
     background: #eaf8ffa3;
-    border-color: #1eb4ff !important;
+    --box-content-color: #1eb4ff;
+    border-color: var(--box-content-color) !important;
     padding: 10px 20px;
-    margin: 1.5rem 0rem 1rem 1rem;
+    margin: 2rem 0rem 1rem 0rem;
     border-left: 5px solid;
 }
 </style>

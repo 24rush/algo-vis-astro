@@ -11,10 +11,10 @@ const { currentPage } = Astro.props;
   <SkipToContent />
   <nav
     title="Top Navigation"
-    class="max-w-7xl mx-auto flex justify-between items-center px-4"
+    class="max-w-7xl mx-auto flex justify-between items-center px-2"
   >
-    <div style="display:flex; flex-direction: row; align-items: center;">
-      <div class="hamburger-menu menu-button-mobile">
+    <div style="display:flex; flex-direction: row;">
+      <div class="hamburger-menu menu-button-mobile px-1">
         <input id="menu__toggle" type="checkbox" />
         <label class="menu__btn" for="menu__toggle">
           <span></span>
@@ -27,19 +27,27 @@ const { currentPage } = Astro.props;
       </a>
     </div>
 
-    <div class="flex gap-2">
-      <!-- <button onclick="toggleDarkMode()">theme</button> -->
+    <div class="flex gap-2">      
       {
-        SITE.twitter && (
-          <a
-            title="Twitter"
-            class="opacity-90 hover:opacity-100 hover:bg-blue-100 p-2 rounded-full transition-colors"
-            href={"https://twitter.com/" + SITE.twitter}
-          >
-            <img class="h-7" src="/twitter.svg" alt="twitter logo" />
-          </a>
+        SITE.instagram && (          
+          <a title="Instagram"
+            class="opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors"
+             href={"https://www.instagram.com/" + SITE.instagram}">
+             <i class="bi bi-instagram"></i>
+            </a>                        
         )
       }
+
+      {
+        SITE.discord && (          
+          <a title="Discord"
+            class="opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors"
+             href={"https://discord.gg/" + SITE.discord}">
+             <i class="bi bi-discord"></i>
+            </a>                        
+        )
+      }
+
       {
         SITE.github && (
           <a
@@ -65,12 +73,7 @@ const { currentPage } = Astro.props;
     </div>
   </nav>
 
-  <script is:inline>
-    // function toggleDarkMode() {
-    // 	const body = document.body;
-    // 	body.classList.toggle('dark');
-    // 	console.log('dark mode toggled');
-    // }
+  <script is:inline>    
   </script>
 
   <style scoped>

@@ -6,11 +6,12 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.vue'
 import Heading from '../../components/Content/Heading.vue'
 import Arrow from '../../components/Content/Arrow.vue'
+import Check from '../../components/Content/Check.vue'
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
- <br/>- ce sunt variabilele locale si cele globale
- <br/>- ce reprezinta domeniul (scopul) unei variabile
+ <br/><Check/>ce sunt variabilele locale si cele globale
+ <br/><Check/>ce reprezinta domeniul (scopul) unei variabile
 </Box>
 
 Am învățat în lecțiile trecute cum să declarăm variabile și funcții noi iar în această lecție vom discuta despre ciclul de viață (engl. _lifetime_) și domeniul unei variabile (engl. _scope_). 
@@ -55,14 +56,9 @@ Domeniile variabilelor funcționează pe principiul <strong>mai mic/mai mare</st
 Trebuie avut în vedere că declararea unei variabile locale cu același nume ca al unei variabile globale va face ca aceasta să aibă prioritate față de cea globală ceea ce înseamnă că în blocul în care a fost declarată ea va 'ascunde' variabila globală. Aceasta nu este o practică recomandată întrucât poate introduce defecte așa că trebuie mereu avut grijă ce nume dăm variabilelor noastre. 
 
 <Box attention>
-<strong>Rezumat:</strong>
-- În funcție de locul în care declarăm o variabilă aceasta poate fi: <strong>globală</strong> sau <strong>locală</strong>
-- Variabilele globale sunt declarate în afara oricărei funcții sau bloc și pot fi accesate de oriunde din programul nostru
-- Variabilele locale sunt declarate în corpul funcțiilor sau în sub-blocuri din corpul lor și pot fi accesate doar din blocurile în care au fost declarate
-- Durata de viață a unei variabile este dată de blocul în care a fost declarată, cele locale vor fi distruse (neutilizabile) după sfârșitul execuției blocului în care erau declarate însă cele globale vor fi distruse abia după terminarea completă a programului
+<strong>Rezumat</strong>
+<br/><Arrow/>În funcție de locul în care declarăm o variabilă aceasta poate fi: <strong>globală</strong> sau <strong>locală</strong>
+<br/><Arrow/>Variabilele globale sunt declarate în afara oricărei funcții sau bloc și pot fi accesate de oriunde din programul nostru
+<br/><Arrow/>Variabilele locale sunt declarate în corpul funcțiilor sau în sub-blocuri din corpul lor și pot fi accesate doar din blocurile în care au fost declarate
+<br/><Arrow/>Durata de viață a unei variabile este dată de blocul în care a fost declarată, cele locale vor fi distruse (neutilizabile) după sfârșitul execuției blocului în care erau declarate însă cele globale vor fi distruse abia după terminarea completă a programului
 </Box>
-
-<div class="has-text-align-center">
-<p>Acum că ai finalizat articolul, verifică-ți cunoștințele cu următorul quiz:</p>
-<a config-id="scopuri.json" class="av-quiz av-btn-sm">Deschide quiz</a>
-</div>

@@ -6,14 +6,15 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.vue'
 import Heading from '../../components/Content/Heading.vue'
 import Arrow from '../../components/Content/Arrow.vue'
+import Check from '../../components/Content/Check.vue'
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
-<br/>- cu ce ne ajută structurile de control
-<br/>- structura decizionala și operatorul ternar
-<br/>- ce sunt structurile repetitive
-<br/>- cuvintele cheie speciale break și continue
-<br/>- structura switch
+<br/><Check/>cu ce ne ajută structurile de control
+<br/><Check/>structura decizionala și operatorul ternar
+<br/><Check/>ce sunt structurile repetitive
+<br/><Check/>cuvintele cheie speciale break și continue
+<br/><Check/>structura switch
 </Box>
 
 Un program nu va putea efectua nimic important doar prin declararea de variabile. Vor exista situații în care vom avea nevoie să executam anumite secvențe de cod numai când anumite condiții sunt adevărate (sau false) sau vom dori să executăm o secvență de cod de un anumit număr de ori. Pentru acest gen de situații au fost create structurile de control care nu sunt altceva decât niște cuvinte cheie cu un anumit set de reguli care ne permit să descriem situațiile enunțate mai sus.
@@ -188,15 +189,8 @@ Vom folosi structura **switch** atunci când dorim să testam egalitatea dintre 
 
 <Box attention> 
 <strong>Rezumat:</strong>
-- Structurile decizionale <strong>if-else-if</strong> ne ajută să executăm secvențe de cod doar dacă anumite condiții sunt adevărate sau false
-- Structurile repetitive <strong>for, while, do-while</strong> ne permit să executăm secvențe de cod de un număr predefinit de ori sau cât timp o condiție este adevărată sau falsă
-- Pentru întreruperea unei bucle putem folosi cuvântul cheie <strong>break</strong> sau cuvântul cheie <strong>continue</strong> pentru a sări peste un pas al buclei
-- Structura <strong>switch</strong> este similară celei <em>if-else-if</em> însă ne permite să o descriem într-un format mai ușor de citit dar are dezavantajul că poate fi folosită doar ca să testăm contra unor expresii constante (deja știute în momentul scrierii programului)
+<br/><Arrow/>Structurile decizionale <strong>if-else-if</strong> ne ajută să executăm secvențe de cod doar dacă anumite condiții sunt adevărate sau false
+<br/><Arrow/>Structurile repetitive <strong>for, while, do-while</strong> ne permit să executăm secvențe de cod de un număr predefinit de ori sau cât timp o condiție este adevărată sau falsă
+<br/><Arrow/>Pentru întreruperea unei bucle putem folosi cuvântul cheie <strong>break</strong> sau cuvântul cheie <strong>continue</strong> pentru a sări peste un pas al buclei
+<br/><Arrow/>Structura <strong>switch</strong> este similară celei <em>if-else-if</em> însă ne permite să o descriem într-un format mai ușor de citit dar are dezavantajul că poate fi folosită doar ca să testăm contra unor expresii constante (deja știute în momentul scrierii programului)
 </Box>
-
-<div class="has-text-align-center">
-<p>Acum că ai finalizat articolul, verifică-ți cunoștințele cu următorul quiz:</p>
-<a config-id="structuri-control.json" class="av-quiz av-btn-sm">Deschide quiz</a>
-<p>iar apoi folosește ce ai învățat rezolvând următoarele exerciții:</p>
-<a class="av-btn-sm" href="/exercitii-structuri-de-control/" target="_blank" rel="noopener">Deschide exerciții</a>
-</div>

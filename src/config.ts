@@ -1,10 +1,12 @@
 export const SITE = {
   title: "Primiipasi.info",
-  description: "Astro theme to build your design system fast.",
+  description: "de la 0 la 100 în programare pe fast-forward",
   defaultLanguage: "en_US",
-  twitter: "@jordienr",
-  github: "jordienr",
-  linkedin: "linkedinUsername",
+  instagram: "primiipasi.info",
+  discord: "t6QFbc6qp4",
+  twitter: "",
+  github: "",  
+  linkedin: "",
 };
 
 export const OPEN_GRAPH = {

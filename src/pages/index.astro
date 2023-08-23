@@ -1,30 +1,79 @@
 ---
+import "../../public/assets/styles/av-wp-styles.css";
+import "../../public/assets/styles/av-styles.css";
+import "../styles/main.scss";
+
+import HeadCommon from "../components/HeadCommon.astro";
+import HeadSEO from "../components/HeadSEO.astro";
 import MainButton from "../components/MainButton.vue";
+import Algovis from "../components/Content/Algovis.vue";
+
+import * as CONFIG from "../config";
+
+const { content = {} } = Astro.props;
+
 ---
-
-<meta charset="UTF-8" />
-
-<div class="min-h-screen text-center">
-  <header class="pt-12 pb-24 px-4 bg-gradient-to-br from-slate-700 to-black">
+<html dir={content.dir ?? "ltr"} lang={content.lang ?? "en-us"} class="initial">
+  <head>
+    <meta charset="UTF-8" />
+    <HeadCommon />
+    <HeadSEO {content} canonicalURL={new URL(Astro.url.pathname, Astro.site)} />
+    <title>
+      {
+        content.title
+          ? `${content.title} 🚀 ${CONFIG.SITE.title}`
+          : CONFIG.SITE.title
+      }
+    </title>
+  </head>
+  <body>
+<div class="text-center">
+  <header class="pt-12 pb-2 px-4 bg-gradient-to-br from-slate-700 to-black">
     <div class="flex items-center justify-center p-4">
       <img src="/astro-design-system-logo.svg" alt="Astro Design System Logo" />
     </div>
     <h1 class="text-white text-4xl font-medium drop-shadow-sm">
       <span>de la 0 la 100 în programare pe fast-forward</span>
     </h1>
-    <p class="text-lg mt-4 text-slate-300">
+    <p class="text-lg mt-8 text-slate-300">
       Vezi cum funcționează un program 'pe interior' rulând pas cu pas fiecare
       instrucțiune. În ritmul tău.
     </p>
+
+    <div class="counters mt-8">        
+      <div style="display: flex; flex-direction: row;">
+        <div class="counter-container">
+          <i class="bi bi-mortarboard-fill"></i>
+          <div class="counter" data-target="29"></div>
+          <span class="counter-text">secvențe explicate</span>
+        </div>
+        <div class="counter-container">
+          <i class="bi bi-patch-question-fill"></i>
+          <div class="counter" data-target="62"></div>
+          <span class="counter-text">quizzuri</span>
+        </div>
+        <div class="counter-container">
+          <i class="bi bi-hammer"></i>
+          <div class="counter" data-target="36"></div>
+          <span class="counter-text">exerciții rezolvate</span>
+        </div>
+      </div>
+    </div>
+
     <div class="pt-6">
-      <MainButton secondary>
+      <MainButton primary>
         <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
       </MainButton>
     </div>
+    <div class="arrow mt-6" style="margin-left: 45%;"></div>
   </header>
   <nav>
-   
+    <Algovis config-id="landing-page-samples.json" av-autoplay>
+    </Algovis>
   </nav>
 </div>
 
-<script is:inline></script>
+<script is:inline src="./../assets/scripts/bundle.js" type="text/javascript"></script>
+
+</body>
+</html>

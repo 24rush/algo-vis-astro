@@ -6,12 +6,13 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.vue'
 import Heading from '../../components/Content/Heading.vue'
 import Arrow from '../../components/Content/Arrow.vue'
+import Check from '../../components/Content/Check.vue'
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
- <br/>- ce sunt obiectele
- <br/>- ce este o referință
- <br/>- cum se comportă obiectele trimise ca parametri funcțiilor
+ <br/><Check/>ce sunt obiectele
+ <br/><Check/>ce este o referință
+ <br/><Check/>cum se comportă obiectele trimise ca parametri funcțiilor
 </Box>
 
 Un obiect în limbajul Javascript nu este altceva decât o colecție de proprietăți asociate unei entități pe care vrem să o reprezentăm în programul nostru. Putem privi aceste obiecte ca obiectele din lumea reală, acestea având diferite caracteristici / proprietăți specifice lor. Să luăm de exemplu caracteristicile unei sticle, cum ar fi: înălțime, volumul de lichid pe care îl poate stoca, greutate, diametru. Tipurile de date obiect ne ajută să stocăm în programul nostru asfel de informații.
@@ -74,15 +75,8 @@ Putem observa cum variabila <code>a</code> nu mai este o copie a variabilei <cod
 Chiar daca putem modifica proprietățile unui parametru de tip obiect, nu putem în schimb să modificăm complet obiectul cu unul nou, adică o atribuire <code>a = { }</code> nu va avea niciun efect întrucât modificăm o copie a unei referințe care se va pierde la ieșirea din funcție.
 
 <Box attention>
-<strong>Rezumat:</strong>
-- Un obiect este o <strong>colecție de proprietăți</strong> asociată unei entități
-- Atribuirea unui obiect altui obiect va duce la crearea unei <strong>referințe</strong> și nu a unei copii
-- Obiectele transmise ca parametri funcțiilor pot fi modificați în interiorul acestora iar modificările vor fi vizibile după sfârșitul apelului funcției
+<strong>Rezumat</strong>
+<br/><Arrow/>Un obiect este o <strong>colecție de proprietăți</strong> asociată unei entități
+<br/><Arrow/>Atribuirea unui obiect altui obiect va duce la crearea unei <strong>referințe</strong> și nu a unei copii
+<br/><Arrow/>Obiectele transmise ca parametri funcțiilor pot fi modificați în interiorul acestora iar modificările vor fi vizibile după sfârșitul apelului funcției
 </Box>
-
-<div class="has-text-align-center">
-<p>Acum că ai finalizat articolul, verifică-ți cunoștințele cu următorul quiz:</p>
-<a config-id="obiecte.json" class="av-quiz av-btn-sm">Deschide quiz</a>
-<p>iar apoi folosește ce ai învățat rezolvând următoarele exerciții:</p>
-<a class="av-btn-sm" href="/exercitii-obiecte/" target="_blank" rel="noopener">Deschide exerciții</a>
-</div>

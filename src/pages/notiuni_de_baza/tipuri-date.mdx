@@ -6,12 +6,15 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.vue'
 import Heading from '../../components/Content/Heading.vue'
 import Arrow from '../../components/Content/Arrow.vue'
+import Check from '../../components/Content/Check.vue'
+import ChecklistActivities from '../../components/Content/ChecklistActivities.astro'
+import Algovis from '../../components/Content/Algovis.vue'
 
 <Box knowledge> 
 <strong>Ce vom afla din acest articol:</strong>
-<br/>- care sunt tipurile de date predefinite ale limbajului Javascript
-<br/>- ce este un tip de dată primitiv
-<br/>- ce sunt obiectele
+<br/><Check/>care sunt tipurile de date predefinite ale limbajului Javascript
+<br/><Check/>ce este un tip de dată primitiv
+<br/><Check/>ce sunt obiectele
 </Box>
 
 Am creat până acum variabile ce puteau stoca numere și texte. Observăm astfel că o variabilă poate conține mai multe feluri de conținut. Aceste varietăți ale conținutului reprezintă tipurile de date iar limbajului Javascript dispune de mai multe astfel de tipuri deja definite:
@@ -48,20 +51,12 @@ Mai există și o categorie de tipuri speciale de date cum ar fi: <code>undefine
 
 Javascript este un limbaj de programare în care tipul unei variabile nu trebuie menționat atunci când declarăm variabila și totodată acest tip îl putem schimba oricând în timpul rulării programului, nu este fixat pentru totodeauna în funcție de valoarea cu care a fost inițializată variabila la declarare. Acest lucru ne-ar permite să stocăm într-o variabilă tipuri diferite de conținut pe parcursul execuției programului însă vom vedea mai tărziu că aceasta nu este o practică recomandată.
 
-<div class="algovis" config-id="tipuri-date-basics.json" av-selected="1">
-</div>
+<Algovis config-id="tipuri-date-basics.json" av-selected="1">
+</Algovis>
 
 <Box attention>
 <strong>Rezumat:</strong>
-- Variabilele stocheaza date ce pot fi de diferite tipuri in functie de <strong>multimea valorilor</strong> pe care le pot lua (numere, texte, valori logice, etc.)
-- Tipurile de date <strong>obiect</strong> agrega mai multe proprietati ce pot fi atribuite unei entitati
-- Tipurile de date care nu sunt obiect se vor numi <strong>tipuri primitive</strong>
+<br/><Arrow/>Variabilele stocheaza date ce pot fi de diferite tipuri in functie de <strong>multimea valorilor</strong> pe care le pot lua (numere, texte, valori logice, etc.)
+<br/><Arrow/>Tipurile de date <strong>obiect</strong> agrega mai multe proprietati ce pot fi atribuite unei entitati
+<br/><Arrow/>Tipurile de date care nu sunt obiect se vor numi <strong>tipuri primitive</strong>
 </Box>
-
-<div class="has-text-align-center">
-<p>Acum că ai finalizat articolul, verifică-ți cunoștințele cu următorul quiz:</p>
-<a config-id="tipuri-date.json" class="av-quiz av-btn-sm">Deschide quiz</a>
-
-<p>iar apoi folosește ce ai învățat rezolvând următoarele exerciții:</p>
-<a class="av-btn-sm" href="/exercitii-tipuri-de-date/" target="_blank" rel="noopener">Deschide exerciții</a>
-</div>

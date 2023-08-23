@@ -6,12 +6,13 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.vue'
 import Heading from '../../components/Content/Heading.vue'
 import Arrow from '../../components/Content/Arrow.vue'
+import Check from '../../components/Content/Check.vue'
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
-<br/>- ce sunt operatorii
-<br/>- ce sunt expresiile
-<br/>- cum se evaluează expresiile
+<br/><Check/>ce sunt operatorii
+<br/><Check/>ce sunt expresiile
+<br/><Check/>cum se evaluează expresiile
 </Box>
 
 # Operatori #
@@ -97,16 +98,9 @@ Regulile generale de aplicare a operatorilor în cadrul expresiilor:
 - <code>let s = 8 / (2 ** 2)</code> dacă vrem ridicarea la putere să fie efectuată prima și apoi împărțirea.
 
 <Box attention>
-<strong>Rezumat:</strong>
-- Operatorii sunt mijlocul prin care putem efectua operații asupra datelor (numiți și operanzi)
-- Expresiile sunt construcții ce conțin operatori și operanzi și pot folosi opțional și paranteze pentru a grupa sub-operațiile 
-- Evaluarea unei expresii presupune folosirea unor <strong>reguli de aplicare</strong> a operatorilor asupra operanzilor referitoare la prioritatea lor față de alți operatori (precedență) și legate de ordinea aplicării operatorilor (de la stânga la dreapta sau invers)
-- Pentru a evita greșeli legate de ordinea intepretarii operațiilor într-o expresie este recomandată folosirea <strong>parantezelor</strong> pentru a face explicită ordinea pe care o avem în vedere
+<strong>Rezumat</strong>
+<br/><Arrow/>Operatorii sunt mijlocul prin care putem efectua operații asupra datelor (numiți și operanzi)
+<br/><Arrow/>Expresiile sunt construcții ce conțin operatori și operanzi și pot folosi opțional și paranteze pentru a grupa sub-operațiile 
+<br/><Arrow/>Evaluarea unei expresii presupune folosirea unor <strong>reguli de aplicare</strong> a operatorilor asupra operanzilor referitoare la prioritatea lor față de alți operatori (precedență) și legate de ordinea aplicării operatorilor (de la stânga la dreapta sau invers)
+<br/><Arrow/>Pentru a evita greșeli legate de ordinea intepretarii operațiilor într-o expresie este recomandată folosirea <strong>parantezelor</strong> pentru a face explicită ordinea pe care o avem în vedere
 </Box>
-
-<div class="has-text-align-center">
-<p>Acum că ai finalizat articolul, verifică-ți cunoștințele cu următorul quiz:</p>
-<a config-id="operatori.json" class="av-quiz av-btn-sm">Deschide quiz</a>
-<p>iar apoi folosește ce ai învățat rezolvând următoarele exerciții:</p>
-<a class="av-btn-sm" href="/exercitii-operatori/" target="_blank" rel="noopener">Deschide exerciții</a>
-</div>
