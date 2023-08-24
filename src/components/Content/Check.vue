@@ -1,5 +1,5 @@
 <template>
-    <span class="list-arrow">
+    <span class="list-check">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg"
             viewBox="0 0 16 16">
             <path
@@ -7,3 +7,12 @@
         </svg>
     </span>
 </template>
+
+<style scoped>
+.list-check {
+    display: inline-block;
+    padding-right: 6px;
+    color: var(--box-content-color) !important;
+    vertical-align: sub;
+}
+</style>

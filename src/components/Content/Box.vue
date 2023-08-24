@@ -38,14 +38,43 @@
 <script setup lang="ts">
 
 const props = defineProps<{
-    attention: boolean;
-    knowledge: boolean;
-    info: boolean;
+    attention?: boolean;
+    knowledge?: boolean;
+    info?: boolean;
 }>();
 
 </script>
   
 <style>
+:root {
+    --attention-color: #ff9d00;
+    --know-color: #00cc88;
+    --tip-color: #1eb4ff;
+}
+
+.box-pill {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: translate(calc(-60%), -50%);
+    padding: 6px;
+    /*background-color: rgb(241 245 249 / var(--tw-bg-opacity));*/
+    background-color: white;
+    border-radius: 40%;
+}
+
+.attention-pill {
+    color: var(--attention-color)
+}
+
+.know-pill {
+    color: var(--know-color)
+}
+
+.tip-pill {
+    color: var(--tip-color)
+}
+
 .attention-box {
     position: relative;
     background: #ffdd0012;

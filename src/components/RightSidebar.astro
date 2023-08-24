@@ -5,7 +5,7 @@ const { content } = Astro.props;
 const headers = content.astro?.headers || [];
 ---
 <nav aria-labelledby="grid-right">
-	<div class="">
+	<div class="mt-10">
 		<TableOfContents headers={headers} />
 		<ChecklistActivities />
 	</div>

@@ -8,6 +8,7 @@ import HeadCommon from "../components/HeadCommon.astro";
 import HeadSEO from "../components/HeadSEO.astro";
 import MainButton from "../components/MainButton.vue";
 import Algovis from "../components/Content/Algovis.vue";
+import Counters from "../components/Header/Counters.astro";
 
 import * as CONFIG from "../config";
 
@@ -30,50 +31,33 @@ const { content = {} } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&amp;display=swap" rel="stylesheet">
   </head>
   <body>
-<div class="text-center">
-  <header class="pt-12 pb-2 px-4 bg-gradient-to-br from-slate-700 to-black">
-    <div class="flex items-center justify-center p-4">
-      <img src="/astro-design-system-logo.svg" alt="Astro Design System Logo" />
-    </div>
-    <h1 class="text-white text-4xl font-medium drop-shadow-sm">
-      <span>de la 0 la 100 în programare pe fast-forward</span>
-    </h1>
-    <p class="text-lg mt-8 text-slate-300">
-      Vezi cum funcționează un program 'pe interior' rulând fiecare
-      instrucțiune pas cu pas. În ritmul tău.
-    </p>
-
-    <div class="counters mt-8">        
-      <div style="display: flex; flex-direction: row;">
-        <div class="counter-container">
-          <i class="bi bi-mortarboard-fill"></i>
-          <div class="counter" data-target="29"></div>
-          <span class="counter-text">secvențe explicate</span>
-        </div>
-        <div class="counter-container">
-          <i class="bi bi-patch-question-fill"></i>
-          <div class="counter" data-target="62"></div>
-          <span class="counter-text">quizzuri</span>
-        </div>
-        <div class="counter-container">
-          <i class="bi bi-hammer"></i>
-          <div class="counter" data-target="36"></div>
-          <span class="counter-text">exerciții rezolvate</span>
-        </div>
+  <div class="text-center">
+    <header class="pt-12 pb-2 px-4 bg-gradient-to-br from-slate-700 to-black">
+      <div class="flex items-center justify-center p-4">
+        <img src="/astro-design-system-logo.svg" alt="Astro Design System Logo" />
       </div>
-    </div>
+      <h1 class="text-white text-4xl font-medium drop-shadow-sm">
+        <span>de la 0 la 100 în programare pe fast-forward</span>
+      </h1>
+      <p class="text-lg mt-8 text-slate-300">
+        Vezi cum funcționează un program 'pe interior' rulând fiecare
+        instrucțiune pas cu pas. În ritmul tău.
+      </p>
 
-    <div class="pt-6">
-      <MainButton primary>
-        <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
-      </MainButton>
-    </div>
-    <div class="arrow mt-6" style="margin-left: 45%;"></div>
-  </header>
-  <nav>
-    <Algovis config-id="landing-page-samples.json" av-autoplay>
-    </Algovis>
-  </nav>
+      <Counters />
+
+      <div class="pt-6">
+        <MainButton primary>
+          <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
+        </MainButton>
+      </div>
+      <div class="arrow mt-6" style="margin-left: 45%;"></div>
+    </header>
+
+    <nav class="content">
+      <Algovis config-id="landing-page-samples.json" av-autoplay>
+      </Algovis>
+    </nav>
 </div>
 
 <script is:inline src="./../assets/scripts/bundle.js" type="text/javascript"></script>

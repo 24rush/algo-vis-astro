@@ -21,7 +21,7 @@
   width: 100% !important;
 }
 
-@media (orientation: portrait) {
+@media (max-width: 968px) {
   .algovis {
     max-width: 100% !important;
     resize: both;
@@ -219,7 +219,8 @@ body#algovis {
 
 /* Expanding textarea for consoleOutput */
 .grow-wrap {
-  display: grid;
+  display: flex;
+  flex-direction: column;
 }
 
 .grow-wrap::after {

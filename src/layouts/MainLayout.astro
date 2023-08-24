@@ -10,6 +10,7 @@ import Header from "../components/Header/Header.astro";
 import PageContent from "../components/PageContent.astro";
 import LeftSidebar from "../components/LeftSidebar.astro";
 import RightSidebar from "../components/RightSidebar.astro";
+
 import * as CONFIG from "../config";
 
 const { content = {} } = Astro.props;
@@ -30,17 +31,17 @@ const currentPage = new URL(Astro.request.url).pathname;
   </head>
 
   <body>
-    <div class="sticky top-0 z-10 w-full">
+    <div class="sticky z-10 w-full" id="headerBar">
       <Header currentPage={currentPage} />
     </div>
     <div class="grid" style="display: flex;">
-      <div class="col-span-left-mobile sticky top-0 h-screen flex">
+      <div class="col-span-left-mobile sticky top-0 h-screen flex white-background">
         <div class="ml-auto">
           <LeftSidebar currentPage={currentPage} />
         </div>
       </div>
 
-      <main class="col-span-main-mobile py-4 px-16 pb-32 overflow-auto">
+      <main class="col-span-main-mobile py-4 px-8 pb-32 overflow-auto">
         <div>
           <PageContent content={content}>
             <slot />
@@ -54,6 +55,10 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
 
     <style scoped>
+      .white-background {
+        background-color: white;
+      }
+
       .left-sidebar-forced {
         position: fixed !important;
         display: flex !important;
@@ -97,15 +102,17 @@ const currentPage = new URL(Astro.request.url).pathname;
       }
     </style>
     <script is:inline>
-      const checkbox = document.querySelector("#menu__toggle");
+      let menuIsOpened = false;
+      const menuToggle = document.querySelector("#menu__toggle");
       const leftSidebar = document.querySelector(".col-span-left-mobile");
 
-      checkbox.addEventListener("change", (event) => {
+      menuToggle.addEventListener("change", (event) => {
         if (!event.currentTarget.checked) {
-          //leftSidebar.classList.remove("col-span-left-mobile");
+          menuIsOpened = false;
           leftSidebar.classList.remove("left-sidebar-forced");
           leftSidebar.classList.add("col-span-left-mobile");
         } else {
+          menuIsOpened = true;
           leftSidebar.classList.remove("col-span-left-mobile");
           leftSidebar.classList.add("left-sidebar-forced");
         }
@@ -120,6 +127,24 @@ const currentPage = new URL(Astro.request.url).pathname;
           leftSidebar.classList.remove("left-sidebar-forced");
         }
       };
+ 
+      // Auto hide header bar
+      var headerBar = document.getElementById('headerBar');      
+      var prevScrollpos = window.pageYOffset;      
+
+      if (headerBar) {        
+        window.onscroll = function() {          
+            if (menuIsOpened == true) {
+              headerBar.style.top = "0";
+              return;
+            }
+
+            var currentScrollPos = window.pageYOffset;         
+            headerBar.style.top = prevScrollpos > currentScrollPos ? "0" : "-150px";         
+            prevScrollpos = currentScrollPos;
+        }
+      }
+
     </script>
 
     <script is:inline src="./../assets/scripts/bundle.js" type="text/javascript"></script>
@@ -136,10 +161,5 @@ const currentPage = new URL(Astro.request.url).pathname;
       crossorigin=""
       src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js?ver=6.1.1"
       id="js-prism_linenumbers-js"></script>
-
-    <script>
-      import { UIHooks } from "../ui-hooks";
-      new UIHooks(undefined);
-    </script>
   </body>
 </html>

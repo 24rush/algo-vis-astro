@@ -1,0 +1,68 @@
+<div class="counters mt-8">        
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+      <div class="counter-container">
+        <i class="bi bi-mortarboard-fill"></i>
+        <div class="av-counter" data-target="29"></div>
+        <span class="counter-text">secvențe explicate</span>
+      </div>
+      <div class="counter-container">
+        <i class="bi bi-patch-question-fill"></i>
+        <div class="av-counter" data-target="62"></div>
+        <span class="counter-text">quizzuri</span>
+      </div>
+      <div class="counter-container">
+        <i class="bi bi-hammer"></i>
+        <div class="av-counter" data-target="36"></div>
+        <span class="counter-text">exerciții rezolvate</span>
+      </div>
+    </div>
+</div>
+
+<script is:inline>     
+     for (let counter of document.querySelectorAll('[class^=av-counter]')) {
+        counter.textContent = "0";
+
+        let updateCounter = () => {
+            const target = parseInt(counter.getAttribute("data-target"))
+            let count = parseInt(counter.textContent);
+
+            if (count < target) {
+                counter.textContent = `${Math.ceil(++count)}`;
+                setTimeout(updateCounter, 7);
+            } else {
+                counter.textContent = target.toString();
+            }
+        };
+
+        setInterval(updateCounter, 2000);
+    };
+</script>
+
+<style scoped>
+.counters {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0.75em;
+    color: white;
+}
+.counter-container {
+    text-align: center;
+    line-height: 1em;    
+}
+
+.av-counter {    
+    margin-top: 14px;
+    font-weight: 600;
+}
+
+.counter-text {
+    inline-size: min-content;
+    font-size: .75em;
+}
+
+.counters a:visited {
+    color: #000 !important;
+}
+
+</style>
