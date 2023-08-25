@@ -108,8 +108,17 @@
         width: 90%;
         margin: auto;
     }
+
+    ol.exercise-list {
+        padding-left: 0 !important;
+    }
+
+    .exercise-list ol {
+        padding-left: 0 !important;
+    }
 }
 
+/*
 ol.exercise-list {
     list-style: none !important;
 }
@@ -125,3 +134,4 @@ ol.exercise-list {
     list-style: inherit;
     margin-bottom: 3em;
 }
+*/

@@ -6,8 +6,8 @@ import "../styles/main.scss";
 
 import HeadCommon from "../components/HeadCommon.astro";
 import HeadSEO from "../components/HeadSEO.astro";
-import MainButton from "../components/MainButton.vue";
-import Algovis from "../components/Content/Algovis.vue";
+import MainButton from "../components/MainButton.astro";
+import Algovis from "../components/Content/Algovis.astro";
 import Counters from "../components/Header/Counters.astro";
 
 import * as CONFIG from "../config";
@@ -55,7 +55,7 @@ const { content = {} } = Astro.props;
     </header>
 
     <nav class="content">
-      <Algovis config-id="landing-page-samples.json" av-autoplay>
+      <Algovis config_id="landing-page-samples.json" av_autoplay>
       </Algovis>
     </nav>
 </div>

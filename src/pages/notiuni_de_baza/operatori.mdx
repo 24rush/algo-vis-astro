@@ -3,10 +3,10 @@ title: "Operatori și expresii"
 layout: "../../layouts/MainLayout.astro"
 ---
 
-import Box from '../../components/Content/Box.vue'
-import Heading from '../../components/Content/Heading.vue'
+import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
-import Check from '../../components/Content/Check.vue'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
@@ -29,8 +29,8 @@ Pentru a putea efectua sarcini utile cu conținutul variabilelor avem nevoie să
 <span class="list-arrow"></span>**logici:** <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>
 
 **Exemplul 1:**
-<div class="algovis" config-id="tipuri-date-basics.json" av-selected="2">
-</div>
+<Algovis config_id="tipuri-date-basics.json" av_selected="2">
+</Algovis>
 
 În exemplul de mai sus putem observa și cum diferă comportamentul operatorului <code>+</code> în funcție de operanzii cărora este aplicat. În liniile 3-5 este folosit cu operanzi numerici unde va efectua operația de adunare însă în liniile 18-20 el este folosit cu operanzi text ceea ce va face ca rezultatul expresiei să fie concatenarea (alăturarea) celor doi operanzi.
 
@@ -53,8 +53,8 @@ Combinațiile de operatori și operanzi observăm că au mereu un rezultat obți
 <img src="../assets/imgs/expresii1.jpg" class="img-box" />
 
 **Exemplul 2:**
-<div class="algovis" config-id="tipuri-date-basics.json" av-selected="3">
-</div>
+<Algovis config_id="tipuri-date-basics.json" av_selected="3">
+</Algovis>
 
 <Box info>
 <strong>Operatorul %</strong> numit și modulo este folosit pentru a determina restul împărțirii a două numere întregi și este foarte util în a determina dacă un număr este par sau impar având în vedere că restul împărțirii la 2 a unui număr par va fi mereu 0.

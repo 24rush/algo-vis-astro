@@ -3,10 +3,10 @@ title: "Vectori"
 layout: "../../layouts/MainLayout.astro"
 ---
 
-import Box from '../../components/Content/Box.vue'
-import Heading from '../../components/Content/Heading.vue'
+import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
-import Check from '../../components/Content/Check.vue'
+import Check from '../../components/Content/Check.astro'
+import Algovis from '../../components/Content/Algovis.astro';
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
@@ -21,20 +21,20 @@ Un tip de obiect foarte des utilizat în programele Javascript este **array** (_
 
 <Box info>Ca în multe alte limbaje de programare, pozițiile într-un vector încep de la <strong>0</strong> și nu de la <strong>1</strong>. Asta înseamnă că primul element se vă găsi la poziția 0 adică <code>v1[0]</code> și nu <code>v1[1]</code>.</Box>
 
-<div class="algovis" config-id="vectori-basics.json" av-selected="0"></div>
+<Algovis config_id="vectori-basics.json" av_selected="0"></Algovis>
 
 De foarte multe ori, un program va avea nevoie să știe câte elemente se află într-o variabilă de tip vector iar pentru asta vom folosi proprietatea <code>length</code>. Cea mai uzuală construcție ce are nevoie să știe lungimea vectorului este cea de parcurgere adică vizitare a fiecărui element.
 
-<div class="algovis" config-id="vectori-basics.json" av-selected="1"></div>
+<Algovis config_id="vectori-basics.json" av_selected="1"></Algovis>
 
 ## for-of / for-in ##
 O variantă alternativă la structura for clasică în care iterăm folosind un contor este **for-of**. Această construcție ne permite să extragem direct valorile colecției într-o variabilă pe care apoi să o utilizăm în corpul blocului for. 
 
 Exemplul de mai sus rescris folosind for-of:
-<div class="algovis" config-id="vectori-basics.json"  av-selected="4"></div>
+<Algovis config_id="vectori-basics.json"  av_selected="4"></Algovis>
 
 Varianta **for-in** este similară celei for-of, diferența fiind că aceasta ne va întoarce în variabila indexul elementului și nu valoarea sa.
-<div class="algovis" config-id="vectori-basics.json"  av-selected="5"></div>
+<Algovis config_id="vectori-basics.json"  av_selected="5"></Algovis>
 
 # Manipulare vectori #
 Pe lângă proprietatea <code>length</code>, variabilele de tip vector ne pun la dispoziție o multitudine de funcții (metode) prin care putem să manipulăm mai ușor conținutul lor. Vom evidenția doar câteva din ele mai jos:
@@ -48,7 +48,7 @@ Pe lângă proprietatea <code>length</code>, variabilele de tip vector ne pun la
 - ```reverse``` - după cum numele indică, această metodă va ordona elementele dintr-o colecție în ordinea inversă celei curente
 - ```indexOf(element)``` - ne ajută să căutam un element într-o colecție întorcând prima poziție la care a fost întâlnit
 
-<div class="algovis" config-id="vectori-basics.json" av-selected="2"></div>
+<Algovis config_id="vectori-basics.json" av_selected="2"></Algovis>
 
 <Box attention>
 Când utilizăm funcțiile de manipulare a vectorilor trebuie să avem în vedere dacă funcția <strong>modifică</strong> sau nu continutul vectorului pe care este aplicată. Anumite funcții sunt implementate de limbajul Javascript să lase nemodificat vectorul pe care sunt aplicate și în schimb să <strong>întoarcă un alt vector</strong> cu modificările prin valoarea de retur a funcției. De ex., funcția <code>reverse</code> modifică vectorul pe care este aplicată în schimb funcția <code>slice</code> va lăsa vectorul nemodificat dar va întoarce conținutul solicitat prin valoare de retur.
@@ -56,7 +56,7 @@ Când utilizăm funcțiile de manipulare a vectorilor trebuie să avem în veder
 
 Pentru a șterge un element dintr-un vector, va trebui să folosim funcțiile <code>indexOf</code> pentru a identifica poziția pe care se află elementul apoi <code>splice</code> pentru a șterge efectiv elementul din vector.
 
-<div class="algovis" config-id="vectori-basics.json" av-selected="3"></div>
+<Algovis config_id="vectori-basics.json" av_selected="3"></Algovis>
 
 <Box attention>
 <strong>Rezumat:</strong>

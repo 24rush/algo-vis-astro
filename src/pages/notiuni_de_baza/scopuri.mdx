@@ -3,10 +3,10 @@ title: "Domeniul variabilelor"
 layout: "../../layouts/MainLayout.astro"
 ---
 
-import Box from '../../components/Content/Box.vue'
-import Heading from '../../components/Content/Heading.vue'
+import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
-import Check from '../../components/Content/Check.vue'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
@@ -31,12 +31,12 @@ Există definite următoarele categorii de domenii pentru variabile:
 ## Variabile locale ##
 În exemplul de mai jos observăm cum domeniul unei variabile afectează programul nostru. Variabila <code>x</code> declarată în funcția <code>boo</code> este o variabilă locală, făcând parte din domeniul funcției ceea ce înseamnă că orice instrucțiune din afara funcției <code>boo</code> nu va avea acces la această variabilă. Dacă încercăm să rulam acest exemplu, vom obține o eroare (<code>x is not defined</code>) ce ne spune că variabila <code>x</code> nu este definită.
 
-<div class="algovis" config-id="scopuri-basics.json" av-selected="0"></div>
+<Algovis config_id="scopuri-basics.json" av_selected="0"></Algovis>
 
 ## Variabile globale ##
 Dacă modificăm exemplul și definim variabila <code>x</code> în afara funcției <code>boo</code> atunci o vom și transforma dintr-o variabilă locală într-una globală iar exemplul nostru va funcționa.
 
-<div class="algovis" config-id="scopuri-basics.json" av-selected="1"></div>
+<Algovis config_id="scopuri-basics.json" av_selected="1"></Algovis>
 
 ## Domenii suprapuse ##
 În exemplul următor observăm comportamentul variabilelor definite în cadrul unui bloc. Orice secvență de instrucțiuni ce începe prin deschidere cu o acolada (**{}**) va crea un bloc nou iar toate variabile definite în cadrul blocului vor fi vizibile doar instrucțiunilor din acel bloc. În exemplu nostru, variabila <code>y</code> din funcția <code>boo</code> este definită în interiorul blocului aferent instrucțiunii <code>if</code> ceea ce o face să fie o **variabila locală** vizibilă doar în blocul **if** iar încercarea de o accesa după terminarea blocului (imediat după acolada (**}**)) va determina eroarea <code>y is not defined</code>. 
@@ -45,7 +45,7 @@ Mai putem observa și că în acest bloc accesăm cu succes variabila <code>x</c
 
 În același mod putem accesa variabile globale (definite în afara funcțiilor) întrucât domeniul global conține toate domeniile funcțiilor.
 
-<div class="algovis" config-id="scopuri-basics.json" av-selected="2"></div>
+<Algovis config_id="scopuri-basics.json" av_selected="2"></Algovis>
 
 <Box info>
 Domeniile variabilelor funcționează pe principiul <strong>mai mic/mai mare</strong> adică un domeniu mai mic (interior) va avea access la toate variabilele definite în domeniile mai mari care îl conțin și pe el pe când un domeniu mai mare va avea acees doar la variabilele din domeniul său nu și la cele din domeniile pe care le conține.

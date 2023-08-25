@@ -3,10 +3,10 @@ title: "Structura unui limbaj de programare"
 layout: "../../layouts/MainLayout.astro"
 ---
 
-import Box from '../../components/Content/Box.vue'
-import Heading from '../../components/Content/Heading.vue'
+import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
-import Check from '../../components/Content/Check.vue'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
 
 <Box knowledge> 
 <strong>Ce vom afla din acest articol:</strong>
@@ -54,8 +54,8 @@ Elementele caracteristice ale unei variabile:
 
 <img src="../assets/imgs/declarare1.png" class="img-box" />
 
-<div class="algovis" config-id="limbaj-basics.json">
-</div>
+<Algovis config_id="limbaj-basics.json">
+</Algovis>
 
 <Box attention>
 <strong>Numele unei variabile</strong> trebuie să înceapă cu o literă (<code>a-z</code> sau <code>A-Z</code>) sau underscore(<code>_</code>). Este important de reținut că literele mici sunt trate diferit de cele mari așa că vom putea defini două variabile <code>nume</code> și <code>Nume</code>, ele find complet separate.

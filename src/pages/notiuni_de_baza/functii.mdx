@@ -3,10 +3,10 @@ title: "Funcții"
 layout: "../../layouts/MainLayout.astro"
 ---
 
-import Box from '../../components/Content/Box.vue'
-import Heading from '../../components/Content/Heading.vue'
+import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
-import Check from '../../components/Content/Check.vue'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
@@ -56,11 +56,11 @@ Pentru a executa instrucțiunile aferente corpului funcției va trebui să apel�
 # Exemple #
 Să vedem cum ne ajută o funcție în dezvoltarea programelor noastre. Luăm exemplul de mai jos în care vrem să afișăm valoarea a două numere introduse de utilizator ridicate la puterea a doua. Prima oară vom solicita un număr pozitiv iar ulterior unul negativ.
 
-<div class="algovis" config-id="functii-basics.json" av-selected="2"></div>
+<Algovis config_id="functii-basics.json" av_selected="2"></Algovis>
 
 Observăm cât de multe instrucțiuni se repetă și cât de similare par instrucțiunile pentru cele două cazuri: număr pozitiv și negativ. Să refacem acum exemplul folosind funcții.
 
-<div class="algovis" config-id="functii-basics.json" av-selected="3"></div>
+<Algovis config_id="functii-basics.json" av_selected="3"></Algovis>
 
 Am refăcut astfel programul încât secvențele duplicate de instrucțiuni sunt eliminate, fiind înlocuite cu funcțiile <code>numar_la_patrat</code> și <code>solicita_numar</code> ce primesc ca parametru tipul de număr pe care îl solicităm. 
 - În liniile 23-24 observăm cum este folosit numele funcției pentru a executa instrucțiunile aferente ei. 
@@ -86,7 +86,7 @@ Pe lângă funcțiile definite de noi, există o multitudine de alte funcții pr
 # Parametri unei funcții #
 Parametri funcțiilor (denumiți și parametri formali) pot fi priviți ca fiind datele prin care putem comunica cu funcția și cu ajutorul cărora putem executa anumite instrucțiuni în corpul funcției. Acești parametrii se transformă de altfel în variabile în corpul funcției putând fi folosiți ca orice altă variabilă declarată în corpul ei. Un aspect foarte important de menționat este că orice modificare adusă acestor parametrii nu se va reflecta după terminarea apelului funcției dacă variabila modificată este de tip primitiv (numeric, text). Cu alte cuvinte, clienții funcției (cei care o apelează folosind anumiți parametrii) nu vor vedea nicio modificare adusă parametrilor de intrare dacă noi încercăm să le modificam valoarea în corpul funcției. Acest lucru se întâmplă deoarece acestă listă de parametri este de fapt o listă de copii a parametrilor folosiți atunci când se efectuează apelul funcției iar orice modificare adusă lor va fi făcută efectiv asupra copilor și nu asupra parametrilor menționați în apelul funcției.
 
-<div class="algovis" config-id="functii-basics.json" av-selected="1"></div>
+<Algovis config_id="functii-basics.json" av_selected="1"></Algovis>
 
 - Funcția <code>dubleaza</code> primește ca parametru un <code>numar</code> pe care noi încercăm să îl modificăm în speranța că după apelul acestei funcții de dublare, parametrul trimis își vă păstra valoarea modificată. 
 - Rulând exemplul vedem cum instrucțiunea <code>numar = numar * 2;</code> are doar efect local, modificând valoarea parametrului doar în corpul funcției însă o dată cu părăsirea acesteia, variabila <code>x</code> aferentă parametrului <code>numar</code> are aceeași valoare ca înainte de apelul funcției.

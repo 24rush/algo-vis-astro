@@ -1,0 +1,8 @@
+---
+const {config_id, av_autoplay, av_selected, av_exercise} = Astro.props;
+---
+<div class="algovis" config-id={config_id} 
+    av-selected={av_selected} av-exercise={av_exercise}
+    {av_autoplay}>
+    <slot></slot>
+</div>

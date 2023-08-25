@@ -3,10 +3,10 @@ title: "Structuri de control și repetitive"
 layout: "../../layouts/MainLayout.astro"
 ---
 
-import Box from '../../components/Content/Box.vue'
-import Heading from '../../components/Content/Heading.vue'
+import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
-import Check from '../../components/Content/Check.vue'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
 
 <Box knowledge>
 <strong>Ce vom afla din acest articol:</strong>
@@ -33,7 +33,7 @@ Aceasta structură folosește doi parametri:
 
 O alta variantă a acestei structuri este cea **if-else** în care putem specifica pe lângă secvență de cod ce ar trebui executată în cazul în care expresia este adevărată și o secvență ce ar trebui executată în cazul contrar (când condiția se evaluează la fals). De reținut că mereu într-o structură if-else vom executa o singură ramură: ori cea de pe ramura adevărat ori invers.
 
-<div class="algovis" config-id="structuri-control-basics.json" av-selected="0"></div>
+<Algovis config_id="structuri-control-basics.json" av_selected="0"></Algovis>
 
 ## Operatorul ternar ##
 Pentru structura if-else există o alternativă de exprimare a acesteia prin folosirea unui operator special și anume operatorul ternar. După cum îi spune și numele, este un operator ce solicită 3 operanzi, din acest motiv fiind special pentru că este singurul de acest fel.
@@ -87,7 +87,7 @@ Ordinea în care se execută operațiile unei structuri for este următoarea:
 
 În exemplul următor se vor afișa toate numerele de la 1 până la 100.
 
-<div class="algovis" config-id="structuri-control-basics.json"  av-selected="1"></div>
+<Algovis config_id="structuri-control-basics.json"  av_selected="1"></Algovis>
 
 <code>let i = 1</code> este expresia inițială care ne declară o variabilă <code>i</code> pe care o și initializam cu 1.
 <code>i &lt;&equals; 100</code> este expresia care ne indică cât timp se vă executa bucla, în acest caz vă fi executată cât timp ```i``` este mai mic decât 100
@@ -107,7 +107,7 @@ Parametri acestei structuri sunt:
 
 În secvență de mai jos, solicităm numere de la utilizator atât timp cât ultimul număr introdus a fost par. Bucla se va termina după introducerea primului numai impar.
 
-<div class="algovis" config-id="structuri-control-basics.json" av-selected="3"></div>
+<Algovis config_id="structuri-control-basics.json" av_selected="3"></Algovis>
 
 <p class="info-box">
 Structurile <strong>for</strong> și <strong>while</strong> sunt echivalente însă vom folosi cu precădere structura <em>for</em> atunci când știm exact de câte ori urmează să executăm corpul blocului iar pe cea <em>while</em> în caz contrar (numărul de pași ne este necunoscut și va fi determinat doar de câte ori condiția de testat a blocului while se va evalua la adevărat).
@@ -127,7 +127,7 @@ Un cuvânt cheie des utilizat în contextul structurilor repetitive este **break
 
 În exemplu de mai jos, introducem posibilitate de a întrerupe jocul atunci când este introdusă valoarea 0. Executarea instrucțiunii _break_ va duce la întreruperea executării blocului _while_ cu alte cuvinte vom părăsi corpul blocului.
 
-<div class="algovis" config-id="structuri-control-basics.json" av-selected="4"></div>
+<Algovis config_id="structuri-control-basics.json" av_selected="4"></Algovis>
 
 <Box info>Cuvânt cheie <code>break1</code> va determina ieșirea din blocurile <code>switch, while, for, do-while</code></Box>
 
@@ -136,7 +136,7 @@ Un cuvânt cheie similar lui <em>break</em> este <strong>continue</strong> care 
 
 În exemplul de mai jos, vom afișa toate numerele impare de la 1 la 10 sărind la fiecare iterație peste afișarea celor pare.
 
-<div class="algovis" config-id="structuri-control-basics.json" av-selected="5"></div>
+<Algovis config_id="structuri-control-basics.json" av_selected="5"></Algovis>
 
 # switch #
 Ultima structură pe care o vom prezenta nu este una repetitiva ci una decizională similară celei _if-else_. Aceasta se cheamă **switch** și arată astfel:
@@ -183,7 +183,7 @@ Putem afirma atunci că structura _switch_ ne este utilă atunci când există o
 
 În exemplul următor vom afișa ce fructe îi plac persoanei al cărei nume a fost introdus de utilizator și pentru care știm aceasta informație. Observăm ramura _default_ care ne indică setul de instrucțiuni pe care să îl executăm atunci când nu am putut satisface nicio condiție de mai sus (în cazul nostru când a fost introdus un nume de persoană pentru care nu știm ce fructe îi plac). Mai observăm că în cazul lui 'Alex' și 'Victor' cărora le plac ambilor kiwi, am putut să specificăm acest lucru prin alăturarea clauzelor _case_ aferente numelor lor.
 
-<div class="algovis" config-id="structuri-control-basics.json" av-selected="2"></div>
+<Algovis config_id="structuri-control-basics.json" av_selected="2"></Algovis>
 
 Vom folosi structura **switch** atunci când dorim să testam egalitatea dintre o expresie și un set de valori constante (știute deja în momentul scrierii programului) dar nu și contra altor expresii (ce ar urma să fie determinate în timpul execuției). Dacă avem nevoie să testăm contra unor expresii atunci va trebui să folosim structura **if-else-if**.
 
