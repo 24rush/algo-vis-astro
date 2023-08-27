@@ -7,5 +7,5 @@ import vue from "@astrojs/vue";
 export default defineConfig({
   site: "https://primiipasi.info",
   integrations: [
-  mdx(), vue(), tailwind()]
+    mdx(), vue(), tailwind()]
 });

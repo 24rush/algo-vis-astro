@@ -5,7 +5,7 @@ export const SITE = {
   instagram: "primiipasi.info",
   discord: "t6QFbc6qp4",
   twitter: "",
-  github: "",  
+  github: "",
   linkedin: "",
 };
 

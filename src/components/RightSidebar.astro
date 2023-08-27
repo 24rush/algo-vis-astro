@@ -1,9 +1,10 @@
 ---
-import ChecklistActivities from './Content/ChecklistActivities.astro';
-import TableOfContents from './TableOfContents.astro';
+import ChecklistActivities from "./Content/ChecklistActivities.astro";
+import TableOfContents from "./TableOfContents.astro";
 const { content } = Astro.props;
 const headers = content.astro?.headers || [];
 ---
+
 <nav aria-labelledby="grid-right">
 	<div class="mt-10">
 		<TableOfContents headers={headers} />

@@ -13,8 +13,8 @@ import Counters from "../components/Header/Counters.astro";
 import * as CONFIG from "../config";
 
 const { content = {} } = Astro.props;
-
 ---
+
 <html dir={content.dir ?? "ltr"} lang={content.lang ?? "en-us"} class="initial">
   <head>
     <meta charset="UTF-8" />
@@ -27,40 +27,41 @@ const { content = {} } = Astro.props;
           : CONFIG.SITE.title
       }
     </title>
-      
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&amp;display=swap" rel="stylesheet">
   </head>
   <body>
-  <div class="text-center">
-    <header class="pt-12 pb-2 px-4 bg-gradient-to-br from-slate-700 to-black">
-      <div class="flex items-center justify-center p-4">
-        <img src="/astro-design-system-logo.svg" alt="Astro Design System Logo" />
-      </div>
-      <h1 class="text-white text-4xl font-medium drop-shadow-sm">
-        <span>de la 0 la 100 în programare pe fast-forward</span>
-      </h1>
-      <p class="text-lg mt-8 text-slate-300">
-        Vezi cum funcționează un program 'pe interior' rulând fiecare
-        instrucțiune pas cu pas. În ritmul tău.
-      </p>
+    <div class="text-center">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe4ka9gVCW-608C8zcbWa2Dx-vdgzdzb1U1qTGLgx1Cphb2jA/viewform?embedded=true" width="640" height="461" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      <header class="pt-12 pb-2 px-4 bg-gradient-to-br from-slate-700 to-black">
+        <div class="flex items-center justify-center p-4">
+          <img
+            src="/astro-design-system-logo.svg"
+            alt="Astro Design System Logo"
+          />
+        </div>
+        <h1 class="text-white text-4xl font-medium drop-shadow-sm">
+          <span>de la 0 la 100 în programare pe fast-forward</span>
+        </h1>
+        <p class="text-lg mt-8 text-slate-300">
+          Vezi cum funcționează un program 'pe interior' rulând fiecare
+          instrucțiune pas cu pas. În ritmul tău.
+        </p>
 
-      <Counters />
+        <Counters />
 
-      <div class="pt-6">
-        <MainButton primary>
-          <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
-        </MainButton>
-      </div>
-      <div class="arrow my-6"></div>
-    </header>
+        <div class="pt-6">
+          <MainButton primary>
+            <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
+          </MainButton>
+        </div>
+        <div class="arrow my-6"></div>
+      </header>
 
-    <nav class="content">
-      <Algovis config_id="landing-page-samples.json" av_autoplay>
-      </Algovis>
-    </nav>
-</div>
+      <nav class="content">
+        <Algovis config_id="landing-page-samples.json" av_autoplay />
+      </nav>
+    </div>
 
-<script is:inline src="./../assets/scripts/bundle.js" type="text/javascript"></script>
-
-</body>
+    <script is:inline src="./../assets/scripts/bundle.js" type="text/javascript"
+    ></script>
+  </body>
 </html>
