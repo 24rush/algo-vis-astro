@@ -5,6 +5,8 @@ import "../../public/assets/styles/av-styles.css";
 import "../styles/main.scss";
 
 import HeadCommon from "../components/HeadCommon.astro";
+import ScriptsCommon from "../components/ScriptsCommon.astro";
+
 import HeadSEO from "../components/HeadSEO.astro";
 import MainButton from "../components/MainButton.astro";
 import Algovis from "../components/Content/Algovis.astro";
@@ -30,7 +32,6 @@ const { content = {} } = Astro.props;
   </head>
   <body>
     <div class="text-center">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe4ka9gVCW-608C8zcbWa2Dx-vdgzdzb1U1qTGLgx1Cphb2jA/viewform?embedded=true" credentialless width="640" height="461" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
       <header class="pt-12 pb-2 px-4 bg-gradient-to-br from-slate-700 to-black">
         <div class="flex items-center justify-center p-4">
           <img
@@ -61,7 +62,6 @@ const { content = {} } = Astro.props;
       </nav>
     </div>
 
-    <script is:inline src="./../assets/scripts/bundle.js" type="text/javascript"
-    ></script>
+    <ScriptsCommon />
   </body>
 </html>
