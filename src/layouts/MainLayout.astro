@@ -15,6 +15,8 @@ import * as CONFIG from "../config";
 
 const { content = {} } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
+
+const isExercisePage = currentPage.startsWith("/exercitii");
 ---
 
 <html dir={content.dir ?? "ltr"} lang={content.lang ?? "en-us"} class="initial">
@@ -49,9 +51,13 @@ const currentPage = new URL(Astro.request.url).pathname;
         </div>
       </main>
 
-      <div class="col-span-right-mobile sticky top-0 h-screen flex">
-        <RightSidebar content={content} />
-      </div>
+      {
+      !isExercisePage && (
+        <div class="col-span-right-mobile sticky top-0 h-screen flex">
+          <RightSidebar content={content} />
+        </div>
+        )
+      }
     </div>
 
     <style scoped>
@@ -64,7 +70,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         display: flex !important;
         z-index: 1;
         opacity: 1;
-        top: 2.5em !important;
+        top: 3.5em !important;
         height: 100% !important;
         /* background-color: rgb(241 245 249 / var(--tw-bg-opacity)); */
       }
