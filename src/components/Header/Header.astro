@@ -27,12 +27,16 @@ const { currentPage } = Astro.props;
       </a>
     </div>
 
-    <div class="flex gap-2">      
+    <div class="flex gap-2">         
+      <button title="Focus mode" id="btnFocusMode"
+            class="menu-button-desktop opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors">
+            <i class="bi bi-bullseye"></i>
+      </button>
       {
         SITE.instagram && (          
           <a title="Instagram"
             class="opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors"
-             href={"https://www.instagram.com/" + SITE.instagram}">
+             href={"https://www.instagram.com/" + SITE.instagram}>
              <i class="bi bi-instagram"></i>
             </a>                        
         )
@@ -42,7 +46,7 @@ const { currentPage } = Astro.props;
         SITE.discord && (          
           <a title="Discord"
             class="opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors"
-             href={"https://discord.gg/" + SITE.discord}">
+             href={"https://discord.gg/" + SITE.discord}>
              <i class="bi bi-discord"></i>
             </a>                        
         )
@@ -73,17 +77,53 @@ const { currentPage } = Astro.props;
     </div>
   </nav>
 
-  <script is:inline>    
+  <script is:inline>
+  document.querySelector('#btnFocusMode').addEventListener("click", (elem) => {    
+    let toggleElementVisibility = (elemClassName) => {      
+      let leftSidebar = document.querySelector(elemClassName);    
+      if (leftSidebar) {
+        let isHidden = leftSidebar.classList.contains('hide');
+
+        if (!isHidden) {
+          leftSidebar.classList.add('hide');
+          leftSidebar.style.setProperty('display', 'none', 'important');
+        } else {
+          leftSidebar.classList.remove('hide');
+          leftSidebar.style.removeProperty('display');
+        }
+      }
+    };
+
+    toggleElementVisibility(".col-span-left-mobile");
+    toggleElementVisibility(".col-span-right-mobile");
+
+    if (elem && elem.target) {      
+      !elem.target.classList.contains('focus-on') ? 
+        elem.target.classList.add('focus-on') :      
+        elem.target.classList.remove('focus-on');
+    }
+  });
   </script>
 
   <style scoped>
+    .focus-on {
+      color: var(--bs-blue);
+    }
+
     .menu-button-mobile {
       display: none !important;
+    }
+
+    .menu-button-desktop {
+      display: flex !important;
     }
 
     @media (max-width: 968px) {
       .menu-button-mobile {
         display: flex !important;
+      }
+      .menu-button-desktop {
+        display: none !important;
       }
     }
 
