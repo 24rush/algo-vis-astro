@@ -5,6 +5,9 @@ import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 
 export default defineConfig({
+  markdown: {
+    syntaxHighlight: "prism"
+  },
   site: "https://primiipasi.info",
   integrations: [
     mdx(), vue(), tailwind()]

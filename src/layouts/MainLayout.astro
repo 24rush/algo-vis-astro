@@ -34,7 +34,7 @@ const isExercisePage = currentPage.startsWith("/exercitii");
     </title>
   </head>
 
-  <body>
+  <body class="line-numbers language-js">
     <div class="sticky z-10 w-full" id="headerBar">
       <Header currentPage={currentPage} />
     </div>
@@ -146,19 +146,6 @@ const isExercisePage = currentPage.startsWith("/exercitii");
       }
     </script>
 
-    <script
-      crossorigin=""
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js?ver=6.1.1"
-      id="js-prism_core-js"></script>
-    <script
-      crossorigin=""
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js?ver=6.1.1"
-      id="js-prism_autoloader-js"></script>
-    <script
-      crossorigin=""
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js?ver=6.1.1"
-      id="js-prism_linenumbers-js"></script>
-
-      <ScriptsCommon />
+    <ScriptsCommon />
   </body>
 </html>
