@@ -51,8 +51,11 @@
 	var IFRAME_STYLE = [
 	    'width: 100%',
 	    'background-color: white',
-	    'border: 1px solid #ec245e',
-	    'box-sizing: border-box'
+	    'border: 1px solid #0d6efd',
+	    'box-sizing: border-box',
+	    'width: 100%',
+	    'height: 100%',
+	    'resize: vertical'
 	];
 	var AVOID_MIXED_CONTENT_WARNINGS = true;
 	var myScriptEl = getMyScriptEl();
@@ -231,7 +234,7 @@
 /***/ (function(module, exports) {
 
 	"use strict";
-	exports.P5_VERSION = '0.4.23';
+	exports.P5_VERSION = '1.7.0';
 	exports.PREVIEW_WIDTH = 150;
 	exports.HEIGHT = 300;
 	exports.MAX_RUN_TIME = 1000;

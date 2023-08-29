@@ -137,11 +137,11 @@
   /*vertical-align: middle;*/
   border: 1px solid;
   white-space: nowrap;
-  font: 21px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace
+  font: 20px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace
 }
 
 [id^=var-value] {
-  padding: 2px;
+  /* padding: 2px; */
   vertical-align: middle;
 }
 

@@ -1,0 +1,8 @@
+---
+const { src, inline } = Astro.props;
+
+const scriptPath = "../assets/p5snippets/" + src;
+---
+
+{!inline && <script src={scriptPath} type="text/p5" data-preview-width="400" />}
+{inline && <script src={scriptPath} type="text/javascript" />}
