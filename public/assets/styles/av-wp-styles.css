@@ -46,12 +46,12 @@
     border: 0 !important;
 }
 
-.accordion-button:not(.collapsed) {
+.menu-button:not(.collapsed) {
     background-color: transparent !important;
     box-shadow: none !important;
 }
 
-.accordion-button:focus {
+.menu-button:focus {
     border-color: transparent !important;
     box-shadow: none !important;
 }
