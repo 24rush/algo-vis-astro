@@ -1,0 +1,145 @@
+---
+title: "Funcții"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>ce este o funcție și cum ne definim propriile funcții
+<br/><Check/>cum folosirea funcțiilor ne simplifică programele
+<br/><Check/>cum funcțiile comunică cu exteriorul lor
+</Box>
+
+Până acum, toate programele prezentate în aceste materiale au fost alcătuite din secvențe de instrucțiuni ce aveau scopul de a rezolva problemele prezentate fie prin procesarea unor date de intrare și obținerea unora de ieșire fie prin simpla executare a unor instrucțiuni cum ar fi solicitarea unor date de la utilizator.
+
+Pentru a putea refolosi aceste secvențe și în alte secțiuni ale programului, fară a copia în totalitate instrucțiunile ce le formează, a fost introdus conceptul de **funcție**. Putem privi o funcție că o înșiruire de instrucțiuni pe care o putem folosi de oricâte ori vrem fără a copia instrucțiunile ce o formează ci doar prin folosirea numelui ei.
+
+# Definire #
+Definiția unei funcții se face prin utilizarea cuvântului cheie **function** și este formată din două componente: <strong>antet</strong> si <strong>corp</strong>.
+
+```js
+function nume_funcție ( lista opțională de parametri )
+{
+    < declarații + instrucțiuni funcție >
+}
+```
+
+<Arrow/>**antetul** conține numele funcției și eventual o listă de parametri încadrată de paranteze prin care funcția comunică cu exteriorul ei
+```js
+function nume_funcție ( lista opțională de parametri )
+```
+
+<Arrow/>**corpul** conține între acolade declarațiile de variabile și instrucțiunile ce vor realiza efectiv funcționalitatea funcției.
+```js
+{
+    < declarații + instrucțiuni funcție >
+}
+```
+
+Ca sintaxă observăm următoarele elemente:
+1. cuvântul cheie <code>function</code> care indică faptul că urmează să definim o funcție nouă
+2. <code>nume_funcție</code> este identificatorul prin care vom putea executa instrucțiunile ce o formează
+3. <code>lista de parametri</code> ne ajută să specificăm datele de care are nevoie funcția
+4. corpul funcției este format din <code>declarațiile de variabile</code> și din <code>setul de instrucțiuni</code> pe care vrem să-l conțină
+
+## Funcții care întorc un rezultat ##
+Declarația unei funcții poate fi extinsă și pe lângă definierea parametrilor și a instrucțiunilor de executat, se poate indica și o valoare rezultat a funcției. Spunem în acest caz că funcția _**întoarce**_ o valoare. Pentru a indica ce rezultat dorim să întoarcă funcția, vom folosi cuvântul rezervat **return** urmat de această valoare.
+
+```js
+function nume_funcție ( listă opțională de parametri )
+{
+    < declarații + instrucțiuni funcție >
+	
+    return < valoare rezultat >
+}
+```
+
+O funcție poate conține mai multe cuvinte cheie <code>return</code> iar aceste cuvinte pot să apară oriunde în corpul funcției doar că trebuie să avem în vedere ce orice instrucțiuni aflate după el nu se vor mai executa - acest cuvânt indică sfârșitul funcției și întoarcerea execuției programului înapoi la locația de la care s-a făcut apelul funcției.
+
+```js
+function foo()
+{
+    instructiune1;
+    return 5; // Functia se termina aici
+
+    // Nu se va mai executa
+    intructiune2; 
+    return 2;
+}
+
+```
+# Apelul unei funcții #
+Pentru a executa instrucțiunile aferente corpului funcției va trebui să apelăm funcția ce le conține pentru că doar simpla definire a funcției nu va executa instrucțiunile. Luând exemplul de mai sus, pentru a executa funcția va trebui să scriem:
+
+```js
+nume_functie(parametru1, parametru2);
+ ```
+
+``` parametru1, parametru2``` sunt datele de intrare de care funcția are nevoie. Pot exista funcții însă care nu au nevoie de niciun parametru caz în care nu vom specifica nimic între paranteze.
+
+<P5Widget>
+```
+function setup() {
+  createCanvas(300, 300);
+  background(51);
+  noStroke();
+  noLoop();
+}
+
+function draw() {
+  drawTarget(width * 0.5, height * 0.5, 300, 10);
+  drawTarget(width * 0.15, height * 0.4, 200, 4);
+  drawTarget(width * 0.75, height * 0.3, 120, 6);
+}
+
+function drawTarget(xloc, yloc, size, num) {
+  const grayvalues = 255 / num;
+  const steps = size / num;
+  for (let i = 0; i < num; i++) {
+    fill(i * grayvalues);
+    ellipse(xloc, yloc, size - i * steps, size - i * steps);
+  }
+}
+```
+</P5Widget>
+
+## Black box ##
+Reușim astfel să structurăm programul nostru în secvențe de instrucțiuni cu un scop **precis** și **reutilizabil**. Putem privi aceste funcții ca pe niște cutii negre care pe baza unor **parametri de intrare** ne oferă un **rezultat** iar modalitatea prin care aceste funcții ajung la rezultat este strict sarcina lor și mai mult, această modalitate putând fi ulterior modificată fără a afecta corectitudinea programul nostru. 
+
+<img src="../assets/imgs/black_box.png" class="img-box" />
+
+<Algovis config_id="functii-basics.json" av_selected="3"></Algovis>
+
+<Box info>
+Pe lângă funcțiile definite de noi, există o multitudine de alte funcții predefinite ale limbajul Javascript pe care le putea utiliza. Acest lucru ne scutește de efortul de a mai reimplementa cerințele acelor funcții de la 0 – putem accesa acele funcționalități doar prin simplul lor apel (ex. <em>Math.cos(), Math.round(), parseInt(), isNan(), console.log()</em> etc.)
+</Box>
+
+<iframe width="100%" height="480" src="https://www.youtube.com/embed/5tmtBjdw62w" title="Functions | Computer Programming | Khan Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+# Parametri unei funcții #
+Parametri funcțiilor pot fi priviți ca fiind datele prin care putem comunica cu funcția și cu ajutorul cărora putem executa anumite instrucțiuni în corpul funcției. Acești parametrii se transformă de altfel în **variabile** în corpul funcției putând fi folosiți ca orice altă variabilă declarată în corpul ei. 
+
+Un aspect foarte important de menționat este că orice modificare adusă acestor parametrii nu se va reflecta după terminarea apelului funcției dacă variabila modificată este de **tip primitiv** (numeric, text). Clienții funcției (cei care o apelează folosind anumiți parametrii) nu vor vedea nicio modificare adusă parametrilor de intrare dacă noi încercăm să le modificam valoarea în corpul funcției. 
+
+<Box info>
+Acest lucru se întâmplă deoarece acestă listă de parametri a unei funcții este de fapt o **listă de copii** a variabilelor folosite atunci când se efectuează apelul funcției iar orice modificare adusă lor va fi făcută efectiv asupra copilor și nu asupra variabilelor menționate în apelul funcției.
+</Box>
+
+<Algovis config_id="functii-basics.json" av_selected="1"></Algovis>
+
+- Funcția <code>dubleaza</code> primește ca parametru un <code>numar</code> pe care noi încercăm să îl modificăm în speranța că după apelul acestei funcții de dublare, parametrul trimis își vă păstra valoarea modificată. 
+- Rulând exemplul vedem cum instrucțiunea <code>numar = numar * 2;</code> are doar efect local, modificând valoarea parametrului doar în corpul funcției însă o dată cu părăsirea acesteia, variabila <code>x</code> aferentă parametrului <code>numar</code> are aceeași valoare ca înainte de apelul funcției.
+
+<Box attention>
+<strong>Rezumat</strong>
+<br/><Arrow/>O funcție este formată din **antet + corp** adică numele său și lista de parametri urmată de declarații de variabile și instrucțiuni.
+<br/><Arrow/>Opțional o funcție poate întoarce un rezultat prin folosirea cuvântului cheie <strong>return</strong>.
+<br/><Arrow/>Beneficiul principal al folosirii funcțiilor este de a reduce duplicarea instrucțiunilor însă vom învăța și de alte avantaje în articolele următoare.
+<br/><Arrow/>Mecanismul de transmitere a parametrilor de tip primitiv se face prin copierea variabilei specificate la apelul funcției așa că orice modificare adusă parametrului în interiorul funcției se face efectiv asupra acestei copii și <strong>nu asupra variabilei folosite în apel.</strong>
+</Box>

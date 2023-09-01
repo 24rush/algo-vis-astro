@@ -1,8 +1,48 @@
 ---
-const { src, inline } = Astro.props;
+const { src, inline, data_height = 300 } = Astro.props;
 
 const scriptPath = "../assets/p5snippets/" + src;
----
 
-{!inline && <script src={scriptPath} type="text/p5" data-preview-width="400" />}
-{inline && <script src={scriptPath} type="text/javascript" />}
+const data_src_id = Math.random().toString(36).replace(/[^a-z]+/g, "").slice(2, 10);
+---
+<div class="my-3" style="font-size: 21px; font-weight: 500; font-style: italic">#play.box</div>
+
+{
+    src && !inline && (
+        <script src={scriptPath} type="text/p5" data-preview-width="400" />
+    )
+}
+
+{src && inline && <script src={scriptPath} type="text/javascript" />}
+
+{
+    !src && (
+        <script data-src={data_src_id} data-height={data_height}></script>
+        <div data-src={data_src_id}>            
+            <slot />            
+        </div>
+    )
+}
+
+<script>
+addEventListener("load", () => {
+    for (let div of document.querySelectorAll("div[data-src]")) {
+        let script_content = div.textContent.trim();
+        div.remove();
+
+        if (!script_content)
+            continue;        
+
+        let scr = document.querySelector(`script[data-src="${div.getAttribute("data-src")}"]`) as HTMLScriptElement;
+        scr.removeAttribute("data-src");
+        scr.setAttribute("type", "text/p5");        
+        scr.text = script_content;
+        
+        if (div.hasAttribute('data-height')) {
+            scr.setAttribute('data-height', div.getAttribute('data-height'));
+        }
+
+        window['p5Widget'].replaceScript(scr);
+    }
+    });
+</script>

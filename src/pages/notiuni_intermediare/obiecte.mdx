@@ -1,0 +1,127 @@
+---
+title: "Obiecte"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+ <br/><Check/>ce sunt obiectele
+ <br/><Check/>ce este o referință
+ <br/><Check/>cum se comportă obiectele trimise ca parametri funcțiilor
+</Box>
+
+Un obiect în limbajul Javascript nu este altceva decât o **colecție de proprietăți** asociate unei entități pe care vrem să o reprezentăm în programul nostru. Putem privi aceste obiecte ca obiectele din lumea reală, acestea având diferite caracteristici / proprietăți specifice lor. 
+
+Să luăm de exemplu caracteristicile unei sticle, cum ar fi: înălțime, volumul de lichid pe care îl poate stoca, greutate, diametru. Tipurile de date obiect ne ajută să stocăm în programul nostru asfel de informații.
+
+<img src="../assets/imgs/sticla.png" class="img-box" />
+
+# Creare obiecte #
+Pentru a defini o variabilă de tip obiect vom folosi sintaxa normală declarării oricărei variabile (cuvântul cheie <code>let</code>) urmat de numele variabilei însă apoi vom folosi acolade (``` {} ```) pentru a specifica conținutul obiectului. Între aceste acolade vom putea declara și inițializa proprietățile obiectului.
+
+<Algovis config_id="obiecte-basics.json" av_selected="0"></Algovis>
+
+În exemplul de mai sus am construit un obiect nou numit <code>sticlaApa</code> ce conține două proprietăți:  <code>volum</code> și <code>greutate</code> având valorile 500, respectiv 700. Pentru a citi sau modifica aceste proprietăți putem folosi oricare din următoarele construcții:
+- <code>nume_obiect[nume_proprietate]</code>, în cazul nostru <code>sticlaApa['volum']</code>
+- <code>nume_obiect.nume_proprietate</code>, în cazul nostru <code>sticlaApa.volum</code>
+
+## Functii constructor ##
+O altă metodă prin care putem crea un obiect este folosind o <strong>funcție constructor</strong>. Această funcție va primi ca parametri valorile proprietăților obiectului și le va atribui apoi fiecărei proprietăți în parte.
+
+<Algovis config_id="obiecte-basics.json" av_selected="1"></Algovis>
+
+Funcția <code>SticlaApa</code> este funcția constructor ce ne va crea un obiect nou de tip SticlaApa (a se observa cuvântul cheie <code>new</code>). Acesta funcție primește 2 parametri, <code>v</code> și <code>g</code> aferenți proprietăților <code>volum</code> și <code>greutate</code>. În interiorul funcției observăm cum acești parametrii sunt atribuiți proprietăților <code>volum</code> și <code>greutate</code> ale obiectului nou creat reprezentat prin variabila <code>this</code>. 
+
+<Box info>
+Variabila <code>this</code> este o variabila specială a limbajului Javascript care stochează obiectul curent în funcție de contextul în care o folosim. În cazul nostru,  <code>this</code> se vă referi la noul obiect pe care îl creăm în interiorul funcției constructor <code>SticlaApa</code>. 
+</Box>
+
+Avantajul folosirii unei funcții constructor este că putem specifica pe lângă valorile proprietăților și anumite **critierii de validare** ale acestora (cum ar fi să nu stocăm un volum negativ) sau executa orice alte instrucțiuni (cum ar fi afișarea unui mesaj). Folosind prima metodă, acest lucru nu este posibil, sintaxa ne permite doar să atribuim valori proprietăților.
+
+<Algovis config_id="obiecte-basics.json" av_selected="2"></Algovis>
+
+<P5Widget>
+```
+let bug; // Declare object
+
+function setup() {
+  createCanvas(710, 400);
+  // Create object
+  bug = new Jitter();
+}
+
+function draw() {
+  background(50, 89, 100);
+  bug.move();
+  bug.display();
+}
+
+// Jitter class
+class Jitter {
+  constructor() {
+    this.x = random(width);
+    this.y = random(height);
+    this.diameter = random(10, 30);
+    this.speed = 1;
+  }
+
+  move() {
+    this.x += random(-this.speed, this.speed);
+    this.y += random(-this.speed, this.speed);
+  }
+
+  display() {
+    ellipse(this.x, this.y, this.diameter, this.diameter);
+  }
+}
+```
+</P5Widget>
+
+# Copierea obiectelor #
+Operația de copiere (sau atribuire) a unei variabile altei variabile, se face folosind operatorul <code>=</code> iar dacă în cazul tipurilor primitive știm că efectul său este să copieze valoarea variabilei sursă în cea destinație, în cazul copierilor între obiecte situația este diferită.
+
+Atribuirea unei obiect altui obiect va duce la crearea unei **referințe** și nu la crearea unei copii noi identică cu obiectul sursă.
+
+<img src="../assets/imgs/referinte0.png" class="img-box" />
+
+<Box info>
+O <strong>referință</strong> poate fi privită ca un alias către obiectul sursă pe care îl referă. Cu alte cuvinte, referința nu are conținut propriu ci îl referă pe cel al obiectului sursă de aceea orice modificare adusă referinței va fi vizibilă obiectului referit.
+</Box>
+
+<Algovis config_id="obiecte-basics.json" av_selected="5"></Algovis>
+
+În exemplul de mai sus observăm cum modificarea proprietății <code>sticla2.volum</code> va duce la modificarea proprietății  <code>sticla1.volum</code> întrucât  <code>sticla2</code> este o referință a obiectului sticla1 și nu o copie a sa.
+
+# Transmiterea obiectelor ca parametri funcțiilor #
+Am discutat cum un parametru de tip primitiv (numeric, text) transmis unei funcții, chiar dacă ar fi modificat în funcția în care este transmis, această modificare se va pierde la finalul execuției funcției. Efectiv, modificările aduse acestor parametrii nu sunt vizibile în afara funcției. 
+
+Acest mecanism de transmitere a parametrilor în Javascript se numește <strong>prin valoare</strong> ceea ce face ca parametri pe care funcțiile îi primesc să fie de fapt niște copii ale variabilelor efectiv transmise la apelul funcției.
+
+<Algovis config_id="obiecte-basics.json" av_selected="3"></Algovis>
+
+Prin rularea exemplului de mai sus observăm exact cum funcționează acest mecanism întrucât variabila <code>a</code> este doar o copie a variabilei <code>numar</code> transmisă funcției <code>foo</code>.
+
+În cazul obiectelor, lucrurile stau puțin diferit. Chiar dacă transmiterea unui parametru de tip obiect se face tot prin valoare, această copie este acum **o copie a unei referințe** către obiectul nostru și nu un întreg duplicat al său ca în cazul tipurilor primitive. 
+
+Aceasta diferență de transmitere a tipurilor obiect face că modificările aduse valorilor proprietăților să fie acum vizibile în afara funcției. 
+
+<Algovis config_id="obiecte-basics.json" av_selected="4"></Algovis>
+
+Putem observa cum variabila <code>a</code> nu mai este o copie a variabilei <code>numar</code> ci o copie ce conține o **referință** către variabila <code>numar</code> iar orice modificare adusă proprietăților sale vor fi acum vizibile în variabila <code>numar</code> pe care o referă.
+
+<Box info>
+Chiar daca putem modifica proprietățile unui parametru de tip obiect, nu putem în schimb să modificăm complet obiectul cu unul nou, adică o atribuire <code>a = { }</code> nu va avea niciun efect întrucât modificăm o copie a unei referințe care se va pierde la ieșirea din funcție.
+</Box>
+
+<Box attention>
+<strong>Rezumat</strong>
+<br/><Arrow/>Un obiect este o <strong>colecție de proprietăți</strong> asociată unei entități
+<br/><Arrow/>Atribuirea unui obiect altui obiect va duce la crearea unei <strong>referințe</strong> și nu a unei copii
+<br/><Arrow/>Obiectele transmise ca parametri funcțiilor pot fi modificați în interiorul acestora iar modificările vor fi vizibile după sfârșitul apelului funcției
+</Box>

@@ -20,13 +20,16 @@ export const OPEN_GRAPH = {
 export const SIDEBAR = {
   "Noțiuni de bază": [
     { text: "Ce este programarea?", link: "/notiuni_de_baza/programarea" },
-    { text: "Structura unui limbaj de programare", link: "/notiuni_de_baza/structura" },
+    { text: "Sintaxa unui limbaj de programare", link: "/notiuni_de_baza/sintaxa" },
     { text: "Tipuri de date", link: "/notiuni_de_baza/tipuri-date" },
     { text: "Operatori și expresii", link: "/notiuni_de_baza/operatori" },
     { text: "Structuri de control și repetitive", link: "/notiuni_de_baza/structuri-control" },
-    { text: "Funcții", link: "/notiuni_de_baza/functii" },
-    { text: "Vectori", link: "/notiuni_de_baza/vectori" },
-    { text: "Obiecte", link: "/notiuni_de_baza/obiecte" },
-    { text: "Domeniul variabilelor", link: "/notiuni_de_baza/scopuri" },
   ],
+  "Noțiuni intermediare": [
+    { text: "Funcții", link: "/notiuni_intermediare/functii" },
+    { text: "Vectori", link: "/notiuni_intermediare/vectori" },
+    { text: "Stringuri", link: "/notiuni_intermediare/stringuri" },
+    { text: "Obiecte", link: "/notiuni_intermediare/obiecte" },
+    { text: "Domeniul variabilelor", link: "/notiuni_intermediare/scopuri" },
+  ]
 };

@@ -1,0 +1,57 @@
+---
+import IconOpenAI from "../Icons/IconOpenAI.astro";
+
+const { description, prompt, show } = Astro.props;
+
+const gpt_box_id = Math.random()
+    .toString(36)
+    .replace(/[^a-z]+/g, "")
+    .slice(2, 10);
+---
+
+<div class="accordion accordion-flush my-4">
+    <div class="accordion-item">
+        <div
+            class="accordion-header"
+            id={"flush-heading" + gpt_box_id}
+            style="display: flex;flex-direction: row;align-items: center;"
+        >
+            <button
+                class="accordion-button collapsed scope-name-lg"
+                style="padding-left: 0px;"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target={"#flush-collapse" + gpt_box_id}
+                aria-expanded="false"
+                aria-controls={"flush-collapse" + gpt_box_id}
+            >
+                <div style="background: rgb(25, 195, 125); width: 40px;height: 40px;padding: 5px;"> <IconOpenAI color="white" /> </div>
+                <div style="display: flex; flex-direction: column;">
+                    <span style="margin-left: 8px; font-style: normal;"
+                        >{description}</span
+                    >
+                    { prompt && (<span class="prompt"><span style="font-weight: 500;">prompt: </span>{prompt}</span>) }
+                </div>
+            </button>
+        </div>
+        <div
+            id={"flush-collapse" + gpt_box_id}
+            class={"accordion-collapse "  + (show ? 'show' : 'collapse')}
+            aria-labelledby={"flush-heading" + gpt_box_id}
+            data-bs-parent="#accordionFlushExample"
+        >
+            <div class="accordion-body">
+                <slot />
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .prompt {
+        font-style: italic;
+        font-size: small;
+        margin-left: 1em;
+        font-weight: 400;
+    }
+</style>

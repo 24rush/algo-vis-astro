@@ -1,0 +1,145 @@
+---
+title: "Stringuri"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Algovis from '../../components/Content/Algovis.astro';
+import P5Widget from "../../components/P5Widget.astro";
+import GPTBox from '../../components/Content/GPTBox.astro'
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>ce reprezintă tipul de date string
+<br/><Check/>ce operații sunt disponibile asupra variabilelor de tip string
+</Box>
+
+<GPTBox show description="Vezi ce spune ChatGPT despre stringuri in Javascript" prompt="ce sunt stringurile in javascript">
+În programare, un string reprezintă un șir de caractere ce pot fi litere, cifre, simboluri sau spații și sunt utilizate pentru a reprezenta date de tip text într-un limbaj de programare.
+
+De obicei, șirurile sunt delimitate fie de ghilimele duble (`" "`), fie de ghilimele simple (`' '`).
+
+```javascript
+let firstName = "John";
+let lastName = 'Doe';
+let fullName = "John Doe";
+```
+
+Câteva funcționalități speciale pentru manipularea și gestionarea șirurilor:
+
+1. **Concatenare:** Îmbinarea a două sau mai multe șiruri într-unul singur.
+
+```javascript
+let greeting = "Hello";
+let name = "Alice";
+let message = greeting + " " + name; // "Hello Alice"
+```
+
+2. **Lungime:** Aflarea numărului de caractere dintr-un șir.
+
+```javascript
+let text = "Hello World";
+let length = text.length; // 11
+```
+
+3. **Accesarea Caracterelor:** Accesarea unui caracter specific dintr-un șir prin index.
+
+```javascript
+let str = "JavaScript";
+let firstChar = str[0]; // "J"
+let thirdChar = str[2]; // "v"
+```
+
+4. **Subșiruri:** Extrage o porțiune dintr-un șir.
+
+```javascript
+let sentence = "This is a sample sentence.";
+let subString = sentence.slice(5, 10); // "is a "
+```
+
+5. **Căutare și Înlocuire:** Caută și înlocuiește porțiuni de text în șiruri.
+
+```javascript
+let text = "Hello, world!";
+let newText = text.replace("world", "there"); // "Hello, there!"
+```
+
+6. **Transformare:** Convertirea între majuscule și minuscule.
+
+```javascript
+let originalText = "Hello World";
+let upperCaseText = originalText.toUpperCase(); // "HELLO WORLD"
+let lowerCaseText = originalText.toLowerCase(); // "hello world"
+```
+</GPTBox>
+
+<Algovis>
+```js
+// Declarare stringuri
+let greeting = "Hello";
+let name = "Alice";
+
+// Îmbinarea a două sau mai multe șiruri într-unul singur (concatenare)
+let message = greeting + " " + name; // "Hello Alice"
+
+// Aflarea lungimii sirului de caractere
+let text = "Hello World";
+let length = text.length; // 11
+
+// Accesarea caracterelor prin index.
+let str = "JavaScript";
+let firstChar = str[0]; // "J"
+let thirdChar = str[2]; // "v"
+
+// Extrage o porțiune dintr-un șir (subșir)
+let sentence = "This is a sample sentence.";
+let subString = sentence.slice(5, 10); // "is a "
+
+// Caută și înlocuiește porțiuni de text
+let hello = "Hello, world!";
+let newText = hello.replace("world", "there"); // "Hello, there!"
+
+// Convertirea între majuscule și minuscule.
+let originalText = "Hello World";
+let upperCaseText = originalText.toUpperCase(); // "HELLO WORLD"
+let lowerCaseText = originalText.toLowerCase(); // "hello world"
+
+// Extrage o porțiune dintr-un șir bazată pe indicele caracterelor.
+let subText = "Hello, world!";
+let world = subText.substring(7, 12); // "world"
+
+// Elimină spațiile de la începutul și sfârșitul unui șir
+let paddedText = "    Hello    ";
+let trimmedText = paddedText.trim(); // "Hello"
+
+```
+</Algovis>
+
+Mai jos regăsim un tabel cu câteva dintre funcțiile de prelucrare a șirurilor disponibile în JavaScript, împreună cu o scurtă descriere a fiecăreia:
+
+| Funcție                | Descriere                                                                                   |
+|-----------------------|----------------------------------------------------------------------------------------------|
+| `concat(str1, str2)`   | Concatenează două sau mai multe șiruri și returnează un șir nou.                            |
+| `indexOf(substring)`   | Returnează indexul (poziția) la care apare prima dată un șir sau un caracter în alt șir.     |
+| `lastIndexOf(substring)` | Returnează indexul ultimei apariții a unui șir sau caracter în alt șir.                   |
+| `substring(start, end)` | Extrage o subșir bazată pe indicii de început și sfârșit.                                   |
+| `slice(start, end)`    | Extrage o subșir bazată pe indicii de început și sfârșit (poate accepta indici negativi).     |
+| `replace(old, new)`    | Înlocuiește un șir sau un șablon cu un alt șir.                                             |
+| `toUpperCase()`        | Convertește un șir la litere mari (majuscule).                                             |
+| `toLowerCase()`        | Convertește un șir la litere mici (litere mici).                                           |
+| `trim()`               | Elimină spațiile de la început și sfârșitul unui șir.                                       |
+| `split(delimiter)`     | Divide un șir într-un tablou de subșiruri bazate pe un separator specificat.               |
+| `charAt(index)`        | Returnează caracterul de la un anumit index într-un șir.                                    |
+| `charCodeAt(index)`    | Returnează valoarea Unicode a caracterului de la un anumit index într-un șir.               |
+| `length`               | Proprietate care furnizează lungimea (numărul de caractere) a unui șir.                     |
+| `startsWith(prefix)`   | Verifică dacă un șir începe cu un anumit prefix și returnează `true` sau `false`.            |
+| `endsWith(suffix)`     | Verifică dacă un șir se termină cu un anumit sufix și returnează `true` sau `false`.         |
+| `includes(substring)`  | Verifică dacă un șir conține un alt șir și returnează `true` sau `false`.                   |
+
+<Box attention>
+<strong>Rezumat:</strong>
+<br/><Arrow/>Tipul de date string ne permite să stocăm <strong>texte</strong>
+<br/><Arrow/>Există o multitudine de operații disponibile pe șiruri de caractere
+</Box>

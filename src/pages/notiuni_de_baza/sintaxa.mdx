@@ -1,0 +1,208 @@
+---
+title: "Structura unui limbaj de programare"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Algovis from "../../components/Content/Algovis.astro";
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge> 
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>care sunt elementele unui limbaj de programare
+<br/><Check/>cuvintele cheie ale limbajului Javascript
+<br/><Check/>ce sunt variabilele, funcțiile și literalele
+<br/><Check/>ce reprezintă comentariile în cod
+</Box>
+
+Un limbaj de programare este format dintr-un set de <strong>cuvinte</strong> alături de <strong>regulile de folosire</strong> ale acestora. 
+
+Cuvintele se pot împărți în două categorii: 
+
+<Arrow/>rezervate limbajului numite și <strong>cuvinte cheie</strong> (sau *keywords*)
+
+<Arrow/>specificate de către utilizator numite și <strong>identificatori</strong>. 
+
+Construcțiile în care folosim aceste cuvinte cheie alături de identificatori formează <strong>comenzi sau instrucțiuni</strong> iar o înșiruire de astfel de comenzi formează un <strong>program</strong>.
+
+<Box info>Pentru a marca <strong>sfârșitul unei instrucțiuni</strong> vom folosi caracterul <code>;</code> și preferabil vom trece și pe o linie nouă însă acest lucru nu este obligatoriu.</Box>
+
+# Cuvinte cheie #
+Cuvintele cheie rezervate ale unui limbaj de programare sunt similare cuvintelor din limbile vorbite diferența fiind că dacă într-o limbă de vorbire un cuvânt poate avea mai multe interpretări, într-un limbaj de programare, aceste cuvinte au un singur sens. Regulile de folosire ale acestor cuvinte rezervate alcătuiesc <strong>sintaxa</strong> limbajului de programare. 
+
+Găsim mai jos lista cu toate cuvintele rezervate ale limbajului Javascript, teoretic singurul lucru ce ar trebui memorat alături de regulile lor de folosire:
+
+|A|B|C|D|E|F|I|L|
+|:-|:-|:-|:-|:-|:-|:-|:-|
+|<span class="pill">await</span>|<span class="pill">break</span>|<span class="pill">case</span><span class="pill">catch</span><span class="pill">class</span><span class="pill">const</span><span class="pill">continue</span>|<span class="pill">debugger</span><span class="pill">default</span><span class="pill">delete</span><span class="pill">do</span>|<span class="pill">else</span><span class="pill">enum</span><span class="pill">export</span><span class="pill">extends</span>|<span class="pill">false</span><span class="pill">finally</span><span class="pill">for</span><span class="pill">function</span>|<span class="pill">if</span><span class="pill">implements</span><span class="pill">import</span><span class="pill">in</span><span class="pill">instanceof</span><span class="pill">interface</span>|<span class="pill">let</span>
+
+|N|P|R|S|T|V|W|Y|
+|:-|:-|:-|:-|:-|:-|:-|:-|
+|<span class="pill">new</span><span class="pill">null</span>|<span class="pill">package</span><span class="pill">private</span><span class="pill">protected</span><span class="pill">public</span>|<span class="pill">return</span>|<span class="pill">super</span><span class="pill">switch</span><span class="pill">static</span>|<span class="pill">this</span><span class="pill">throw</span><span class="pill">try</span><span class="pill">true</span><span class="pill">typeof</span>|<span class="pill">var</span><span class="pill">void</span>|<span class="pill">while</span><span class="pill">with</span>|<span class="pill">yield</span>
+
+# Identificatori #
+Identificatorii sunt cuvintele alese de programator pentru a defini entități din programul său cum ar fi **variabile**, **nume de funcții** sau **literale (constante)**. Acestia pot fi orice text ce nu se suprapune cu un cuvânt cheie rezervat al limbajului Javascript.
+
+```js
+let nume;
+const MAX_VALUE = 100;
+
+function calculeazaSuma(a, b) {
+    return a + b;
+}
+```
+
+<Box attention>
+Atât cuvintele cheie cât și identificatorii sunt <strong>_case-sensitive_</strong>, capitalizarea literelor contează în limbajul Javascript adică se face diferența între literele mici și cele mari. 
+
+De exemplu, dacă denumim o entitate a programului nostru <code>scorCurent</code> aceasta va fi diferită de una denumită <code>ScorCurent</code> (a se observa prima literă)
+</Box>
+
+## Variabile ##
+Un prim exemplu de identificator este pentru cele mai comune entități ale oricărui program și anume **variabilele**. Variabilele reprezintă mecanismul prin care putem stoca informații in programele noastre pentru a le accesa și modifica ulterior - sunt elementul de baza al oricărui limbaj de programare. Putem asimila acest concept cu cel al variabilelor din matematică (x, y, etc.) unde prin intermediul unor nume (x) ne putem folosi de valorile pe care le stochează (5). 
+
+Elementele caracteristice ale unei variabile:
+* <Arrow/>**nume**: numele este un identificator (cuvânt ales exclusiv de către noi) cu care ‘botezăm’ valoarea pe care vrem să o stocăm (**x**)
+* <Arrow/>**conținut sau valoare**: reprezintă informația utilă ce avem nevoie să o stocăm (**5**)
+* <Arrow/>**tip de conținut**: indică felul de valoarii pe care o stocăm și poate fi un număr, un text ("Amalia") sau orice altă structură mai complicată. 
+
+<Box info>Fiecare limbaj de programare are propriile reguli referitoare la tipurile de date iar Javascript este un limbaj permisiv care nu ne obligă să specificăm ce tip de dată urmează să stocăm într-o variabilă și mai mult, ne permite sa modificăm ulterior tipul de dată al unei variabile. In limbaje precum C++, o variabilă poate conține un singur tip de dată și va trebui să îl specificăm din momentul în care definim această variabilă</Box>
+
+### Declararea unei variabile ###
+În limbajul Javascript o variabilă se crează utilizând cuvântul cheie <code>let</code>.
+
+Regula de folosire a acestui cuvânt cheie este că trebuie urmat de numele pe care vrem să îl dăm variabilei și opțional de o valoare inițială pe care vrem să o atribuim variabilei (proces ce se mai numește și **inițializarea** unei variabile). 
+
+<img src="../assets/imgs/declarare1.png" class="img-box" />
+
+Similar, putem declara o variabilă folosind cuvântul cheie <code>const</code> în loc de ```let``` însă în acest caz suntem forțați să o inițializăm iar această valoare inițială nu mai poate fi modificată ulterior (efectiv definim o constantă).
+
+<Algovis config_id="limbaj-basics.json">
+</Algovis>
+
+<Box attention>
+<strong>Numele unei variabile</strong> trebuie să înceapă cu o literă (<code>a-z</code> sau <code>A-Z</code>) sau underscore(<code>_</code>). Este important de reținut că literele mici sunt trate diferit de cele mari așa că vom putea defini două variabile <code>nume</code> și <code>Nume</code>, ele find complet separate.
+</Box>
+
+<P5Widget>
+```
+createCanvas(100, 100);
+
+let txtDesen = 'linii';
+let x = 25;
+let y = 10;
+let lungime = 80;
+
+text(txtDesen, x, y);
+
+line(x, y, x + lungime, y);
+line(x, y + 10, x + lungime, y + 10);
+line(x, y + 20, x + lungime, y + 20);
+line(x, y + 30, x + lungime, y + 30); 
+```
+</P5Widget>
+
+## Funcții ##
+Un program este format dintr-o înșiruire de comenzi ce au ca scop obținerea unui rezultat util pentru utilizator. Ne putem imagina aceste comenzi asemenea pașilor dintr-o rețetă de gătit, variabilele fiind cantitățile fiecărui ingredient iar rezultatul prăjitura ce ne rezultă. 
+
+Pe parcursul unui program vom avea nevoie să refolosim anumiți pași iar pentru a evita să copiem de fiecare dată  secvențele ce îi compun, avem nevoie de **funcții**. 
+
+```js
+function printName(name) {
+    console.log("Hello, " + name + "!");
+}
+```
+
+Funcțiile sunt un mecanism simplu prin care putem aloca o secvență de comenzi unui nume iar de fiecare dată când avem nevoie de funcționalitatea acelei secvenței, să ne folosim de numele funcției în loc să copiem comenzile ce o compun. Acest mecanism se mai numește și **reutilizare** având în vedere că reutilizăm aceste secvențe în loc să le duplicăm.
+
+<img src="../assets/imgs/functii.png" class="img-box" style="width: 80%" />
+
+<Box info>
+Funcțiile ne oferă totodată un mecanism de <strong>simplificare</strong> a programului nostru prin extragerea secvențelor comune sub acceasi umbrelă (numele funcției). 
+
+Dacă ne-am dori ulterior să schimbăm comportamenul acestor secvențe, o putem face foarte ușor prin simpla modificare a funcției în loc să căutăm secvențele respective împrăștiate prin tot programul și să le modificăm pe fiecare în parte.
+</Box>
+
+<P5Widget>
+```
+let fontsize = 40;
+
+function setup() {
+  createCanvas(710, 400);
+
+  // Set text characteristics
+  textSize(fontsize);
+  textAlign(CENTER, CENTER);
+}
+
+function draw() {
+  background(160);
+
+  drawWords(width * 0.25);
+  drawWords(width * 0.5);
+}
+
+function drawWords(x) {
+  // The text() function needs three parameters:
+  // the text to draw, the horizontal position,
+  // and the vertical position
+  fill(0);
+  text('ichi', x, 80);
+
+  fill(65);
+  text('ni', x, 150);
+
+  fill(190);
+  text('san', x, 220);
+
+  fill(255);
+  text('shi', x, 290);
+}
+
+```
+</P5Widget>
+
+Pentru moment, este suficient să știm doar atât despre funcții însă vom reveni în detaliu asupra lor în cadrul unei lecții speciale.
+
+## Literale ##
+Literalele pot fi privite ca fiind opusul variabilelor - sunt valori a căror valoare este **constantă** (nemodificabilă) și reprezintă în contexul programului nostru, valori pe care vrem să le folosim fie prin atribuire unor variabile fie direct. 
+
+```js
+let x = 5;
+let nume = "Maria";
+let suma = -3.5 + x;
+```
+
+În acest exemplu, valorile <code>5</code> și <code>Maria</code> sunt literale, ele reprezintă valori fixe care fie le atribuim unor variable <code>x = 5</code> fie le folosim așa cum sunt în combinatie cu alte variable<code>-3.5 + x</code>. O categorie specială de literale sunt valorile boolene **true** și **false**.
+
+# Comentarii #
+Comentariile sunt o construcție specială de texte precedate de caracterele **//** sau înconjurate de <strong>/\*</strong> si <strong>*/</strong>. 
+
+Aceste texte sunt ignorate într-un limbaj de programare (regulile de sintaxă nu vor fi aplicate), scopul lor este de a descrie pentru programator o secțiune de cod.
+
+Exista două posibilități de a adăuga comentarii: 
+
+<Arrow/>pe o singură linie folosind ```//```
+
+<Arrow/>pe mai multe linii folosind ```/*``` pentru a deschide secțiunea și ```*/``` pentru a o închide iar tot ce se află între aceste două marcaje va fi ignorat de limbajul de programare
+
+```js
+// comentariu pe o singura linie
+
+/* Comentariu ce se 
+*  intinde pe mai multe
+*  linii 
+*/
+```
+
+<br/>
+
+<Box attention>
+<strong>Rezumat</strong>
+<br/><Arrow/>Un limbaj de programare este format din <strong>cuvinte cheie rezervate</strong> și <strong>identificatori</strong> plus <strong>regulile</strong> lor de folosire
+<br/><Arrow/>Tot ce ar trebui un programator pe de rost sunt aceste cuvinte cheie plus regulile aferente lor
+<br/><Arrow/><strong>Identificatorii</strong> sunt elementele dintr-un program care sunt specificate exclusiv de programator - ei pot fi **nume de variabile sau funcții, texte, etc**.
+<br/><Arrow/>**Comentariile** sunt construcții speciale de text care pot ignora regulile de sintaxă ale limbajului atât timp cât sunt specificate între caracterele speciale <strong>/* */</strong> sau <strong>//</strong>. Rolul lor este de a adăuga notițe în cod pentru a ajuta programatorul ulterior să înțeleagă secvența de instrucțiuni
+</Box>

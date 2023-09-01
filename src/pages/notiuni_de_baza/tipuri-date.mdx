@@ -4,34 +4,40 @@ layout: "../../layouts/MainLayout.astro"
 ---
 
 import Box from '../../components/Content/Box.astro'
+import GPTBox from '../../components/Content/GPTBox.astro'
 import Arrow from '../../components/Content/Arrow.astro'
 import Check from '../../components/Content/Check.astro'
 import ChecklistActivities from '../../components/Content/ChecklistActivities.astro'
 import Algovis from '../../components/Content/Algovis.astro'
 
 <Box knowledge> 
-<strong>Ce vom afla din acest articol:</strong>
+<strong>Ce vom descoperi în acest articol:</strong>
 <br/><Check/>care sunt tipurile de date predefinite ale limbajului Javascript
 <br/><Check/>ce este un tip de dată primitiv
 <br/><Check/>ce sunt obiectele
 </Box>
 
-Am creat până acum variabile ce puteau stoca numere și texte. Observăm astfel că o variabilă poate conține mai multe feluri de conținut. Aceste varietăți ale conținutului reprezintă tipurile de date iar limbajului Javascript dispune de mai multe astfel de tipuri deja definite:
+Am creat până acum variabile ce puteau stoca numere și texte. Observăm astfel că o variabilă poate conține mai multe feluri de conținut. 
 
- **Numerice**: pot stoca valori întregi (6) sau cu zecimale (4.35)
+Aceste varietăți ale conținutului reprezintă **tipurile de date** iar limbajului Javascript dispune de mai multe astfel de tipuri deja definite:
+
+ <Arrow/>**Numerice**: pot stoca valori întregi 6) sau cu zecimale (4.35)
 ```js
 let numar_zile_saptamana = 7;
 let litri_in_galon = 3.8;
 ```
-**Text**: șiruri de caractere aflate între ghilimele "Primii Pași" sau "Hello world" numite și string-uri (în loc de ghilimele putem folosi și apostrof <code>'</code>)
+
+<Arrow/>**Text**: șiruri de caractere aflate între ghilimele ```"``` sau apostrof ```'``` numite și **string**-uri
 ```js
 let nume = "Alina";
 ```
- **Logice (boolean)**: tipul de dată aferent valorilor adevărat sau fals. În Javascript folosim cuvintele cheie _true_ pentru adevărat și _false_ pentru fals.
+
+ <Arrow/>**Logice (boolean)**: tipul de dată aferent valorilor adevărat sau fals. În Javascript folosim cuvintele cheie ```true``` pentru adevărat și ```false``` pentru fals.
 ```js
 let imiPlaceJS = true;
 ```
- **Obiect (structură)**: tipuri de date care agregă tipuri simple pentru a forma structuri mai complexe. Pot fi privite drept colecții de proprietăți (chei) și valori asociate lor iar aceste valori pot fi de orice tip (inclusiv obiect). Proprietățile, în schimb, trebuie să fie de tip text.
+
+ <Arrow/>**Obiect (structură)**: tipuri de date care agregă tipuri simple pentru a forma structuri mai complexe. Pot fi privite drept colecții de proprietăți (chei) și valori asociate lor iar aceste valori pot fi de orice tip (inclusiv obiect). Proprietățile, în schimb, trebuie să fie de tip text.
 ```js
 let info_joc = {
          'scor': 12412,
@@ -46,9 +52,47 @@ Variabila ***info_joc*** este de tip obiect și conține mai multe informații (
 Vom denumi toate tipurile de date care nu sunt de tip obiect ca fiind <strong>tipuri primitive</strong>. Caracteristica unui tip primitiv este că nu dispune de proprietăți (precum obiectele) ci conține doar o valoare.
 </Box>
 
-Mai există și o categorie de tipuri speciale de date cum ar fi: <code>undefined, null</code> pe care le vom explica ulterior.
+<GPTBox description="Vezi ce spune și ChatGPT despre tipurile de date in Javascript" prompt="tipuri de date in javascript">
+JavaScript suportă mai multe tipuri de date, care pot fi împărțite în două categorii principale: tipuri de date primitive și tipuri de date complexe (obiecte). Iată o listă cu principalele tipuri de date în JavaScript:
 
-Javascript este un limbaj de programare în care tipul unei variabile nu trebuie menționat atunci când declarăm variabila și totodată acest tip îl putem schimba oricând în timpul rulării programului, nu este fixat pentru totodeauna în funcție de valoarea cu care a fost inițializată variabila la declarare. Acest lucru ne-ar permite să stocăm într-o variabilă tipuri diferite de conținut pe parcursul execuției programului însă vom vedea mai tărziu că aceasta nu este o practică recomandată.
+### Tipuri de Date Primitive:
+
+1. **Number:** Reprezintă atât numere întregi cât și numere cu zecimale. Exemplu: `42`, `3.14`.
+
+2. **String:** Reprezintă șiruri de caractere. Exemplu: `"Hello, world!"`, `'JavaScript'`.
+
+3. **Boolean:** Reprezintă valorile `true` (adevărat) sau `false` (fals), folosite pentru evaluarea condițiilor. Exemplu: `true`, `false`.
+
+4. **null:** Reprezintă o valoare inexistentă sau nedefinită. Exemplu: `null`.
+
+5. **undefined:** Reprezintă o variabilă care a fost declarată, dar căreia nu i s-a atribuit o valoare. Exemplu: `undefined`.
+
+6. **BigInt:** Folosit pentru a reprezenta numere întregi foarte mari, depășind limitele numărului de tip `Number`. Exemplu: `1234567890123456789012345678901234567890n`.
+
+7. **Symbol:** Reprezintă o valoare unică, folosită adesea pentru identificatori unici în obiecte sau în contexte de mapare. Exemplu: `Symbol("description")`.
+
+### Tipuri de Date Complexe (Obiecte):
+
+1. **Object:** Reprezintă o structură de date complexă care poate conține proprietăți și metode. Exemplu: `{ name: "John", age: 30 }`.
+
+2. **Array:** Reprezintă o colecție ordonată de elemente, accesibile prin index. Exemplu: `[1, 2, 3, 4]`.
+
+3. **Function:** Reprezintă un bloc de cod care poate fi apelat cu anumite argumente pentru a executa acțiuni specifice.
+
+4. **Date:** Reprezintă o marcă de timp specifică (data și ora).
+
+5. **RegExp:** Reprezintă un obiect pentru lucrul cu expresii regulate, folosit pentru căutarea și manipularea șabloanelor în șiruri de caractere.
+
+6. **Map:** Reprezintă o colecție de perechi cheie-valoare, unde cheile pot fi orice tip de date.
+
+7. **Set:** Reprezintă o colecție de valori unice, fără ordine specifică.
+
+8. **... și altele:** Există și alte tipuri de date complexe precum WeakMap, WeakSet, ArrayBuffer, etc.
+
+Acestea sunt principalele tipuri de date pe care le poți folosi în JavaScript pentru a stoca și manipula diferite tipuri de informații în cadrul programelor tale.
+</GPTBox>
+
+Javascript este un limbaj de programare în care tipul unei variabile **nu** trebuie menționat atunci când declarăm variabila și totodată acest tip îl putem schimba oricând în timpul rulării programului, nu este fixat pentru totodeauna în funcție de valoarea cu care a fost inițializată variabila la declarare. Acest lucru ne-ar permite să stocăm într-o variabilă tipuri diferite de conținut pe parcursul execuției programului însă vom vedea mai tărziu că aceasta nu este o practică recomandată.
 
 <Algovis config_id="tipuri-date-basics.json" av_selected="1">
 </Algovis>

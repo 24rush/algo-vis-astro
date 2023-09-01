@@ -1,5 +1,6 @@
 ---
 import MainButton from "../../components/MainButton.astro";
+import IconOpenAI from "../Icons/IconOpenAI.astro";
 
 const currentPage = Astro.url.pathname;
 const { onMainPage } = Astro.props;
@@ -9,23 +10,30 @@ const iconDimension = 20;
 const CHECKLIST_CONFIG = {
   "notiuni_de_baza/programarea": {
     quiz: "programarea.json",
-    gpt: "https://chat.openai.com/share/9ad2f6c3-63e8-44dc-806d-44aa6ed7df25/continue",
-    gpt_questions: ["Ce este programarea?"],
+    gpt: "https://chat.openai.com/",
+    gpt_questions: [
+      "Ce este programarea?",
+      "Cod sa desenez un patrat in p5.js",
+      "Plan de invatare Javascript",
+    ],
   },
-  "notiuni_de_baza/structura": { quiz: "structura.json" },
-  "notiuni_de_baza/functii": {
-    quiz: "functii.json",
-    exercise: "../exercitii/functii",
-  },
-  "notiuni_de_baza/obiecte": {
-    quiz: "obiecte.json",
-    exercise: "../exercitii/obiecte",
+  "notiuni_de_baza/sintaxa": {
+    quiz: "structura.json",
+    gpt: "https://chat.openai.com/",
+    gpt_questions: [
+      "Sintaxa unui limbaj de programare",
+      "Cele mai importante cuvinte cheie in Javascript",
+    ],
   },
   "notiuni_de_baza/operatori": {
     quiz: "operatori.json",
     exercise: "../exercitii/operatori",
+    gpt: "https://chat.openai.com/",
+    gpt_questions: [
+      "Ce sunt expresiile in javascript",
+      "Precedenta si asociativitatea operatorilor in Javascript",
+    ],
   },
-  "notiuni_de_baza/scopuri": { quiz: "scopuri.json" },
   "notiuni_de_baza/structuri-control": {
     quiz: "structuri-control.json",
     exercise: "../exercitii/structuri-control",
@@ -34,9 +42,39 @@ const CHECKLIST_CONFIG = {
     quiz: "tipuri-date.json",
     exercise: "../exercitii/tipuri-date",
   },
-  "notiuni_de_baza/vectori": {
+  "notiuni_intermediare/functii": {
+    quiz: "functii.json",
+    exercise: "../exercitii/functii",
+    gpt: "https://chat.openai.com/",
+    gpt_questions: ["Exemple de functii predefinite in javascript"],
+  },
+  "notiuni_intermediare/vectori": {
     quiz: "vectori.json",
     exercise: "../exercitii/vectori",
+    gpt: "https://chat.openai.com/",
+    gpt_questions: [
+      "Operatii uzuale pe vectori in javascript",
+      "Cum pot sterge un element dintr-un vector",
+    ],
+  },
+  "notiuni_intermediare/stringuri": {
+    exercise: "../exercitii/stringuri",
+    gpt: "https://chat.openai.com/",
+    gpt_questions: ["Cum pot folosi stringuri in javascript?"],
+  },
+  "notiuni_intermediare/obiecte": {
+    quiz: "obiecte.json",
+    exercise: "../exercitii/obiecte",
+    gpt: "https://chat.openai.com/",
+    gpt_questions: [
+      "Cum pot folosi obiectele in Javascript?",
+      "Cum sunt transmise stringurile in functii in javascript?",
+    ],
+  },
+  "notiuni_intermediare/scopuri": {
+    quiz: "scopuri.json",
+    gpt: "https://chat.openai.com/",
+    gpt_questions: ["Ce reprezinta domeniul variabilelor in javascript?"],
   },
 };
 
@@ -58,7 +96,7 @@ const hasExercise = hasItem("exercise");
 <div class={onMainPage ? "show-only-mobile" : "hide-mobile"}>
   {
     (hasGpt || hasQuiz || hasExercise) && (
-      <span style="font-weight: 600;" class="text-slate-600">
+      <span style="font-weight: 600; font-size: 21px;" class="text-slate-600">
         Activități:
       </span>
     )
@@ -73,33 +111,11 @@ const hasExercise = hasItem("exercise");
           rel="noopener"
         >
           <MainButton text>
-            <svg
-              class="button-svg"
-              fill="currentColor"
-              width={iconDimension}
-              height={iconDimension}
-              viewBox="-2.4 -2.4 28.80 28.80"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              stroke="#000000"
-              stroke-width="0.00024000000000000003"
-            >
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <>
-                <g id="SVGRepo_bgCarrier" stroke-width="0" />
-                <g id="SVGRepo_iconCarrier">
-                  <>
-                    <title>OpenAI icon</title>
-                    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z" />
-                  </>
-                </g>
-              </>
-            </svg>
-            Discută cu GPT
+            <IconOpenAI
+              size={iconDimension}
+              color="rgb(59 130 246 / var(--tw-text-opacity))"
+            />
+            <span class="button-activity">Discută cu GPT</span>
           </MainButton>
         </a>
       )
@@ -126,7 +142,6 @@ const hasExercise = hasItem("exercise");
         >
           <MainButton text>
             <svg
-              class="button-svg"
               xmlns="http://www.w3.org/2000/svg"
               width={iconDimension}
               height={iconDimension}
@@ -137,7 +152,7 @@ const hasExercise = hasItem("exercise");
               <path d="M14 5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12zM2 4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2z" />
               <path d="M13 10.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm0-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-5 0A.25.25 0 0 1 8.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 8 8.75v-.5zm2 0a.25.25 0 0 1 .25-.25h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5a.25.25 0 0 1-.25-.25v-.5zm1 2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-5-2A.25.25 0 0 1 6.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 6 8.75v-.5zm-2 0A.25.25 0 0 1 4.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 4 8.75v-.5zm-2 0A.25.25 0 0 1 2.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 8.75v-.5zm11-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-2 0a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-2 0A.25.25 0 0 1 9.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 9 6.75v-.5zm-2 0A.25.25 0 0 1 7.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 7 6.75v-.5zm-2 0A.25.25 0 0 1 5.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 5 6.75v-.5zm-3 0A.25.25 0 0 1 2.25 6h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5A.25.25 0 0 1 2 6.75v-.5zm0 4a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm2 0a.25.25 0 0 1 .25-.25h5.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-5.5a.25.25 0 0 1-.25-.25v-.5z" />
             </svg>
-            Exersează
+            <span class="button-activity">Exersează</span>
           </MainButton>
         </a>
       )
@@ -162,14 +177,12 @@ const hasExercise = hasItem("exercise");
               <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z" />
               <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0z" />
             </svg>
-            Quizz!
+            <span class="button-activity">Quizz!</span>
           </MainButton>
         </a>
       )
     }
   </div>
-
-  <script></script>
 
   <style scoped>
     .show-only-mobile {
@@ -202,10 +215,8 @@ const hasExercise = hasItem("exercise");
       margin-top: 0 !important;
     }
 
-    .button-svg {
-      display: inline;
-      margin-right: 5px;
-      margin-top: 1px;
+    .button-activity {
+      margin-left: 5px;
     }
   </style>
 </div>
