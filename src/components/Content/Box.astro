@@ -78,9 +78,9 @@ let { attention, knowledge, info } = Astro.props;
 
 <style scoped>
     :root {
-        --attention-color: #ff9d00;
-        --know-color: #00cc88;
-        --tip-color: #1eb4ff;
+        --attention-color: #FF4949;
+        --know-color: #38E54D;
+        --tip-color: #0079ff;
     }
 
     .box-pill {
@@ -109,8 +109,8 @@ let { attention, knowledge, info } = Astro.props;
     .attn-box {
         position: relative;
         background: #ffdd0012;
-        --box-content-color: #ff9d00;
-        border-color: var(--box-content-color) !important;
+        --box-content-color: var(--attention-color);
+        border-color: var(--attention-color) !important;
         padding: 10px 20px;
         margin: 2rem 0rem 1rem 0rem;
         border-left: 5px solid;
@@ -119,8 +119,8 @@ let { attention, knowledge, info } = Astro.props;
     .know-box {
         position: relative;
         background: #00cc880f;
-        --box-content-color: #00cc88;
-        border-color: var(--box-content-color) !important;
+        --box-content-color: var(--know-color);
+        border-color: var(--know-color) !important;
         padding: 10px 20px;
         margin: 2rem 0rem 1rem 0rem;
         border-left: 5px solid;
@@ -129,8 +129,8 @@ let { attention, knowledge, info } = Astro.props;
     .inf-box {
         position: relative;
         background: #eaf8ffa3;
-        --box-content-color: #1eb4ff;
-        border-color: var(--box-content-color) !important;
+        --box-content-color: var(--tip-color);
+        border-color: var(--tip-color) !important;
         padding: 10px 20px;
         margin: 2rem 0rem 1rem 0rem;
         border-left: 5px solid;

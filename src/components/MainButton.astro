@@ -1,5 +1,5 @@
 ---
-const { primary, secondary, text } = Astro.props;
+const { primary, secondary, text, id } = Astro.props;
 
 const getClass = () => {
   let defaultClass =
@@ -7,14 +7,14 @@ const getClass = () => {
 
   if (primary)
     return defaultClass + "text-white bg-blue-500 hover:bg-opacity-80";
-  if (secondary) return defaultClass + "text-blue-600 border-blue-500 border";
+  if (secondary) return defaultClass + "text-blue-600 hover:bg-opacity-80 border-blue-500 border";
   if (text) return defaultClass + "text-blue-500 hover:bg-opacity-80 shadow-md";
 
   return defaultClass;
 };
 ---
 
-<button class={getClass()} style="display: inline-flex;align-items: center;">
+<button class={getClass()} style="display: inline-flex;align-items: center;" id={id}>
   <slot />
 </button>
 
