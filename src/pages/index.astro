@@ -68,10 +68,34 @@ const sizesJSLogo = "(min-width: 40px) 8vw, 12vw";
   </head>
   <body style="background: aliceblue;">
     <div class="text-center">
-      <header class="pt-8 pb-2 p-4 bg-gradient-to-br from-slate-700 to-black">
+      <header class="p-2 px-4 bg-gradient-to-br from-slate-700 to-black">
         <div class="relative grid h-full place-items-center sm:grid-cols-2">
-          <h2
-            class="flex flex-col gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end"
+          <div
+          id="astronaut"
+          class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start"
+          style="display: flex; align-items: center;"
+        >
+          <Picture
+            class="object-cover"
+            style={"position: absolute; left: 5em; transform: rotate(350deg);"}
+            src={jsImage}
+            widths={widthsAstronaut}
+            sizes={sizesJSLogo}
+            loading="eager"
+            alt="A floating astronaut in a space suit"
+          />
+
+          <Picture
+            class="h-full w-full object-cover"
+            src={astronautImage}
+            widths={widthsAstronaut}
+            sizes={sizesAstronaut}
+            loading="eager"
+            alt="A floating astronaut in a space suit"
+          />
+        </div>
+          <div
+            class="flex flex-col self-start sm:gap-4 sm:self-auto sm:justify-self-start"
           >
             <svg
               style="transform: rotate(26deg);"
@@ -99,51 +123,29 @@ const sizesJSLogo = "(min-width: 40px) 8vw, 12vw";
                 Vezi cum funcționează un program 'pe interior' rulând fiecare
                 instrucțiune pas cu pas. În ritmul tău.
               </p>
+
+              <Counters />
+              
+              <div class="pt-6 gap-2" style="display: flex; justify-content: center;">
+                <MainButton primary>
+                  <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
+                </MainButton>
+
+                <MainButton secondary id="btnFeedbackFrom">          
+                  <span>Spune-ne părerea ta!</span>
+                </MainButton>
+              </div>
             </div>
-          </h2>
-          <div
-            id="astronaut"
-            class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start"
-            style="display: flex; align-items: center;"
-          >
-            <Picture
-              class="object-cover"
-              style={"position: absolute; left: 4em; transform: rotate(350deg);"}
-              src={jsImage}
-              widths={widthsAstronaut}
-              sizes={sizesJSLogo}
-              loading="eager"
-              alt="A floating astronaut in a space suit"
-            />
-
-            <Picture
-              class="h-full w-full object-cover"
-              src={astronautImage}
-              widths={widthsAstronaut}
-              sizes={sizesAstronaut}
-              loading="eager"
-              alt="A floating astronaut in a space suit"
-            />
           </div>
-        </div>
 
-        <Counters />
+        </div>        
 
-        <div class="pt-6 gap-2" style="display: flex; justify-content: center;">
-          <MainButton primary>
-            <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
-          </MainButton>
-
-          <MainButton secondary id="btnFeedbackFrom">          
-            <span>Spune-ne părerea ta!</span>
-          </MainButton>
-        </div>
         <div class="my-16"></div>
       </header>
 
       <nav class="content my-4">
         <ul
-          class="grid max-w-6xl grid-cols-3 gap-2"
+          class="grid grid-cols-3 gap-2"
           style="width: 100%; margin: 0px;"
         >
           <div
@@ -210,7 +212,7 @@ console.log("Array la puterea a 2a:", vectorNr);
 
       <nav class="content mt-4" style="">
         <ul
-          class="grid max-w-6xl grid-cols-2 gap-2"
+          class="grid grid-cols-2 gap-2"
           style="width: 100%; margin: 0px;"
         >
           <div
@@ -274,16 +276,16 @@ console.log("Array la puterea a 2a:", vectorNr);
     <style>
       @keyframes float {
         0% {
-          transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(1);
         }
 
         100% {
-          transform: translate3d(0, 90px, 0);
+          transform: translate3d(0, 50px, 0) scale(1.1);
         }
       }
 
       #astronaut {
-        animation: float linear 12.5s infinite alternate;
+        animation: float linear 10.5s infinite alternate;
       }
 
       @media (prefers-reduced-motion: reduce) {
