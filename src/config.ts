@@ -11,7 +11,7 @@ export const SITE = {
 
 export const OPEN_GRAPH = {
   image: {
-    src: "public/assets/imgs/landing-page-primii-pasi.jpg",
+    src: "/assets/imgs/landing-page-primii-pasi.jpg",
     alt: "",
   },
   twitter: "",
