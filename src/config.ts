@@ -1,6 +1,6 @@
 export const SITE = {
   title: "Primiipasi.info",
-  description: "de la 0 la 100 în programare pe fast-forward",
+  description: "primii pași în informatică pe fast-forward",
   defaultLanguage: "en_US",
   instagram: "primiipasi.info",
   discord: "t6QFbc6qp4",
@@ -11,7 +11,7 @@ export const SITE = {
 
 export const OPEN_GRAPH = {
   image: {
-    src: "",
+    src: "public/assets/imgs/landing-page-primii-pasi.jpg",
     alt: "",
   },
   twitter: "",
