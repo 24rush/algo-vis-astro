@@ -1,0 +1,37 @@
+
+<br />
+<i
+    style="display: inline-block;"
+    class="bi bi-hand-index-thumb animate-click"></i>
+<mark>
+    <slot />
+</mark>
+
+<style is:global>
+    mark {
+        padding: 0px;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0) 60%,
+            #dcff00 50%
+        );
+    }
+
+    .animate-click {
+        animation: click 1.25s linear infinite;
+    }
+
+    @keyframes click {
+        0% {
+            transform: scale(1) rotate(355deg);
+        }
+
+        50% {
+            transform: scale(1.1) rotate(355deg);
+        }
+
+        100% {
+            transform: scale(1) rotate(355deg);
+        }
+    }
+</style>

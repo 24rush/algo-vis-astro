@@ -1,0 +1,32 @@
+---
+const { src, caption } = Astro.props;
+---
+
+<figure class={!caption ? "figure-no-border" : ""}>
+    <img src={src} class="img-box"/>
+    {
+        caption && (<figcaption>{caption}</figcaption>)
+    }
+</figure>
+
+<style is:global>
+    figure {
+        border: 1px solid #d3dce6;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    figcaption {
+        background: #f1f5fd;
+        border-top: 1px solid #d3dce6;
+        padding: 2px 16px;
+        text-align: center;
+        color: rgba(37, 38, 94, 0.7);
+        font-size: smaller; 
+        font-style: italic;   
+    }
+
+    .figure-no-border {
+        border: 0!important;
+    }
+
+</style>

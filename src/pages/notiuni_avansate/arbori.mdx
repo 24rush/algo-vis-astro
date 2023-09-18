@@ -1,0 +1,302 @@
+---
+title: "Arbori"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Figure from '../../components/Content/Figure.astro'
+import ClickAv from '../../components/Content/ClickAv.astro'
+import Algovis from "../../components/Content/Algovis.astro";
+import GPTBox from '../../components/Content/GPTBox.astro'
+import SummaryBox from '../../components/Content/SummaryBox.astro'
+import P5Widget from "../../components/P5Widget.astro";
+
+<h0>Arbori</h0>
+
+Arborii sunt grafuri conexe și aciclice.
+- **conex** <Arrow/>orice vârf ```x``` este conectat cu orice alt vârf ```y```
+- **aciclic** <Arrow/>nu conține cicluri adică parcurgând un drum la ```x``` la ```y``` acest drum nu va trece niciodată printr-un nod deja vizitat
+
+În practică, arborii sunt folosiți pentru a reprezenta o **ierarhie** între nodurile sale iar din acest motiv trebuie să aibă o rădăcină (un nod părinte) din care să se ajungă la restul nodurilor. 
+
+Aceste tipuri de arbori se mai numesc și **arbori cu rădăcină** (*engl. rooted trees*) iar ei nu sunt decât grafuri conexe și aciclice (arbori) pentru care s-a ales un nod/vârf rădăcină din mulțimea nodurilor sale.
+
+<Figure src="../assets/imgs/graf_arbore_radacina.png" caption="Un graf pentru care nodul 1 a fost ales ca rădăcină transformând structura într-un arbore cu rădăcină"/>
+
+<Box info>
+## Noțiuni asociate arborilor ##
+- <Arrow/>fiecare arbore are o **rădăcină**
+- <Arrow/>fiecare nod poate avea unul sau mai mulți copii iar acest nod se numește **părinte**
+- <Arrow/>nodurile care au același părinte se numesc **frați** (*engl. siblings*) iar aceștia vor fi pe același nivel în arbore (aceeași adâncime față de rădăcină)
+- <Arrow/> rădăcina este singurul nod dintr-un arbore care nu are un părinte
+- <Arrow/> nodurile care nu au copii se numesc **frunze**
+</Box>
+
+## Niveluri și adâncime ##
+O astfel de structură ierarhică va avea acum mai multe **niveluri** pornind de la rădăcină (nivelul 0) până la ultimii descendenți. Numărul total de astfel de niveluri va da **adâncimea** arborelui.
+
+<Figure src="../assets/imgs/niveluri_arbori.png" caption="Fiecare nivel al arborelui pornind de la rădăcină (nivel 0) până la frunze și înălțimea sa h"/>
+
+## Arbori binari ##
+O categorie deosebit de importantă de arbori cu rădăcină sunt arborii binari. Aceștia sunt arbori în care fiecare nod are **maxim doi** descendenți.
+
+<Figure src="../assets/imgs/binary_tree.png" caption="Un arbore binar cu 8 noduri. Fiecare nod poate conține 0, 1 sau maxim 2 descendenți"/>
+
+<ClickAv>Rulează exemplul și observă diverși arbori binari generați aleatoriu.</ClickAv>
+
+<Algovis>
+```js
+let bin_tree = new BinaryTree();
+bin_tree.generate(8);
+```
+</Algovis>
+
+<Box info>
+### Noțiuni asociate arborilor binari ###
+- <Arrow/>numărul maxim de noduri de pe un nivel ```i``` este **2i**
+- <Arrow/>numărul minim de noduri dintr-un arbore cu înălțime ```h``` este **h+1** 
+- <Arrow/>un arbore binar este **complet** dacă fiecare nod are 0 sau 2 copii
+- <Arrow/>un arbore binar este **perfect** dacă fiecare nivel conține numărul maxim de noduri
+- <Arrow/>un arbore binar este **degenerat** dacă fiecare nivel conține doar un nod (fie stânga, fie dreapta)
+- <Arrow/>un arbore binar este **balansat** dacă pentru fiecare nod înălțimea subarborelui drept diferă de înălțimea subarborelui stâng cu maxim un nivel
+</Box>
+
+### Crearea unui arbore binar ###
+Pentru a reprezenta o structură de date de tip arborescent în cadrul programelor noastre avem nevoie doar de un tip de date obiect asociat nodurilor. Ulterior, vom crea structura arborescentă prin referințe între nodurile părinte și copiii lor (```left, right```)
+
+```js
+class BinaryTreeNode {
+constructor(data) {
+    this.value = data;
+
+    this.left = null;
+    this.right = null;
+  }    
+}
+
+let root = new BinaryTreeNode(10);
+let leftChild = new BinaryTreeNode(5);
+let rightChild = new BinaryTreeNode(15);
+
+root.left = leftChild;
+root.right = rightChild;
+```
+
+<ClickAv>Rulează exemplul și vezi cum se crează un arbore</ClickAv>
+<Algovis>
+```js
+let tree = new BinaryTree();
+let root = tree.createRoot(10);
+let rootLeftChild = new BinaryTreeNode(5);
+let rootRightChild = new BinaryTreeNode(15);
+
+root.left = rootLeftChild;
+root.right = rootRightChild;
+
+let rootLeftLeftChild = new BinaryTreeNode(12);
+root.left.left = rootLeftLeftChild;
+```
+</Algovis>
+
+## Algoritmi specifici arborilor ##
+
+Ca și în cazul grafurilor, multe aplicații ce folosesc arbori binari, au nevoie să efectueze parcurgeri. Pentru arbori există mai multe metode de parcurgere și anume **preordine, inordine și postordine** (în funcție de când se vizitează rădăcina față de cei doi descendenți ai săi) dar și parcurgere pe niveluri (sau lățime).
+
+<SummaryBox title="Parcurgerea în pre-ordine" description="rădăcină -> stânga -> dreapta" show>
+
+<Algovis>
+```js
+function preordine(node) {
+      if (node) {
+        // Acceseaza radacina
+        console.log(node.value);
+
+        preordine(node.left);
+        preordine(node.right);
+      }
+    }
+
+    let tree = new BinaryTree();
+    tree.generate(8);   
+        
+    preordine(tree.getRoot());
+```
+</Algovis>
+</SummaryBox>
+
+<SummaryBox title="Parcurgerea în in-ordine" description="stânga -> rădăcină -> dreapta">
+
+<Algovis>
+```js
+function inordine(node) {
+      if (node) {
+        inordine(node.left);
+
+        // Acceseaza radacina
+        console.log(node.value);
+
+        inordine(node.right);
+      }
+    }
+
+    let tree = new BinaryTree();
+    tree.generate(8);   
+        
+    inordine(tree.getRoot());
+```
+</Algovis>
+</SummaryBox>
+
+<SummaryBox title="Parcurgerea în post-ordine" description="stânga-> dreapta -> rădăcină">
+
+<Algovis>
+```js
+function postordine(node) {
+      if (node) {
+        postordine(node.left);    
+        postordine(node.right);
+
+         // Acceseaza radacina
+        console.log(node.value);
+      }
+    }
+
+    let tree = new BinaryTree();
+    tree.generate(8);   
+        
+    postordine(tree.getRoot());
+```
+</Algovis>
+</SummaryBox>
+
+<SummaryBox title="Parcurgerea pe niveluri" description="lățime (sau depth-first)">
+Această metodă de căutare este similară parcurgerii în lățime folosită în grafuri și este bazată pe o coadă însă având în vedere că arborii nu au cicluri, nu mai este nevoie de încă o structură auxiliară pentru a stoca nodurile deja vizitate.
+
+<Algovis>
+```js
+let tree = new BinaryTree();
+tree.generate(8);   
+
+let queue = [];
+queue.push(tree.getRoot());
+
+while (queue.length) {
+    let node = queue.shift();
+
+    console.log(node.value);
+
+    if (node.left) {
+    queue.push(node.left);        
+    }
+
+    if (node.right) {
+    queue.push(node.right);
+    }
+}
+```
+</Algovis>
+</SummaryBox>
+
+## Arbori binari de căutare ##
+
+Un arbore binar cu semnificație specială este arborele binar de căutare. Aceasta are proprietatea că pentru orice nod ```x```:
+- <Arrow/>toate cheile nodurilor din subarborele stâng sunt mai mici decât cheia sa
+- <Arrow/>toate cheile din subarborele drept sunt mai mari
+
+<Figure src="../assets/imgs/binary_search_tree.png" caption="Un arbore binar de căutare. Copilul din stânga al unui nod este mereu mai mic decât părintele iar cel din dreapta mereu mai mare"/>
+
+<ClickAv>Rulează exemplul și observă diferiți arbori binari de căutare.</ClickAv>
+
+<Algovis>
+```js
+let tree = new BinarySearchTree();
+tree.generate(8);   
+```
+</Algovis>
+
+### Crearea unui arbore binar de căutare ###
+Crearea unui arbore binar de căutare se vă face asigurându-se criteriile de inegalitate dintre cheia nodului curent și valoarea pe care vrem să o introducem în arbore. 
+
+Trebuie să ne asigurăm că vom introduce valorile în arbore satisfăcând criteriul ```cheia copilului stâng < cheia părintelui > cheia copilului drept```
+
+<ClickAv>Rulează exemplul pentru a crea un arbore binar de căutare din valori introduse de tine. Introdu 'z' pentru a opri inserarea.</ClickAv>
+<Algovis>
+```js
+function insert(node, value) {
+    if (!node)
+        return new BinaryTreeNode(value);
+
+    if (value < node.value) { 
+        node.left = insert(node.left, value)
+    }
+    else 
+        if (value > node.value)
+            node.right = insert(node.right, value);    
+    
+    return node;
+}
+
+let tree = new BinaryTree();
+
+let userVal = prompt('Introdu valoarea nodului radacina');
+let intValue = parseInt(userVal);
+let root = tree.createRoot(intValue);
+
+while (true) {
+    userVal = prompt('Tasteaza z pentru a termina inserarea');
+    if (userVal == 'z')
+        break;
+
+    intValue = parseInt(userVal);
+    insert(root, intValue);
+}
+```
+</Algovis>
+
+### Căutarea unei valori într-un arbore binar de căutare ###
+
+Proprietatea de bază a arborilor binari de căutare ne permite totodată să efectuăm căutări ale cheilor într-un mod foarte eficient iar algoritmul decurge în felul următor:
+
+fie ```s``` valoarea căutată
+
+0. începem căutarea cu nodul **rădăcină** al arborelui
+1. comparăm valoarea căutată ```s``` cu cheia nodului curent
+2. dacă ```cheia nodului curent = s``` căutarea se încheie întrucât am găsit valoarea căutată
+3. dacă ```cheia nodului curent < s``` căutarea continuă pe subarborele drept (sari la pasul 1)
+4. dacă ```cheia nodului curent > s``` căutarea continuă pe subarborele stâng (sari la pasul 1)
+
+<ClickAv>Rulează exemplul pentru a vizualiza algoritmul.</ClickAv>
+
+<Algovis>
+```js
+function search(node, value) {
+    if (!node)
+        return undefined;
+
+    tree.accessValue(node.value, AccessType.Mark);
+
+    if (node.value == value) {
+        tree.accessValue(node.value, AccessType.Mark);
+        return node;
+    }
+
+    if (node.value < value)
+        search(node.right, value);
+
+    if (node.value > value)
+        search(node.left, value);
+}
+
+let tree = new BinarySearchTree();
+tree.generate_with([4,3,1,2,7,6,5,9,8,10]);
+
+let s = prompt();
+let nod = search(tree.getRoot(), parseInt(s));
+
+alert(nod ? 'Valoare gasita' : 'Valoarea nu exista in arbore');
+```
+</Algovis>
+
+Eficiența acestui algoritm este dată de faptul că numărul de comparații necesare pentru a găsi o valoare este egal cu înălțimea arborelui (h) față de o căutare liniară (într-un vector) în care numărul de căutări ar fi fost n (lungimea vectorului).

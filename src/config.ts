@@ -1,5 +1,5 @@
 export const SITE = {
-  title: "Primiipasi.info",
+  title: "primiipași.info",
   description: "primii pași în informatică pe fast-forward",
   defaultLanguage: "en_US",
   instagram: "primiipasi.info",
@@ -31,5 +31,10 @@ export const SIDEBAR = {
     { text: "Stringuri", link: "/notiuni_intermediare/stringuri" },
     { text: "Obiecte", link: "/notiuni_intermediare/obiecte" },
     { text: "Domeniul variabilelor", link: "/notiuni_intermediare/scopuri" },
+  ],
+  "Noțiuni avansate": [
+    { text: "Grafuri", link: "/notiuni_avansate/grafuri" },
+    { text: "Arbori", link: "/notiuni_avansate/arbori" },
+
   ]
 };

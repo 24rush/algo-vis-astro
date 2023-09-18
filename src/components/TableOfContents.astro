@@ -52,7 +52,7 @@ if (toc) {
 		let offset = parseInt(
 			heading.tagName.toLowerCase().replace("h", "")
 		);
-		let paddingRem = 0.5 * offset;
+		let paddingRem = 0.5 * (offset -1);
 
 		let templateStr = String.format(
 			`<li class="text-slate-400 hover:text-slate-800 hover:text-slate-900" style="padding-left: {0}rem;"><a href=#{1}>{2}</a ></li>`,

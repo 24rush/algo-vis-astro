@@ -4,7 +4,7 @@
   overflow: auto;
   display: flex;
   justify-content: center;
-  margin: 1.5em 0 1em;
+  margin: 1em 0 1em;
   user-select: none;
 }
 
@@ -64,6 +64,10 @@
 
 /* END SPLITTER */
 
+.av-btn-square {
+  border-radius: 0;
+}
+
 .av-btn {
   background-color: var(--bs-btn-bg) !important;
 }
@@ -89,6 +93,17 @@
   opacity: 0.6;
 }
 
+.av-btn-pressable {
+  border-radius: 0px;
+}
+
+.av-btn-pressable:checked+.btn {
+  border-width: 0px!important;
+  border-color: var(--bs-blue)!important;  
+  border-bottom-width: 3px!important;
+  background-color: var(--bs-btn-bg);
+}
+
 .av-btn-sm {
   background-color: var(--bs-blue) !important;
   color: var(--bs-white) !important;
@@ -112,10 +127,6 @@
   padding: 4px 0px 4px 8px !important;
 }
 
-.panelVariables {
-  margin-top: 1rem;
-}
-
 .scope-body {
   padding: 0!important;
   padding-left: 1rem!important;
@@ -127,34 +138,30 @@
   padding: 6px 15px;
   font-size: 12px;
   font-weight: 600;
-}
-
-.scope-name-lg {
-  padding: 6px 15px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.empty-scope {
-  font-size: 21px;
-  font-style: italic;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
-.uppercase {
   text-transform: uppercase;
 }
 
-.var-box {
-  padding: 3px;
+.empty-scope {
+  font: 16px/normal;
+  font-style: italic;
+  font-weight: 500;
   margin-bottom: 0.5rem;
+}
+
+.panelVariables {
+  margin-top: -0.5em;
+}
+
+.var-box {
+  /*padding: 3px;*/
+  margin-top: 0.3rem;
 }
 
 .var-name {
   cursor: pointer;  
   white-space: nowrap;
-  font: 15px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace
+  font: 15px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  overflow: hidden;
 }
 
 .var-name-bin {
@@ -171,7 +178,12 @@
   vertical-align: middle;
   border: 1px solid;
   white-space: nowrap;
-  font: 20px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.accordion-flush .accordion-item:last-child {
+  margin-top: 0.5em;
 }
 
 .fade-out {
@@ -265,7 +277,7 @@ body#algovis {
 }
 
 .grow-wrap::after {
-  /* content: attr(data-replicated-value) " "; */
+  content: attr(data-replicated-value) " ";
   white-space: pre-wrap;
   visibility: hidden;
 }

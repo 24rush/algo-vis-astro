@@ -1,0 +1,86 @@
+---
+import "../../public/assets/styles/av-wp-styles.css";
+import "../../public/assets/styles/av-styles.css";
+import "../styles/main.scss";
+
+import HeadCommon from "../components/HeadCommon.astro";
+import ScriptsCommon from "../components/ScriptsCommon.astro";
+
+import HeadSEO from "../components/HeadSEO.astro";
+import Header from "../components/Header/Header.astro";
+import PageContent from "../components/PageContent.astro";
+import FeedbackForm from "../components/FeedbackForm.astro";
+
+import * as CONFIG from "../config";
+
+const { content = {} } = Astro.props;
+const currentPage = new URL(Astro.request.url).pathname;
+---
+
+<html dir={content.dir ?? "ltr"} lang={content.lang ?? "en-us"} class="initial">
+  <head>
+    <HeadCommon />
+    <HeadSEO {content} canonicalURL={new URL(Astro.url.pathname, Astro.site)} />
+    <title>
+      {
+        content.title
+          ? `${content.title} 🚀 ${CONFIG.SITE.title}`
+          : CONFIG.SITE.title
+      }
+    </title>
+  </head>
+
+  <body class="line-numbers language-js">
+    <div class="sticky z-10 w-full" id="headerBar">
+      <Header currentPage={currentPage} />
+    </div>
+    <div>
+      <main class="col-span-main-mobile py-4 px-8 pb-32 overflow-auto">
+        <div>
+          <PageContent content={content}>
+            <slot />
+          </PageContent>
+        </div>
+      </main>
+    </div>
+
+    <FeedbackForm />
+
+    <style scoped>
+      .white-background {
+        background-color: white;
+      }
+
+      .left-sidebar-forced {
+        position: fixed !important;
+        display: flex !important;
+        z-index: 1;
+        opacity: 1;
+        top: 3.5em !important;
+        height: 100% !important;
+      }
+
+      .col-span-left-mobile {
+        max-width: 25%;
+        display: flex !important;
+        position: relative !important;
+      }
+
+      .col-span-right-mobile {
+        min-width: 18%;
+      }
+
+      @media (max-width: 968px) {
+        .col-span-left-mobile {
+          display: none !important;
+        }
+
+        .col-span-right-mobile {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <ScriptsCommon />
+  </body>
+</html>

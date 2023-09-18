@@ -1,0 +1,266 @@
+---
+title: "Grafuri"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Figure from '../../components/Content/Figure.astro'
+import Algovis from "../../components/Content/Algovis.astro";
+import GPTBox from '../../components/Content/GPTBox.astro'
+import SummaryBox from '../../components/Content/SummaryBox.astro'
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>ce sunt grafurile și ce tipuri de probleme rezolvă
+<br/><Check/>diferiți algoritmi specifici grafurilor
+<br/><Check/>cum se folosesc grafurile în cadrul jocurilor
+</Box>
+
+<h0>Grafuri</h0>
+
+Grafurile sunt un mecanism prin care putem stoca relații între entități iar cel mai ușor de imaginat o astfel de structură este folosind relațiile de prietenie de pe rețelele sociale:
+
+<Figure src="../assets/imgs/social_network.png" caption="O rețea socială modelată printr-un graf"/>
+
+Observăm cum un graf nu este decât o structură ce conține o mulțime de vârfuri (fiecare persoană a rețelei sociale) și o listă de muchii (relațiile dintre fiecare două persoane).
+
+Formal, un graf ```G``` este compus din mulțimile ```(V, E)``` unde:
+- <Arrow/>V reprezintă mulțimea **vârfurilor** (sau nodurilor)
+- <Arrow/>E reprezintă colecția de **muchii** (relații) dintre două vârfuri
+
+Astfel, putem defini graful din exemplul precedent ca:
+
+```ReteaSociala = (Prieteni, LegaturiPrietenie)``` unde:
+
+```Prieteni = {Ionut, Maria, Mihai, Noah, Kevin, Sara, Amaly} ``` și 
+
+```LegaturiPrietenie = {(Ionut, Maria), (Ionut, Mihai), (Ionut, Noah), (Sara, Amaly)}```
+
+## Grafuri neorientate si orientate ##
+Graful ce reprezintă rețeaua socială modelează relații simetrice între nodurile sale (relația de prietenie este reciprocă) iar din acest motiv graful mai este numit și **neorientat**. 
+
+Vor exista cazuri însă în care vom dori să specificăm relații ce nu sunt simetrice ca de exemplu când o persoană datorează bani altei persoane: 
+
+<Figure src="../assets/imgs/graf_orientat.png" caption="Modelarea datoriilor între persoane folosind un graf orientat"/>
+
+În acest exemplu, observăm cum Maria datorează bani lui Ionut și Ionut lui Mihai iar acest lucru ne este indicat de săgeata de la capătul muchiei eferente fiecărei relații.
+
+Într-un graf **orientat** perechile de vârfuri ce definesc muchiile sunt **ordonate** întrucât ne vor indica relația dintre vârfurile ce le formează (în grafurile orientate vom folosi de acum numele de arc în loc de muchie):
+
+ ```(Maria, Ionut)``` ne indică faptul că Maria datorează bani lui Ionut și nu și opusul (Ionut nu datorează nimic Mariei) iar din acest motiv săgeata aferentă relației lor are vârful spre Ionuț.
+
+Putem defini graful ```Datornici = (Persoane, Datorii)``` astfel:
+- ```Persoane = {Ionut, Maria, Mihai, Tom}```
+- ```Datorii = {(Maria, Ionut), (Ionut, Mihai)}```
+
+Rulează exemplul de mai jos pentru a vizualiza diferite grafuri generate aleatoriu:
+
+<Algovis>
+```js
+let graf_neorientat = new Graph(GraphType.UNDIRECTED);
+graf_neorientat.generate_with(["Alin", 1, 2, 3, 4, 5]);
+
+let graf_orientat = new Graph(GraphType.DIRECTED);
+graf_orientat.generate_with([6, 7, 8, 9]);
+```
+</Algovis>
+
+<Box info>
+## Alte noțiuni și denumiri asociate grafurilor ##
+- <Arrow/>În limba engleza vom regăsi vârfurile sub numele de nodes sau vertices (sg. *vertex*) iar muchiile ca edges sau arcs (pentru grafurile orientate)
+- <Arrow/>fiecare vârf are asociată o informație utilă întâlnită și sub numele de **cheie** iar în majoritatea exemplelor vom regăsi numere naturale însă putem stoca orice alt tip de informație
+- <Arrow/>doua vârfuri A și B sunt **adiacente** dacă există o muchie sau un arc între ele
+- <Arrow/>muchiile/arcurile unui graf pot avea asociate ponderi care să ne aducă o informație suplimentară despre relația vârfurilor (de ex: distanța dintre ele) iar în acest caz graful aferent se mai numește și **ponderat**
+- <Arrow/>grafurile ce conțin muchii/arcuri între toate vârfurile mai sunt numite și grafuri **complete**
+- <Arrow/>un **lanț** într-un graf reprezintă o secvență de vârfuri între care există o muchie/arc iar **lungimea** sa va fi reprezentată de numărul de astfel de muchii/arce
+- <Arrow/>un graf este **conectat** dacă există un lanț între oricare două vârfuri ale sale
+</Box>
+
+## Reprezentare grafurilor in memorie ##
+Pentru a putea folosi grafurile în programele noastre, avem nevoie să le putem reprezenta în memorie prin intermediul unor structuri de date. Cele mai uzuale modalități sunt prin folosirea unei **matrice de adiacență** sau printr-o **listă de adiacență**.
+
+### Matricea de adiacență ###
+O matrice de adiacență ```M``` este o matrice pătratica a cărei dimensiune ```n``` este dată de numărul vârfurilor din graf și unde fiecare poziție ```M[i][j]``` poate conține:
+- <Arrow/>```0``` dacă **nu** există muchie/arc între vârfurile ```i``` și ```j```
+- <Arrow/>```1``` dacă există muchie/arc între vârfurile ```i``` și ```j```
+
+*(în cazul grafurilor ponderate, în loc de ```1``` va conține ponderea muchiei/arcului dintre ```i``` și ```j```)*
+<img src="../assets/imgs/adiacenta_to_graf.jpg" class="img-box" />
+
+Rulează exemplul de mai jos și observă matricea de adiacentă și graful generat pe baza ei:
+<Algovis>
+```js
+let graf = new Graph();
+let adiacenta = [[0, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 1], [1, 0, 1, 0]];
+   
+graf.fromAdjacencyMatrix(adiacenta);
+```
+</Algovis>
+
+Folosind o matrice de adiacență, putem defini atât grafuri orientate cât și neorientate.
+<Algovis>
+```js
+let graf = new Graph(GraphType.DIRECTED);
+let adiacenta = [[0, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 1], [1, 0, 0, 0]];
+   
+graf.fromAdjacencyMatrix(adiacenta);
+```
+</Algovis>
+
+### Lista de adiacență ###
+Reprezentarea grafurilor folosind o listă de adiacență presupune stocarea pentru fiecare vârf a nodurilor adiacente lui adică a nodurilor conectate cu el printr-o muchie/arc. 
+
+În Javascript, putem folosi un obiect în care cheile vor fi nodurile grafului iar valorile vor fi reprezentate de lista nodurilor adiacente lui.
+
+<img src="../assets/imgs/lista_adiacenta_to_graf.jpg" class="img-box" />
+
+Rulează exemplul de mai jos și observă cum se crează graful din lista de adiacență:
+<Algovis>
+```js
+let lista_adiacenta = {
+    1: [2, 3, 4],
+    2: [1],
+    3: [1, 4],
+    4: [3, 1]
+};
+
+let graf = new Graph();
+graf.fromAdjacencyList(lista_adiacenta);
+```    
+</Algovis>
+
+## Algoritmi specifici grafurilor ##
+În cele mai multe aplicații bazate pe grafuri va exista necesitatea de a accesa informația asociată fiecărui vârf al său (metodă regăsită și sub numele de **traversare, parcurgere sau vizitare**) iar pentru aceasta există doi algoritmi specifici: 
+<SummaryBox title="Traversarea in adancime" description="DFS: Depth-first search">
+Acest algoritm se bazează pe o **stivă** plus o structură auxiliară care se ne indice dacă un vârf a fost vizitat (în cazul nostru această structură este de tipul ```Set``` - mulțime).
+
+Pașii acestui algoritm sunt următorii:
+
+<Arrow/>1. se alege un vârf aleatoriu și se plasează în stivă
+
+<Arrow/>2. se extrage elementul din vârful stivei și se marchează ca fiind vizitat
+
+<Arrow/>3. se determină vârfurile adiacente acestui vârf și se adaugă în stivă dacă nu sunt deja vizitate
+
+<Arrow/>4. se repeta pașii 2-3 până când stiva este goală
+
+Algoritmul încearcă să se depărteze cât mai repede de vârful curent preferând să viziteze vecinii vecinilor săi decât vecinii imediați ceea ce va determina "adâncirea" parcurgerii. Când vor fi vizitați toți vecinii unui nod atunci se va încerca vizitarea tuturor vecinilor părinților săi (vârfurilor din care aceasta a fost vizitat). 
+
+Ne putem imagina cum graful este parcurs în adâncime pe o ramură până când se vor epuiza toate vârfurile iar apoi căutarea va da înapoi câte un pas doar pentru a încerca iar să avanseze cât mai în adâncime pe ramura următoare.
+
+*(recomandare: apasă Rulează tot și observă cum se derulează parcurgerea)*
+<Algovis>
+```js
+function DFS(start) {
+    let visited = new Set();
+    let stack = [];
+    
+    stack.push(start);
+
+    while (stack.length) {
+        let node = stack.pop();
+    
+        // Accesare informatie varf
+        console.log(node.value);
+        visited.add(node.value);
+        
+        const adjacents = node.getAdjacents();
+        for (const adjacent of adjacents) {        
+            if (!visited.has(adjacent.value))
+                stack.push(adjacent);
+        }
+    }
+}
+  
+let lista_adiacenta = {
+    1: [2, 5, 9],
+    2: [3, 4],
+    3: [4],
+    5: [6, 8],
+    6: [7],
+    9: [10]
+  };
+
+let graf = new Graph();
+graf.fromAdjacencyList(lista_adiacenta);
+  
+let startNode = graf.find(1);
+DFS(startNode);
+```
+</Algovis>
+</SummaryBox>
+
+<SummaryBox title="Traversarea în lățime" description="BFS: Breadth-first search">
+Traversarea în lățime este similară celei în adâncime, diferența fiind că în loc de stivă se va folosi o **coadă**.
+
+Pașii acestui algoritm sunt următorii:
+
+<Arrow/>1. se alege un vârf aleatoriu și se plasează în coadă
+
+<Arrow/>2. se extrage primul element din coadă
+
+<Arrow/>3. se determina vârfurile adiacente acestui vârf
+
+<Arrow/>4. cele ce nu sunt deja vizitate se adaugă la coadă și se marchează ca fiind vizitate
+
+<Arrow/>5. se repetă pașii 2-4 până când stiva se va goli
+
+*(recomandare: apasă Rulează tot și observă cum se derulează parcurgerea)*
+<Algovis>
+```js
+function BFS(start) {
+    let visited = new Set();
+    let queue = [];
+    
+    visited.add(start.value);
+    queue.push(start);
+
+    while (queue.length) {
+        let node = queue.shift();
+    
+        // Accesare informatie varf
+        console.log(node.value);  
+        graf.accessValue(node.value, AccessType.Mark)      
+        
+        const adjacents = node.getAdjacents();
+        for (const adjacent of adjacents) {        
+            if (!visited.has(adjacent.value)) {
+              visited.add(adjacent.value);
+              queue.push(adjacent);
+            }
+        }
+    }
+}
+  
+let graf = new Graph();
+let lista_adiacenta = {
+    1: [2, 3, 4],
+    2: [1],
+    3: [1, 4],
+    4: [3, 1]
+  };
+  
+graf.fromAdjacencyList(lista_adiacenta);
+
+let startNode = graf.find(1);
+BFS(startNode);
+```
+</Algovis>
+</SummaryBox>
+
+<Box attention>
+<strong>Rezumat</strong>
+<br/><Arrow/>grafurile sunt structuri de date cu ajutorul cărora putem reprezenta **relații între entități**
+<br/><Arrow/>grafurile **neorientate** modelează relațiile simetrice iar cele **orientate** relații asimetrice 
+<br/><Arrow/>există numeroși algoritmi specifici grafurilor însă cei de căutare a unui nod sunt cei mai uzuali
+<br/><Arrow/>parcurgerile grafurilor pot fi în adâncime (**DFS**) sau în lățime (**BFS**)
+</Box>
+
+# Bonus Maze Game #
+Explorează următorul joc și vezi cum grafurile sunt aplicate pentru a rezolva un labirint.
+
+*(hint: folosește Rows: 5 Columns: 5 Scale: 50 și Show Graph)*
+<iframe credentialless src="https://editor.p5js.org/D_Snyder/full/ul_h9TroL" style="width:100%; height: 1000px;"></iframe>

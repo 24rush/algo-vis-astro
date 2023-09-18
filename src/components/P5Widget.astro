@@ -1,23 +1,23 @@
 ---
-const { src, inline, data_height = 300 } = Astro.props;
+const { src, inline, data_height = 300, title = "#play.box", data_autoplay = false } = Astro.props;
 
 const scriptPath = "../assets/p5snippets/" + src;
 
 const data_src_id = Math.random().toString(36).replace(/[^a-z]+/g, "").slice(2, 10);
 ---
-<div class="my-3" style="font-size: 21px; font-weight: 500; font-style: italic">#play.box</div>
+<div class="my-3" style="font-size: 21px; font-weight: 500; font-style: italic">{title}</div>
 
 {
     src && !inline && (
-        <script src={scriptPath} type="text/p5" data-preview-width="400" />
+        <script src={scriptPath} type="text/p5" data-preview-width="400" data-autoplay={data_autoplay}/>
     )
 }
 
-{src && inline && <script src={scriptPath} type="text/javascript" />}
+{src && inline && <script src={scriptPath} type="text/javascript" data-autoplay={data_autoplay}/>}
 
 {
     !src && (
-        <script data-src={data_src_id} data-height={data_height}></script>
+        <script data-src={data_src_id} data-height={data_height} data-autoplay={data_autoplay}></script>
         <div data-src={data_src_id}>            
             <slot />            
         </div>
