@@ -26,15 +26,18 @@ export const SIDEBAR = {
     { text: "Structuri de control și repetitive", link: "/notiuni_de_baza/structuri-control" },
   ],
   "Noțiuni intermediare": [
+    { text: "Operații pe biți", link: "/notiuni_intermediare/operatii_biti" },
     { text: "Funcții", link: "/notiuni_intermediare/functii" },
     { text: "Vectori", link: "/notiuni_intermediare/vectori" },
+    { text: "Stive / cozi", link: "/notiuni_intermediare/stiva_coada" },
     { text: "Stringuri", link: "/notiuni_intermediare/stringuri" },
     { text: "Obiecte", link: "/notiuni_intermediare/obiecte" },
     { text: "Domeniul variabilelor", link: "/notiuni_intermediare/scopuri" },
   ],
   "Noțiuni avansate": [
+    { text: "Referințe", link: "/notiuni_avansate/referinte" },
+    { text: "Funcții recursive", link: "/notiuni_avansate/recursivitate" },
     { text: "Grafuri", link: "/notiuni_avansate/grafuri" },
     { text: "Arbori", link: "/notiuni_avansate/arbori" },
-
   ]
 };

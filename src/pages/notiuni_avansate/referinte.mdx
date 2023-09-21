@@ -1,0 +1,58 @@
+---
+title: "Obiecte"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import ClickAv from '../../components/Content/ClickAv.astro'
+import Algovis from "../../components/Content/Algovis.astro";
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>ce este o referință
+<br/><Check/>cum se comportă obiectele trimise ca parametri funcțiilor
+</Box>
+
+<h0>Referințe</h0>
+
+Operația de copiere (sau atribuire) a unei variabile altei variabile, se face folosind operatorul <code>=</code> iar dacă în cazul tipurilor primitive știm că efectul său este să copieze valoarea variabilei sursă în cea destinație, în cazul copierilor între obiecte situația este diferită.
+
+## Copierea obiectelor
+
+Atribuirea unei obiect altui obiect va duce la crearea unei **referințe** și nu la crearea unei copii noi identică cu obiectul sursă.
+
+<img src="../assets/imgs/referinte0.png" class="img-box" />
+
+O <strong>referință</strong> poate fi privită ca un sinonim (alias) către obiectul sursă pe care îl referă. Cu alte cuvinte, referința nu are conținut propriu ci îl referă pe cel al obiectului sursă de aceea orice modificare adusă referinței va fi vizibilă obiectului referit.
+
+<ClickAv>Rulează exemplul și vezi ce se întâmplă când un obiect este atribuit altui obiect</ClickAv>
+<Algovis config_id="obiecte-basics.json" av_selected="5"></Algovis>
+
+În exemplul de mai sus observăm cum modificarea proprietății <code>sticla2.volum</code> va duce la modificarea proprietății  <code>sticla1.volum</code> întrucât <code>sticla2</code> este o referință a obiectului ```sticla1``` și nu o copie a sa.
+
+## Transmiterea tipurilor primitive ca parametri funcțiilor
+Am discutat cum un parametru de tip primitiv (numeric, text) transmis unei funcții, chiar dacă ar fi modificat în funcția în care este transmis, această modificare se va pierde la finalul execuției funcției. Efectiv, modificările aduse acestor parametrii nu sunt vizibile în afara funcției. 
+
+Acest mecanism de transmitere a parametrilor în Javascript se numește <strong>prin valoare</strong> ceea ce face ca parametri pe care funcțiile îi primesc să fie de fapt niște copii ale variabilelor efectiv transmise la apelul funcției.
+
+<ClickAv>Rulează exemplul și observă cum variabila ```a``` este doar o copie a variabilei ```numar```</ClickAv>
+<Algovis config_id="obiecte-basics.json" av_selected="3"></Algovis>
+
+## Transmiterea obiectelor ca parametri funcțiilor
+În cazul obiectelor, lucrurile stau puțin diferit. Chiar dacă transmiterea unui parametru de tip obiect se face tot prin valoare, această copie este acum **o copie a unei referințe** către obiectul nostru și nu un întreg duplicat al său ca în cazul tipurilor primitive. 
+
+Aceasta diferență de transmitere a tipurilor obiect face că modificările aduse valorilor proprietăților să fie acum vizibile în afara funcției. 
+
+<ClickAv>Rulează exemplul și observă cum variabila ```a``` este acum o referință a variabilei ```numar``` iar modificările aduse ei vor fi vizibile după terminarea apelului functiei</ClickAv>
+<Algovis config_id="obiecte-basics.json" av_selected="4"></Algovis>
+
+Chiar daca putem modifica proprietățile unui parametru de tip obiect, nu putem în schimb să modificăm complet obiectul cu unul nou, adică o atribuire <code>a = { }</code> nu va avea niciun efect întrucât modificăm o copie a unei referințe care se va pierde la ieșirea din funcție.
+
+<Box attention>
+<strong>Rezumat</strong>
+<br/><Arrow/>atribuirea unui obiect altui obiect va duce la crearea unei <strong>referințe</strong> și nu a unei copii
+<br/><Arrow/>obiectele transmise ca parametri funcțiilor pot fi modificați în interiorul acestora iar modificările vor fi vizibile după sfârșitul apelului funcției
+</Box>

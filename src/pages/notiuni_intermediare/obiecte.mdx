@@ -6,14 +6,14 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
 import Check from '../../components/Content/Check.astro'
+import ClickAv from '../../components/Content/ClickAv.astro'
 import Algovis from "../../components/Content/Algovis.astro";
 import P5Widget from "../../components/P5Widget.astro";
 
 <Box knowledge>
 <strong>Ce vom descoperi în acest articol:</strong>
  <br/><Check/>ce sunt obiectele
- <br/><Check/>ce este o referință
- <br/><Check/>cum se comportă obiectele trimise ca parametri funcțiilor
+ <br/><Check/>ce sunt constructorii și metodele
 </Box>
 
 <h0>Obiecte</h0>
@@ -24,21 +24,29 @@ Să luăm de exemplu caracteristicile unei sticle, cum ar fi: înălțime, volum
 
 <img src="../assets/imgs/sticla.png" class="img-box" />
 
-# Creare obiecte #
+## Creare obiecte
 Pentru a defini o variabilă de tip obiect vom folosi sintaxa normală declarării oricărei variabile (cuvântul cheie <code>let</code>) urmat de numele variabilei însă apoi vom folosi acolade (``` {} ```) pentru a specifica conținutul obiectului. Între aceste acolade vom putea declara și inițializa proprietățile obiectului.
 
+<ClickAv>Rulează exemplul și observă cum se construiește obiectul ```sticlaApa``` ce conține proprietățile ```volum``` și ```greutate```</ClickAv>
 <Algovis config_id="obiecte-basics.json" av_selected="0"></Algovis>
 
-În exemplul de mai sus am construit un obiect nou numit <code>sticlaApa</code> ce conține două proprietăți:  <code>volum</code> și <code>greutate</code> având valorile 500, respectiv 700. Pentru a citi sau modifica aceste proprietăți putem folosi oricare din următoarele construcții:
+Pentru a citi sau modifica aceste proprietăți putem folosi oricare din următoarele construcții:
 - <code>nume_obiect[nume_proprietate]</code>, în cazul nostru <code>sticlaApa['volum']</code>
 - <code>nume_obiect.nume_proprietate</code>, în cazul nostru <code>sticlaApa.volum</code>
 
-## Functii constructor ##
+<Box info>
+Proprietățile unui obiect se mai numesc și **câmpuri** și nu sunt altceva decât variabile care stochează date.
+</Box>
+
+### Functii constructor
 O altă metodă prin care putem crea un obiect este folosind o <strong>funcție constructor</strong>. Această funcție va primi ca parametri valorile proprietăților obiectului și le va atribui apoi fiecărei proprietăți în parte.
 
+<ClickAv>Rulează exemplul și observă cum se construiește obiectul ```sticlaApa``` folosind o funcție constructor</ClickAv>
 <Algovis config_id="obiecte-basics.json" av_selected="1"></Algovis>
 
-Funcția <code>SticlaApa</code> este funcția constructor ce ne va crea un obiect nou de tip SticlaApa (a se observa cuvântul cheie <code>new</code>). Acesta funcție primește 2 parametri, <code>v</code> și <code>g</code> aferenți proprietăților <code>volum</code> și <code>greutate</code>. În interiorul funcției observăm cum acești parametrii sunt atribuiți proprietăților <code>volum</code> și <code>greutate</code> ale obiectului nou creat reprezentat prin variabila <code>this</code>. 
+Funcția <code>SticlaApa</code> este funcția constructor ce ne va crea un obiect nou de tip ```SticlaApa``` (a se observa cuvântul cheie <code>new</code>). Acestă funcție primește 2 parametri, <code>v</code> și <code>g</code> aferenți proprietăților <code>volum</code> și <code>greutate</code>.
+
+În interiorul funcției observăm cum acești parametrii sunt atribuiți proprietăților <code>volum</code> și <code>greutate</code> ale obiectului nou creat reprezentat prin variabila <code>this</code>. 
 
 <Box info>
 Variabila <code>this</code> este o variabila specială a limbajului Javascript care stochează obiectul curent în funcție de contextul în care o folosim. În cazul nostru,  <code>this</code> se vă referi la noul obiect pe care îl creăm în interiorul funcției constructor <code>SticlaApa</code>. 
@@ -46,7 +54,55 @@ Variabila <code>this</code> este o variabila specială a limbajului Javascript c
 
 Avantajul folosirii unei funcții constructor este că putem specifica pe lângă valorile proprietăților și anumite **critierii de validare** ale acestora (cum ar fi să nu stocăm un volum negativ) sau executa orice alte instrucțiuni (cum ar fi afișarea unui mesaj). Folosind prima metodă, acest lucru nu este posibil, sintaxa ne permite doar să atribuim valori proprietăților.
 
+<ClickAv>Rulează exemplul și observă cum se pot specifica criteriile de validare</ClickAv>
 <Algovis config_id="obiecte-basics.json" av_selected="2"></Algovis>
+
+## Metode 
+Pe lângă câmpuri obiectele pot conține și metode care nu sunt altceva decât **funcții** ce efectuează diverse operații fie pe câmpurile obiectului fie pe alte date primite ca parametru.
+
+Declararea unei metode se face folosind următoarea sintaxă:
+```js
+<nume_metoda> : function() {
+    <corp metoda>
+}
+```
+
+iar pentru a apela metoda nou definită folosim sintaxa:
+```js
+numeObiect.<nume_metoda>();
+```
+
+<ClickAv>Rulează exemplul și observă cum se apelează metodele obiectului</ClickAv>
+<Algovis>
+```js
+let sticlaApa = {
+    'volum' : 500,
+    'greutate': 700,    
+
+    volum_litri: function() {
+      return this.volum / 1000;
+    },
+
+    setContinut : function(continut) {
+      this.continut = continut;
+    },
+
+    print : function() {
+      console.log('Sticla cu ' + this.continut + ' de ' + this.volum_litri() + "l");
+    }
+};
+
+console.log(sticlaApa.volum_litri());
+
+sticlaApa.setContinut('apa');
+sticlaApa.print();
+```
+</Algovis>
+
+Am adăugat 3 metode obiectului:
+- <Arrow/>```volum_litri```: ce întoarce volumul în litri al sticlei prin împărțire la 1000 a volumului in litri
+- <Arrow/>```setContinut```: metodă ce ne permite să definim conținutul sticlei. Folosim cuvântul cheie ```this``` pentru a ne referi la instanța curentă a obiectului pentru care este apelată metoda (adică obiectul ```sticlaApa``` în cazul nostru) căruia în adaugăm câmpul ```continut``` prin atribuire din variabila ```continut``` primită ca parametru al metodei
+- <Arrow/>```print```: o metodă ce ne afisează detaliile sticlei prin concatenarea câmpurilor obiectului
 
 <P5Widget>
 ```
@@ -85,45 +141,9 @@ class Jitter {
 ```
 </P5Widget>
 
-# Copierea obiectelor #
-Operația de copiere (sau atribuire) a unei variabile altei variabile, se face folosind operatorul <code>=</code> iar dacă în cazul tipurilor primitive știm că efectul său este să copieze valoarea variabilei sursă în cea destinație, în cazul copierilor între obiecte situația este diferită.
-
-Atribuirea unei obiect altui obiect va duce la crearea unei **referințe** și nu la crearea unei copii noi identică cu obiectul sursă.
-
-<img src="../assets/imgs/referinte0.png" class="img-box" />
-
-<Box info>
-O <strong>referință</strong> poate fi privită ca un alias către obiectul sursă pe care îl referă. Cu alte cuvinte, referința nu are conținut propriu ci îl referă pe cel al obiectului sursă de aceea orice modificare adusă referinței va fi vizibilă obiectului referit.
-</Box>
-
-<Algovis config_id="obiecte-basics.json" av_selected="5"></Algovis>
-
-În exemplul de mai sus observăm cum modificarea proprietății <code>sticla2.volum</code> va duce la modificarea proprietății  <code>sticla1.volum</code> întrucât  <code>sticla2</code> este o referință a obiectului sticla1 și nu o copie a sa.
-
-# Transmiterea obiectelor ca parametri funcțiilor #
-Am discutat cum un parametru de tip primitiv (numeric, text) transmis unei funcții, chiar dacă ar fi modificat în funcția în care este transmis, această modificare se va pierde la finalul execuției funcției. Efectiv, modificările aduse acestor parametrii nu sunt vizibile în afara funcției. 
-
-Acest mecanism de transmitere a parametrilor în Javascript se numește <strong>prin valoare</strong> ceea ce face ca parametri pe care funcțiile îi primesc să fie de fapt niște copii ale variabilelor efectiv transmise la apelul funcției.
-
-<Algovis config_id="obiecte-basics.json" av_selected="3"></Algovis>
-
-Prin rularea exemplului de mai sus observăm exact cum funcționează acest mecanism întrucât variabila <code>a</code> este doar o copie a variabilei <code>numar</code> transmisă funcției <code>foo</code>.
-
-În cazul obiectelor, lucrurile stau puțin diferit. Chiar dacă transmiterea unui parametru de tip obiect se face tot prin valoare, această copie este acum **o copie a unei referințe** către obiectul nostru și nu un întreg duplicat al său ca în cazul tipurilor primitive. 
-
-Aceasta diferență de transmitere a tipurilor obiect face că modificările aduse valorilor proprietăților să fie acum vizibile în afara funcției. 
-
-<Algovis config_id="obiecte-basics.json" av_selected="4"></Algovis>
-
-Putem observa cum variabila <code>a</code> nu mai este o copie a variabilei <code>numar</code> ci o copie ce conține o **referință** către variabila <code>numar</code> iar orice modificare adusă proprietăților sale vor fi acum vizibile în variabila <code>numar</code> pe care o referă.
-
-<Box info>
-Chiar daca putem modifica proprietățile unui parametru de tip obiect, nu putem în schimb să modificăm complet obiectul cu unul nou, adică o atribuire <code>a = { }</code> nu va avea niciun efect întrucât modificăm o copie a unei referințe care se va pierde la ieșirea din funcție.
-</Box>
-
 <Box attention>
 <strong>Rezumat</strong>
-<br/><Arrow/>Un obiect este o <strong>colecție de proprietăți</strong> asociată unei entități
-<br/><Arrow/>Atribuirea unui obiect altui obiect va duce la crearea unei <strong>referințe</strong> și nu a unei copii
-<br/><Arrow/>Obiectele transmise ca parametri funcțiilor pot fi modificați în interiorul acestora iar modificările vor fi vizibile după sfârșitul apelului funcției
+- <Arrow/>un obiect este o <strong>colecție de proprietăți</strong> asociată unei entități
+- <Arrow/>un obiect poate fi creat folosind funcții **constructor** ce ne permit să specificăm anumite criterii de validare pentru câmpurile obiectului
+- <Arrow/>metodele sunt **funcții asociate obiectului** care pot introduce diverse acțiuni
 </Box>

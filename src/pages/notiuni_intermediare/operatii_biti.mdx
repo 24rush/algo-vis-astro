@@ -1,0 +1,171 @@
+---
+title: "Operații pe biți"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Figure from '../../components/Content/Figure.astro'
+import ClickAv from '../../components/Content/ClickAv.astro'
+import Algovis from '../../components/Content/Algovis.astro';
+import Latex from '../../components/Content/Latex.astro';
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>reprezentarea binară a numerelor întregi
+<br/><Check/>intervalul valorilor unei variabile
+<br/><Check/>operatori pe biți
+</Box>
+
+<h0>Operații pe biți</h0>
+
+## Reprezentarea binară
+
+După cum știm, calculatoarele lucrează cu biți (valori de 0 și 1) însă până acum nu am interacționat cu astfel de valori - toate variabilele numerice folosite au fost numere naturale sau reale prezentate într-un format inteligibil. Cu toate astea, datele din programele noastre sunt stocate în memoria calculatorului în format binar (0 și 1) iar nouă ne sunt doar prezentate altfel, ele la bază sunt formate din înșiruiri de biți.
+
+### Spațiul de stocare
+
+În majoritatea limbajelor de programare, numerele naturale sunt stocate in memoria programelor (și implicit a calculatorului) ca secvențe de **32 de biți** (*în Javascript se întâmpla ca ele să fie stocate ca secvențe de 64 biți însă pentru simplitate le putem considera tot de 32 biți*). 
+
+Asta mai înseamnă și că orice variabilă în care stocăm un număr va ocupa 32 de biți de memorie adică 4 bytes (*ro. octeți*)
+
+### Reprezentarea numerelor întregi pozitive
+
+Reprezentarea binară a numerelor întregi pozitive se face prin transformarea lor în baza 2 și umplerea cu 0-uri nesemnificative până se obțin cei 32 de biți iar dacă transformarea în baza 2 a numărului depășește deja cei 32 de biți, atunci se va trunchia la primele 32 de cifre.
+
+<Figure src="../assets/imgs/bin_nr.png" caption="Reprezentarea binară a valorii 210 intr-o variabilă"/>
+
+<ClickAv>Rulează exemplul iar apoi dă click pe numele variabilelor pentru a observa reprezentarea lor binară</ClickAv>
+<Algovis>
+```js
+let x = 210;
+
+let y = 2;
+
+let z = 3;
+// Opreste executia aici
+```
+</Algovis>
+
+### Reprezentarea numerelor întregi negative
+
+Reprezentarea binară a numerelor negative se face urmând pașii:
+- <Arrow/>1. se transformă valoarea absolută (pozitivă) a numărului în baza 2
+- <Arrow/>2. se determină complementul față de 1 adică toți biții 1 devin 0 și invers
+- <Arrow/>3. se adună 1 la valorea de la pasul 2
+
+<ClickAv>Rulează exemplul iar apoi dă click pe numele variabilelor pentru a observa reprezentarea lor binară</ClickAv>
+<Algovis>
+```js
+let x = -210;
+let xp = 210;
+
+let y = -2;
+
+let z = -3;
+// Opreste executia aici
+```
+</Algovis>
+
+### Intervalul de valori
+Numărul de biți aferenți unei variabile determină și valorile minime și maxime pe care le putem stoca iar ca regulă generală această valoare este dată de formula:
+- <Arrow/>pentru numere naturale fără semn (doar pozitive) <Latex formula='[0, 2^{n}-1]' />
+- <Arrow/>pentru numere naturale cu semn (și negative) <Latex formula='[-2^{n-1}, 2^{n-1}-1]' />
+
+Diferența este dată de faptul că pentru a stoca numerele negative avem nevoie să folosim bitul cel mai **nesemnificativ** (cel mai din stânga) pentru a reprezenta semnul (+ sau -) ceea ce duce la o diminuare a intervalulul maxim stocat (se înjumătățește).
+
+<Box info>
+**Exemplu**
+- într-o variabilă pe 8 biți fără semn vom putea stoca numere în intervalul <Latex formula='[0, 255]' />
+- într-o variabilă pe 8 biți cu semn vom putea stoca numere în intervalul <Latex formula='[-128, 127]' />
+- într-o variabilă pe 32 biți cu semn vom putea stoca numere în intervalul <Latex formula='[-2147483647-1, 2147483647]' /> 
+</Box>
+
+## Operatori pe biți
+
+Operațiile pe biți adică de manipulare a valorilor biților unei variabile de tip întreg se face folosind mai mulți operatori specifici. Aceste operații variază de la a accesa (citi/scrie) valoarea bitului de pe o anumită poziție până la operații mai complexe între operanzi de tip întreg.
+
+Cei mai utilizați operatori pe biți sunt:
+
+- <Arrow/>**AND** (```a & b```) efectuează operația **și** pe fiecare pereche de biți corespondenți în reprezentarea binară a lui ```a``` și ```b```.
+
+Rezultatul are valoarea 1 în fiecare poziție a biților unde **atât ```a``` cât și ```b``` au valoarea 1**.
+<Figure src="../assets/imgs/bin_and.png" caption="Operația & asupra variabilelor a și b"/>
+<ClickAv>Rulează exemplul iar apoi dă click pe numele variabilelor pentru a observa reprezentarea lor binară</ClickAv>
+<Algovis>
+```js
+let a = 2;
+let b = 3;
+
+let c = a & b;
+// Opreste executia aici
+```
+</Algovis>
+<br/>
+- <Arrow/>**OR** (```a | b```) efectuează operația **sau** pe fiecare pereche de biți corespondenți în reprezentarea binară a lui ```a``` și ```b```. 
+
+Rezultatul are valoarea 1 în fiecare poziție a biților unde **fie ```a``` cât fie ```b``` au valoarea 1**.
+<ClickAv>Rulează exemplul iar apoi dă click pe numele variabilelor pentru a observa reprezentarea lor binară</ClickAv>
+<Algovis>
+```js
+let a = 2;
+let b = 3;
+
+let c = a | b;
+// Opreste executia aici
+```
+</Algovis>
+
+- <Arrow/>**XOR** (```a ^ b```) efectuează operația **sau exclusiv** pe fiecare pereche de biți corespondenți în reprezentarea binară a lui ```a``` și ```b```.
+
+Rezultatul are valoarea 1 în fiecare poziție a biților unde exact unul dintre ```a``` sau ```b``` are valoarea 1.
+<ClickAv>Rulează exemplul iar apoi dă click pe numele variabilelor pentru a observa reprezentarea lor binară</ClickAv>
+<Algovis>
+```js
+let a = 2;
+let b = 3;
+
+let c = a ^ b;
+// Opreste executia aici
+```
+</Algovis>
+
+- <Arrow/>**NOT** (```~a```) efectuează operația NOT pe fiecare bit în reprezentarea binară a lui ```a``` adică inversează fiecare 0 în 1 și fiecare 1 în 0.
+<ClickAv>Rulează exemplul iar apoi dă click pe numele variabilelor pentru a observa reprezentarea lor binară</ClickAv>
+<Algovis>
+```js
+let a = 2;
+
+let c = ~a
+// Opreste executia aici
+```
+</Algovis>
+
+- <Arrow/>**SHIFT** (```a << b``` sau ```a >> b```) efectuează operația de deplasare a biților lui ```a``` la stânga (```<<```) sau la dreapta (```>>```) cu ```b``` poziții. Efectiv multiplică sau împarte ```a``` cu <Latex formula='2^b'/>.
+<ClickAv>Rulează exemplul iar apoi dă click pe numele variabilelor pentru a observa reprezentarea lor binară</ClickAv>
+<Algovis>
+```js
+let a = 2;
+let b = 3;
+
+let c = 2 << 3;// 2 * 2 ^ 3
+
+let d = 16 >> 1; //8
+// Opreste executia aici
+```
+</Algovis>
+
+Operațiile pe biți **eficientizează** anumite aplicații (în special cele *low-level*) întrucât operațiile pe biți sunt foarte rapide în comparație cu operațiile aritmetice sau logice obișnuite. 
+
+Totodată, se pot folosi operații pe biți pentru a diminua necesarul de memorie în cazul în care avem nevoie să stocăm informații de tipul există/nu-există pentru care în loc să definim 32 de variabile booleene putem folosi biții unei singure variabile de tip intreg. 
+
+În esență, operațiile pe biți sunt folosite acolo unde este nevoie să se lucreze la nivel binar cu datele și să se efectueze manipulări precise la nivelul biților pentru a controla sau transforma informația.
+
+<Box attention>
+**Rezumat**
+ - <Arrow/>variabilele întregi sunt stocate în majoritatea limbajelor de programare folosind 32 de biți din care un bit poate fi folosit pentru a reprezenta o valoare negativă, caz in care intervalul de valori este înjumătățit
+ - <Arrow/>operatorii pe biți pot fi folosiți doar cu variabile de **tip întreg** (fie pozitive fie negative)
+ - <Arrow/>cei mai utilizați operatori pe biți sunt **AND, OR, XOR, negare și deplasare**
+</Box>

@@ -6,13 +6,14 @@ layout: "../../layouts/MainLayout.astro"
 import Box from '../../components/Content/Box.astro'
 import Arrow from '../../components/Content/Arrow.astro'
 import Check from '../../components/Content/Check.astro'
+import ClickAv from '../../components/Content/ClickAv.astro'
 import Algovis from '../../components/Content/Algovis.astro';
 import P5Widget from "../../components/P5Widget.astro";
 
 <Box knowledge>
 <strong>Ce vom descoperi în acest articol:</strong>
 <br/><Check/>ce reprezintă tipul vector / array
-<br/><Check/>la ce ne ajută acest tip de dată
+<br/><Check/>la ce ne ajută acest tip de date
 <br/><Check/>ce operații sunt disponibile asupra variabilelor de tip array
 </Box>
 
@@ -20,29 +21,31 @@ import P5Widget from "../../components/P5Widget.astro";
 
 Un tip de obiect foarte des utilizat în programele Javascript este **array** (vector sau listă) ce poate stoca o colecție ordonată de valori de orice tip. Elementele sale sunt stocate în ordinea introducerii lor în colecție și pot fi accesate folosind poziția lor din colecție.
 
+<iframe style="aspect-ratio: 16/9; width:100%" src="https://www.youtube.com/embed/gUOwZkL09BE" title="Intro to Arrays | Computer Programming | Khan Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" credentialless allowfullscreen></iframe>
+
 # Caracteristici #
 Acest tip este definit de o lungime și de posibilitatea de a accesa orice element al său specificând poziția pe care ne-o dorim folosind parantezele pătrate (```[ ]```) între care vom specifica această poziție.
 
 <img src="../assets/imgs/vectori0.png" class="img-box" />
 
-<Box info>Ca în multe alte limbaje de programare, pozițiile într-un vector încep de la <strong>0</strong> și nu de la <strong>1</strong>. Asta înseamnă că primul element se vă găsi la poziția 0 adică <code>v1[0]</code> și nu <code>v1[1]</code>.</Box>
+<Box attention>Ca în multe alte limbaje de programare, pozițiile într-un vector încep de la <strong>0</strong> și nu de la <strong>1</strong>. Asta înseamnă că primul element se vă găsi la poziția 0 adică <code>v1[0]</code> și nu <code>v1[1]</code>.</Box>
 
+<ClickAv>Rulează exemplu pentru a crea primul tău vector</ClickAv>
 <Algovis config_id="vectori-basics.json" av_selected="0"></Algovis>
-
-<iframe style="aspect-ratio: 16/9; width:100%" src="https://www.youtube.com/embed/gUOwZkL09BE" title="Intro to Arrays | Computer Programming | Khan Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" credentialless allowfullscreen></iframe>
 
 # Iterare #
 De foarte multe ori, un program va avea nevoie să știe câte elemente se află într-o variabilă de tip vector iar pentru asta vom folosi proprietatea <code>length</code>. Cea mai uzuală construcție ce are nevoie să știe lungimea vectorului este cea de parcurgere adică vizitare a fiecărui element.
 
+<ClickAv>Rulează exemplul și observă cum se derulează parcurgerea</ClickAv>
 <Algovis config_id="vectori-basics.json" av_selected="1"></Algovis>
 
 ## for-of / for-in ##
 O variantă alternativă la structura for clasică în care iterăm folosind un contor este **for-of**. Această construcție ne permite să extragem direct valorile colecției într-o variabilă pe care apoi să o utilizăm în corpul blocului for. 
 
-Exemplul de mai sus rescris folosind for-of:
+<ClickAv>Exemplul de mai sus rescris folosind for-of:</ClickAv>
 <Algovis config_id="vectori-basics.json"  av_selected="4"></Algovis>
 
-Varianta **for-in** este similară celei for-of, diferența fiind că aceasta ne va întoarce în variabila indexul elementului și nu valoarea sa.
+<ClickAv>Varianta **for-in** este similară celei for-of, diferența fiind că aceasta ne va întoarce în variabila indexul elementului și nu valoarea sa.</ClickAv>
 <Algovis config_id="vectori-basics.json"  av_selected="5"></Algovis>
 
 <P5Widget>
@@ -92,6 +95,7 @@ Pe lângă proprietatea <code>length</code>, variabilele de tip vector ne pun la
 
 <Arrow/> ```indexOf(element)``` - ne ajută să căutam un element într-o colecție întorcând prima poziție la care a fost întâlnit
 
+<ClickAv>Rulează pentru a observa cum funcționează metodele de mai sus:</ClickAv>
 <Algovis config_id="vectori-basics.json" av_selected="2"></Algovis>
 
 <Box attention>
@@ -105,9 +109,68 @@ De ex., funcția <code>reverse</code> modifică vectorul pe care este aplicată 
 ## Stergere element ##
 Pentru a șterge un element dintr-un vector, va trebui să folosim funcțiile <code>indexOf</code> pentru a identifica poziția pe care se află elementul apoi <code>splice</code> pentru a șterge efectiv elementul din vector.
 
+<ClickAv>Rulează pentru a șterge un element din vector</ClickAv>
 <Algovis config_id="vectori-basics.json" av_selected="3"></Algovis>
 
 <iframe style="aspect-ratio: 16/9; width:100%" src="https://www.youtube.com/embed/CrIyQhB__pE" title="Modifying Arrays | Computer Programming | Khan Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" credentialless allowfullscreen></iframe>
+
+# Vectori multidimensionali 
+Vectorii multidimensionali, cunoscuți și sub numele de **matrice** sau tablouri multidimensionale, sunt structuri de date care pot stoca elemente în mai mult de o dimensiune. 
+
+În JavaScript, acestea pot fi implementate utilizând vectori imbricați (vectori de vectori), permițând astfel stocarea de date într-o formă bidimensională sau chiar tridimensională.
+
+<ClickAv>Rulează exemplul și crează prima ta matrice</ClickAv>
+<Algovis>
+```js
+let matrice = [
+  [12, 1, 4, 6], 
+  [7, 10, 0, 20],   
+  [1, 6, 10, 9]
+];
+
+console.log('matrice creata');
+```
+</Algovis>
+
+Dimensiunea matricei de mai sus este de 3 rânduri și 4 coloane și putem accesa conținutul ei la fel ca și în cazul unui vector, folosind poziții ce încep de la 0. Singura diferență va fi că acum va trebui să folosim ``` [] ``` pentru fiecare dimensiune pe care dorim să o accesăm. 
+
+Primul set de paranteze pătrate va accesa **liniile (rândurile)** matricei iar cel de-al doilea set va accesa **coloanele**.
+
+<Algovis>
+```js
+let matrice = [
+  [12, 1, 4, 6], 
+  [7, 10, 0, 20],   
+  [1, 6, 10, 9]
+];
+
+// Afiseaza primul rand
+console.log(matrice[0]);
+
+// Afiseaza primul element din randul al doilea
+console.log(matrice[1][0]);
+```
+</Algovis>
+
+## Iterarea unei matrice
+Similar tablourilor unidimensionale (vectorilor), parcurgerea se va face folosind o buclă *for* însă având în vedere că acum tabloul are două dimensiuni, va trebui să mai introducem încă una pentru această a doua dimensiune.
+
+<Algovis>
+```js
+let matrice = [
+  [12, 1, 4, 6], 
+  [7, 10, 0, 20],   
+  [1, 6, 10, 9]
+];
+
+for (let i = 0; i < matrice.length; i++) {
+    console.log('Randul ' + i + ':');
+    for (let j = 0; j < matrice[i].length; j++) {
+        console.log(matrice[i][j]);
+    }
+}
+```
+</Algovis>
 
 <Box attention>
 <strong>Rezumat:</strong>

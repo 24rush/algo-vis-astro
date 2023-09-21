@@ -1,0 +1,79 @@
+---
+title: "Stiva / coada"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Figure from '../../components/Content/Figure.astro'
+import ClickAv from '../../components/Content/ClickAv.astro'
+import Algovis from '../../components/Content/Algovis.astro';
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>ce sunt stivele și cozile
+<br/><Check/>la ce ne ajută acest tip de date
+<br/><Check/>ce operații sunt disponibile asupra variabilelor de acest tip
+</Box>
+
+<h0>Stiva și coada</h0>
+
+Stivele și cozile sunt tipuri de date abstracte iar în Javascript ele sunt implementate folosind vectori asupra cărora s-au definit anumite operații pentru a le da aceste funcționalități noi.
+
+# Stiva #
+
+Stiva (*eng. stack*) funcționează pe principiul **LIFO (Last-In, First-Out)**, ceea ce înseamnă că ultimul element introdus în stivă este primul care este scos sau accesat.
+
+**Operații principale**:
+- <Arrow/>`push(item)` adaugă un element la vârful stivei
+- <Arrow/>`pop()` elimină și returnează elementul de la vârful stivei
+
+<Figure src="../assets/imgs/stiva.png" caption="Operațiile push și pop într-o stivă"/>
+
+<ClickAv>Rulează exemplul și observă operațiile push și pop într-o stivă</ClickAv>
+<Algovis>
+```js
+let stack = [1, 2, 3, 4];
+
+// Adaugam elementul 5
+stack.push(5);
+
+// Eliminam primul element
+stack.pop(); // 5
+
+```
+</Algovis>
+
+# Coadă
+
+Coada (*engl. queue*) funcționează pe principiul **FIFO (First-In, First-Out)**, ceea ce înseamnă că primul element introdus în coadă este și primul care este scos sau accesat.
+
+**Operații principale**:
+- <Arrow/>`push(item)` adaugă un element la sfârșitul cozii
+- <Arrow/>`shift()` elimină și returnează elementul de la începutul cozii
+
+<Figure src="../assets/imgs/coada.png" caption="Operațiile push și pop într-o coadă"/>
+
+<ClickAv>Rulează exemplul și observă operațiile push și pop într-o coadă</ClickAv>
+<Algovis>
+```js
+let queue = [1, 2, 3, 4];
+
+// Adaugam elementul 5
+queue.push(5);
+
+// Eliminam primul element
+queue.shift(); // 5
+
+```
+</Algovis>
+
+<Box attention>
+**Diferențe cheie între stivă și coadă:**
+- <Arrow/>stiva urmărește **ultimul** element introdus
+- <Arrow/>coada urmărește **primul** element introdus
+- <Arrow/>operația `push` adaugă un element la vârful stivei dar un element la sfârșitul cozii.
+- <Arrow/>operația `pop` elimină și returnează elementul de la vârful stivei, în timp ce `shift` elimină și returnează elementul de la începutul cozii.
+</Box>

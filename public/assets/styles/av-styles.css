@@ -167,9 +167,8 @@
 .var-name-bin {
   font-style: italic;
   align-self: end;
-  font-size: 11px;
-  vertical-align: sub;
-  display: inline !important;
+  font-size: 10px;
+  margin-bottom: -0.5em;
 }
 
 .var-value {

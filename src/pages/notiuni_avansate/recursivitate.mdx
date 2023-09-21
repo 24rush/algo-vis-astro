@@ -1,0 +1,99 @@
+---
+title: "Recursivitate"
+layout: "../../layouts/MainLayout.astro"
+---
+
+import Box from '../../components/Content/Box.astro'
+import Arrow from '../../components/Content/Arrow.astro'
+import Check from '../../components/Content/Check.astro'
+import Figure from '../../components/Content/Figure.astro'
+import ClickAv from '../../components/Content/ClickAv.astro'
+import Algovis from '../../components/Content/Algovis.astro';
+import Latex from '../../components/Content/Latex.astro';
+import P5Widget from "../../components/P5Widget.astro";
+
+<Box knowledge>
+<strong>Ce vom descoperi în acest articol:</strong>
+<br/><Check/>ce sunt funcțiile recursive
+<br/><Check/>ce fel de probleme rezolvă funcțiile recursive
+</Box>
+
+<h0>Funcții recursive</h0>
+
+În programare, recursivitatea este proprietatea unei funcții de a se **autoapela**. 
+
+Acest concept a pornit din matematică însă, unde conceptul de recursivitate reprezintă caracteristica unei probleme de a putea fi descompusă în **sub-probleme similare** (cu problema inițială) care rezolvate independent și agregate cu restul sub-soluțiilor vor produce rezultatul final al problemei.
+
+Cele mai simple exemple de probleme recursive includ:
+
+- <Arrow/>o progresie geometrică <Latex formula='a_n = a_{n-1}\cdot r, \text{unde } n >=2'/>
+- <Arrow/>șirul lui Fibonacci <Latex formula='F(n) = \begin{cases} 0 & \text{dacă } n = 0 \\ 1 & \text{dacă } n = 1 \\ F(n-1) + F(n-2) & \text{dacă } n > 1 \end{cases}'/>
+- <Arrow/>factorialul: <Latex formula='\text{factorial}(n) = \begin{cases} 1 & \text{dacă } n = 0 \\ n \cdot \text{factorial}(n-1) & \text{dacă } n > 0 \end{cases}'/>
+
+## Cazul de bază
+Observăm cum aceste formule conțin un caz (pas) pentru care valoarea funcției poate fi calculată direct fară a mai fi nevoie de un apel recursiv. Acest caz de numește **caz de bază** (*engl. basecase*) și reprezintă criteriul de oprire al recursivității fără de care recursivitatea s-ar executa la infinit.
+
+Cazurile de bază pentru exemplele de mai sus:
+- <Arrow/>progresia geometrică: <Latex formula='a_n = a \text{, dacă }n = 1'/> (unde a este termenul de bază)
+- <Arrow/>șirul lui Fibonacci: <Latex formula='F(n) = \begin{cases} 0 & \text{dacă } n = 0 \\ 1 & \text{dacă } n = 1 \\ \end{cases}'/>
+- <Arrow/>factorialul: <Latex formula='\text{factorial}(n) = 1 \text{, dacă } n = 0'/>
+
+## Cazul recursiv
+Spre deosebire de cazul de bază, în cazul recursiv problema este împărțită în sub-probleme similare iar aceste sub-probleme vor fi folosite ca parametri de intrare pentru autoapelul funcției.
+
+Cazurile recursive pentru exemplele de mai sus:
+- <Arrow/>progresia geometrică: <Latex formula='a_{n-1}'/>, unde termenul precedent (n-1) este sub-problema ce trebuie rezolvată
+- <Arrow/>șirul lui Fibonacci: <Latex formula='F(n-1) + F(n-2)'/>, unde n-1 și n-2 sunt termenii ce trebuie rezolvați
+- <Arrow/>factorialul: <Latex formula='\text{factorial}(n-1)'/>, unde termenul precedent (n-1) este sub-problema ce trebuie rezolvată
+
+Rolul acestor cazuri recursive este să aducă problema inițială cât mai aproape de cazul de bază (ce poate fi rezolvat direct) iar ulterior acest rezultat să fie acumulat sub-problemelor ce au dus la el.
+
+<Figure src="../assets/imgs/geom.png" caption="Lanțul apelurilor funcției recursive geom"/>
+
+<ClickAv>Rulează exemplul și observă cum se rezolvă termenii unei progresii geometrice recursiv</ClickAv>
+<Algovis>
+```js
+function geom(a, r, n) {
+    // caz de baza care opreste recursivitatea
+    if (n == 1)
+        return a;
+
+    // cazul recursiv in care autoapelam functia pentru termenul n-1
+    // operatia de acumulare se face folosind inmultirea
+    return r * geom(a, r, n - 1);
+}
+
+// O progresie geometrica cu termen initial 2 si ratia 3
+let a = 2, r = 3;
+
+// Dorim sa aflam al treilea termen
+let n = 3;
+res = geom(a, r, n);
+
+console.log(res);
+```
+</Algovis>
+
+## Stiva de apeluri
+În exemplul precedent am putut observa cum apelurile recursive sunt *stivuite* până se ajunge la cazul de bază, moment în care apelul va întoarce o valoare și va determina totodată ca toate celelalte apeluri să se rezolve și ele la o valoare (prin întoarcerea unui rezultat funcției precedente lor din stivă). 
+
+Această întoarcere a unui rezultat coincide și cu înlăturarea apelului din stivă, proces ce va continua până când stiva se va goli și va fi calcultat rezultatul final problemei noastre.
+
+Stiva de apeluri (*engl. call stack**) este implementată intern de către interpretorul limbajului de programare iar detaliile ei ne sunt ascunse, tot ce trebuie să știm este:
+- <Arrow/>fiecare apel al unei funcției va plasa un element în vârful stivei de apeluri
+- <Arrow/>fiecare nivel al stivei va conține copii ale tuturor parametrilor funcției ce formează apelul
+- <Arrow/>la întâlnirea cuvântului cheie *return* din cadrul unei funcției, elementul din vârful stivei va fi înlăturat iar rezultatul acestui apel va fi întors nivelului precedent (dacă este specificată o valoare)
+
+<Figure src="../assets/imgs/callstack.png" caption=""/>
+
+Săgeata neagră ne arată direcția apelurilor recursive până când se ajunge la cazul de bază (n=1) iar săgețile verzi ne arată cum se propagă acest rezultat inapoi către apelurile precedente odată ce cazul de bază a fost atins. După fiecare rezultat întors, elementul din vârful stivei este înlăturat până când aceasta se va goli, moment ce va coincide cu atribuirea rezultatului variabilei ```res```.
+
+<Box attention>
+**Rezumat**
+- <Arrow/>recursivitatea este o modalitate de descompunere a unor probleme în probleme mai mici similare
+- <Arrow/>nu toate problemele pot fi rezolvate folosind recursivitate, doar cele pentru care soluția unui pas se bazează pe soluția unui pas precedent
+- <Arrow/>orice problemă rezolvată recursiv trebuie să specifice un **caz de bază** pentru care poate fi rezolvată direct altfel procesul recursiv este infinit
+- <Arrow/>fiecare apel recursiv va determina crearea unui nou element pe stiva de apeluri ce va conține o copie a tuturor parametrilor de intrare aferenți acelui apel
+- <Arrow/>problemele ce se pot rezolva recursiv, se pot rezolva și iterativ (fără a folosi o funcție recursivă) însă în anumite cazuri o rezolvare recursivă este mai simplă datorită beneficiilor oferite de stiva de apeluri
+- <Arrow/>o rezolvare recursivă este în majoritatea cazurilor mai puțin eficientă decât una iterativă întrucât menținerea stivei de apeluri este un procedeu costisitor
+</Box>
