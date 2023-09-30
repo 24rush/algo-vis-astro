@@ -16,8 +16,7 @@
             </div>
 
             <div class="front mt-4">
-                <iframe
-                    credentialless
+                <iframe                  
                     loading="lazy"
                     style="height:90vh;width:100%;"                    
                     src="https://docs.google.com/forms/d/e/1FAIpQLSe4ka9gVCW-608C8zcbWa2Dx-vdgzdzb1U1qTGLgx1Cphb2jA/viewform?embedded=true"
@@ -29,8 +28,10 @@
 </div>
 
 <script>
+    import {Modal} from "bootstrap";
+
     let feedbackFormModal = document.getElementById("feedbackFormModal");
-    let feedbackFormModalModal = new bootstrap.Modal(feedbackFormModal, {
+    let feedbackFormModalModal = new Modal(feedbackFormModal, {
         keyboard: false,
     });
 

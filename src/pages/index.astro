@@ -16,7 +16,6 @@ import MainButton from "../components/MainButton.astro";
 import Algovis from "../components/Content/Algovis.astro";
 import Counters from "../components/Header/Counters.astro";
 import IconOpenAI from "../components/Icons/IconOpenAI.astro";
-import FeedbackForm from "../components/FeedbackForm.astro";
 
 import * as CONFIG from "../config";
 
@@ -131,7 +130,7 @@ const sizesJSLogo = "(min-width: 40px) 8vw, 12vw";
                   <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
                 </MainButton>
 
-                <MainButton secondary id="btnFeedbackFrom">          
+                <MainButton secondary>          
                   <span>Spune-ne părerea ta!</span>
                 </MainButton>
               </div>
@@ -302,7 +301,5 @@ function draw() {
         }
       }
     </style>
-
-    <FeedbackForm />
   </body>
 </html>

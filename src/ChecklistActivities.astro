@@ -1,6 +1,7 @@
 ---
-import MainButton from "../../components/MainButton.astro";
-import IconOpenAI from "../Icons/IconOpenAI.astro";
+import MainButton from "./components/MainButton.astro";
+import IconOpenAI from "./components/Icons/IconOpenAI.astro";
+import Exercise from "./components/Exercise.astro";
 
 const currentPage = Astro.url.pathname;
 const { onMainPage } = Astro.props;
@@ -27,7 +28,7 @@ const CHECKLIST_CONFIG = {
   },
   "notiuni_de_baza/operatori": {
     quiz: "operatori.json",
-    exercise: "../exercitii/operatori",
+    exercise: "operatori.json",
     gpt: "https://chat.openai.com/",
     gpt_questions: [
       "Ce sunt expresiile in javascript",
@@ -36,21 +37,21 @@ const CHECKLIST_CONFIG = {
   },
   "notiuni_de_baza/structuri-control": {
     quiz: "structuri-control.json",
-    exercise: "../exercitii/structuri-control",
+    exercise: "structuri-control.json",
   },
   "notiuni_de_baza/tipuri-date": {
     quiz: "tipuri-date.json",
-    exercise: "../exercitii/tipuri-date",
+    exercise: "tipuri-date.json",
   },
   "notiuni_intermediare/functii": {
     quiz: "functii.json",
-    exercise: "../exercitii/functii",
+    exercise: "functii.json",
     gpt: "https://chat.openai.com/",
     gpt_questions: ["Exemple de functii predefinite in javascript"],
   },
   "notiuni_intermediare/vectori": {
     quiz: "vectori.json",
-    exercise: "../exercitii/vectori",
+    exercise: "vectori.json",
     gpt: "https://chat.openai.com/",
     gpt_questions: [
       "Operatii uzuale pe vectori in javascript",
@@ -58,17 +59,15 @@ const CHECKLIST_CONFIG = {
     ],
   },
   "notiuni_intermediare/stringuri": {
-    exercise: "../exercitii/stringuri",
+    exercise: "stringuri.json",
     gpt: "https://chat.openai.com/",
     gpt_questions: ["Cum pot folosi stringuri in javascript?"],
   },
   "notiuni_intermediare/obiecte": {
     quiz: "obiecte.json",
-    exercise: "../exercitii/obiecte",
+    exercise: "obiecte.json",
     gpt: "https://chat.openai.com/",
-    gpt_questions: [
-      "Cum pot folosi obiectele in Javascript?",     
-    ],
+    gpt_questions: ["Cum pot folosi obiectele in Javascript?"],
   },
   "notiuni_intermediare/scopuri": {
     quiz: "scopuri.json",
@@ -79,13 +78,20 @@ const CHECKLIST_CONFIG = {
     gpt: "https://chat.openai.com/",
     gpt_questions: ["Cum sunt transmise stringurile in functii in javascript?"],
   },
-  "notiuni_avansate/grafuri": {    
+  "notiuni_avansate/grafuri": {
     gpt: "https://chat.openai.com/",
-    gpt_questions: ["Utilizari ale grafurilor", "Diferente intre grafurile orientate si neorientate", "Diferente intre DFS si BFS"],
+    gpt_questions: [
+      "Utilizari ale grafurilor",
+      "Diferente intre grafurile orientate si neorientate",
+      "Diferente intre DFS si BFS",
+    ],
   },
-  "notiuni_avansate/arbori": {    
+  "notiuni_avansate/arbori": {
     gpt: "https://chat.openai.com/",
-    gpt_questions: ["Utilizari ale arborilor binari", "utilizari ale arborilor binari de cautare"],
+    gpt_questions: [
+      "Utilizari ale arborilor binari",
+      "utilizari ale arborilor binari de cautare",
+    ],
   },
 };
 
@@ -104,7 +110,7 @@ const hasQuiz = hasItem("quiz");
 const hasExercise = hasItem("exercise");
 ---
 
-<div class={onMainPage ? "show-only-mobile" : "hide-mobile"}>
+<div id="checklistActivities">
   {
     (hasGpt || hasQuiz || hasExercise) && (
       <span style="font-weight: 600; font-size: 21px;" class="text-slate-600">
@@ -146,26 +152,9 @@ const hasExercise = hasItem("exercise");
 
     {
       hasExercise && (
-        <a
-          href={CHECKLIST_CONFIG[sanitizedCurrentPage].exercise}
-          target="_blank"
-          rel="noopener"
-        >
-          <MainButton text>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={iconDimension}
-              height={iconDimension}
-              fill="currentColor"
-              class="bi bi-keyboard"
-              viewBox="0 0 16 16"
-            >
-              <path d="M14 5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12zM2 4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2z" />
-              <path d="M13 10.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm0-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-5 0A.25.25 0 0 1 8.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 8 8.75v-.5zm2 0a.25.25 0 0 1 .25-.25h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5a.25.25 0 0 1-.25-.25v-.5zm1 2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-5-2A.25.25 0 0 1 6.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 6 8.75v-.5zm-2 0A.25.25 0 0 1 4.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 4 8.75v-.5zm-2 0A.25.25 0 0 1 2.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 8.75v-.5zm11-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-2 0a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-2 0A.25.25 0 0 1 9.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 9 6.75v-.5zm-2 0A.25.25 0 0 1 7.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 7 6.75v-.5zm-2 0A.25.25 0 0 1 5.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 5 6.75v-.5zm-3 0A.25.25 0 0 1 2.25 6h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5A.25.25 0 0 1 2 6.75v-.5zm0 4a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm2 0a.25.25 0 0 1 .25-.25h5.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-5.5a.25.25 0 0 1-.25-.25v-.5z" />
-            </svg>
-            <span class="button-activity">Exersează</span>
-          </MainButton>
-        </a>
+        <Exercise
+          exerciseFileName={CHECKLIST_CONFIG[sanitizedCurrentPage].exercise}
+        />
       )
     }
     {
@@ -195,7 +184,7 @@ const hasExercise = hasItem("exercise");
     }
   </div>
 
-  <style scoped>
+  <style is:global>
     .show-only-mobile {
       display: none;
     }
@@ -231,3 +220,30 @@ const hasExercise = hasItem("exercise");
     }
   </style>
 </div>
+
+<script>
+  const checklistActivities = document.getElementById('checklistActivities');
+  const hookChecklistRightSidebar = document.getElementById('hookChecklistRightSidebar');
+  const hookChecklistMainPage = document.getElementById('hookChecklistMainPage');
+
+  const mediaQueryList = window.matchMedia("(max-width: 968px)");
+
+  function handleOrientationChange(mql) {
+    if (mql.matches) { 
+      // Mobile screen
+      if (hookChecklistRightSidebar.contains(checklistActivities))
+        hookChecklistRightSidebar.removeChild(checklistActivities);
+      hookChecklistMainPage.appendChild(checklistActivities);
+    }
+    else { 
+      // Large screen
+      if (hookChecklistMainPage.contains(checklistActivities))
+        hookChecklistMainPage.removeChild(checklistActivities);
+      hookChecklistRightSidebar.appendChild(checklistActivities);
+    }
+  }
+
+  handleOrientationChange(mediaQueryList);
+  mediaQueryList.addEventListener("change", handleOrientationChange);
+
+</script>

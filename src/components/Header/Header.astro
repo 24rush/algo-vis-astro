@@ -9,7 +9,7 @@ const { currentPage } = Astro.props;
   <SkipToContent />
   <nav
     title="Top Navigation"
-    class="max-w-7xl mx-auto flex justify-between items-center px-2"
+    class="mx-auto flex justify-between items-center px-2"
   >
     <div style="display:flex; flex-direction: row; align-items: center;">
       <div class="menu-button-mobile px-1" style="padding-bottom: 12px;">
@@ -18,9 +18,14 @@ const { currentPage } = Astro.props;
           <span></span>
         </label>
       </div>
-      <a class="text-lg font-medium" style="padding-left: 8px; padding-right: 12px;" href="/">
+      <a
+        class="text-lg font-medium"
+        style="padding-left: 8px; padding-right: 12px;"
+        href="/"
+      >
         <h1>
-          {SITE.title} <i class="text-slate-400" style="font-size: small;">beta</i>
+          {SITE.title}
+          <i class="text-slate-400" style="font-size: small;">beta</i>
         </h1>
       </a>
 
@@ -70,17 +75,16 @@ const { currentPage } = Astro.props;
           </a>
         )
       }
-
     </div>
 
     <div class="flex gap-2">
-      <button
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSe4ka9gVCW-608C8zcbWa2Dx-vdgzdzb1U1qTGLgx1Cphb2jA/viewform"
         title="Ofera feedback"
-        id="btnFeedbackFrom"
         class="opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors"
       >
-      <i class="bi bi-lightbulb"></i>
-      </button>
+        <i class="bi bi-lightbulb"></i>
+      </a>
 
       <button
         title="Focus mode"
@@ -89,7 +93,6 @@ const { currentPage } = Astro.props;
       >
         <i class="bi bi-bullseye"></i>
       </button>
-      
     </div>
   </nav>
 

@@ -11,14 +11,12 @@ import Header from "../components/Header/Header.astro";
 import PageContent from "../components/PageContent.astro";
 import LeftSidebar from "../components/LeftSidebar.astro";
 import RightSidebar from "../components/RightSidebar.astro";
-import FeedbackForm from "../components/FeedbackForm.astro";
+import ChecklistActivities from "../ChecklistActivities.astro";
 
 import * as CONFIG from "../config";
 
 const { content = {} } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
-
-const isExercisePage = currentPage.startsWith("/exercitii");
 ---
 
 <html dir={content.dir ?? "ltr"} lang={content.lang ?? "en-us"} class="initial">
@@ -35,7 +33,7 @@ const isExercisePage = currentPage.startsWith("/exercitii");
   </head>
 
   <body class="line-numbers language-js">
-    <div class="sticky z-10 w-full" id="headerBar">
+    <div class="sticky w-full" id="headerBar">
       <Header currentPage={currentPage} />
     </div>
     <div class="grid" style="display: flex;">
@@ -55,16 +53,12 @@ const isExercisePage = currentPage.startsWith("/exercitii");
         </div>
       </main>
 
-      {
-        !isExercisePage && (
-          <div class="col-span-right-mobile sticky top-0 h-screen flex">
-            <RightSidebar content={content} />
-          </div>
-        )
-      }
+      <div class="col-span-right-mobile sticky top-0 h-screen flex">
+        <RightSidebar content={content} />
+      </div>
     </div>
 
-    <FeedbackForm />
+    <ChecklistActivities />
 
     <style scoped>
       .white-background {
@@ -83,11 +77,15 @@ const isExercisePage = currentPage.startsWith("/exercitii");
       .col-span-left-mobile {
         max-width: 25%;
         display: flex !important;
-       /* position: relative !important;*/
+        /* position: relative !important;*/
       }
 
       .col-span-right-mobile {
         min-width: 18%;
+      }
+
+      .col-span-main-mobile {
+        width: 100%;
       }
 
       @media (max-width: 968px) {
