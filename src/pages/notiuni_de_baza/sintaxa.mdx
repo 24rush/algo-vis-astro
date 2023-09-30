@@ -81,7 +81,20 @@ Regula de folosire a acestui cuvânt cheie este că trebuie urmat de numele pe c
 
 Similar, putem declara o variabilă folosind cuvântul cheie <code>const</code> în loc de ```let``` însă în acest caz suntem forțați să o inițializăm iar această valoare inițială nu mai poate fi modificată ulterior (efectiv definim o constantă).
 
-<Algovis config_id="limbaj-basics.json">
+<Algovis>
+```js
+let x = 5; /*** creăm variabila x a cărei valore inițială este 5***/
+x = 6; /*** modificăm conținutul variabilei x să fie acum 6***/
+console.log(x); /*** afișăm conținutul variabilei***/
+
+x = "Alin"; /*** modificăm tipul variabilei să conțină un text***/
+console.log(x);
+
+let nume = "Amalia"; /*** declarăm variabila nume cu valoarea Amalia de tip text.***/
+
+let y = x; /*** declarăm variabila y ca fiind o copie a variabilei x ***/
+let sum = x + y; /*** declarăm variabila suma ca fiind suma celor două variabile x și y ***/
+```
 </Algovis>
 
 <Box attention>

@@ -7,7 +7,6 @@ import Box from '../../components/Content/Box.astro'
 import GPTBox from '../../components/Content/GPTBox.astro'
 import Arrow from '../../components/Content/Arrow.astro'
 import Check from '../../components/Content/Check.astro'
-import ChecklistActivities from '../../components/Content/ChecklistActivities.astro'
 import Algovis from '../../components/Content/Algovis.astro'
 
 <Box knowledge> 
@@ -96,7 +95,22 @@ Acestea sunt principalele tipuri de date pe care le poți folosi în JavaScript 
 
 Javascript este un limbaj de programare în care tipul unei variabile **nu** trebuie menționat atunci când declarăm variabila și totodată acest tip îl putem schimba oricând în timpul rulării programului, nu este fixat pentru totodeauna în funcție de valoarea cu care a fost inițializată variabila la declarare. Acest lucru ne-ar permite să stocăm într-o variabilă tipuri diferite de conținut pe parcursul execuției programului însă vom vedea mai tărziu că aceasta nu este o practică recomandată.
 
-<Algovis config_id="tipuri-date-basics.json" av_selected="1">
+<Algovis>
+```js
+let zile_saptamana = 7;
+let litri_in_galon = 3.8;
+
+let nume = "Alina";
+
+let imiPlaceJS = true;
+
+let info_joc = {
+         scor: 12412,
+         jucator: "Ionut",
+         ultim_nivel_jucat: 4
+   };
+console.log(info_joc.scor);
+```
 </Algovis>
 
 <Box attention>

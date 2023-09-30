@@ -30,7 +30,7 @@ export const SIDEBAR = {
     { text: "Funcții", link: "/notiuni_intermediare/functii" },
     { text: "Vectori", link: "/notiuni_intermediare/vectori" },
     { text: "Stive / cozi", link: "/notiuni_intermediare/stiva_coada" },
-    { text: "Stringuri", link: "/notiuni_intermediare/stringuri" },
+    { text: "String-uri", link: "/notiuni_intermediare/stringuri" },
     { text: "Obiecte", link: "/notiuni_intermediare/obiecte" },
     { text: "Domeniul variabilelor", link: "/notiuni_intermediare/scopuri" },
   ],

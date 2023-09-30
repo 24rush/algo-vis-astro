@@ -59,7 +59,18 @@ console.log(blockVar); // Eroare: blockVar nu este definită aici
 # Variabile locale #
 În exemplul de mai jos observăm cum domeniul unei variabile afectează programul nostru. 
 
-<Algovis config_id="scopuri-basics.json" av_selected="0"></Algovis>
+<Algovis>
+```js
+function boo() {
+  let x = 5;
+  x = 6;
+}
+
+console.log(x);
+
+boo();
+```
+</Algovis>
 
 Variabila <code>x</code> declarată în funcția <code>boo</code> este o variabilă locală, făcând parte din domeniul funcției ceea ce înseamnă că orice instrucțiune din afara funcției <code>boo</code> nu va avea acces la această variabilă. Dacă încercăm să rulam acest exemplu, vom obține o eroare (<code>x is not defined</code>) ce ne spune că variabila <code>x</code> nu este definită.
 
@@ -67,12 +78,38 @@ Variabila <code>x</code> declarată în funcția <code>boo</code> este o variabi
 # Variabile globale #
 Dacă modificăm exemplul și definim variabila <code>x</code> în afara funcției <code>boo</code> atunci o vom și transforma dintr-o variabilă locală într-una globală iar exemplul nostru va funcționa.
 
-<Algovis config_id="scopuri-basics.json" av_selected="1"></Algovis>
+<Algovis>
+```js
+let x = 5;
+
+function boo() {    
+  x = 6;
+}
+
+console.log(x);
+
+boo();
+```
+</Algovis>
 
 # Domenii suprapuse #
 În exemplul următor observăm comportamentul variabilelor definite în cadrul unui bloc. Orice secvență de instrucțiuni ce începe prin deschidere cu o acolada (```{```) va crea un bloc nou iar toate variabile definite în cadrul blocului vor fi vizibile doar instrucțiunilor din acel bloc. 
 
-<Algovis config_id="scopuri-basics.json" av_selected="2"></Algovis>
+<Algovis>
+```js
+function boo() {    
+  let x = 5;
+  if (x == 5) {
+    let y = 6;
+    console.log(x);
+  }
+
+  console.log(y);
+}
+
+boo();
+```
+</Algovis>
 
 Variabila <code>y</code> din funcția <code>boo</code> este definită în interiorul blocului aferent instrucțiunii <code>if</code> ceea ce o face să fie o **variabila locală** vizibilă doar în blocul **if** iar încercarea de o accesa după terminarea blocului (imediat după acolada (```}```)) va determina eroarea <code>y is not defined</code>. 
 

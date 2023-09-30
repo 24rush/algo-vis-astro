@@ -9,6 +9,7 @@ import Check from '../../components/Content/Check.astro'
 import ClickAv from '../../components/Content/ClickAv.astro'
 import Algovis from '../../components/Content/Algovis.astro';
 import P5Widget from "../../components/P5Widget.astro";
+import YTVideo from '../../components/Content/YTVideo.astro'
 
 <Box knowledge>
 <strong>Ce vom descoperi în acest articol:</strong>
@@ -21,7 +22,7 @@ import P5Widget from "../../components/P5Widget.astro";
 
 Un tip de obiect foarte des utilizat în programele Javascript este **array** (vector sau listă) ce poate stoca o colecție ordonată de valori de orice tip. Elementele sale sunt stocate în ordinea introducerii lor în colecție și pot fi accesate folosind poziția lor din colecție.
 
-<iframe style="aspect-ratio: 16/9; width:100%" src="https://www.youtube.com/embed/gUOwZkL09BE" title="Intro to Arrays | Computer Programming | Khan Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" credentialless allowfullscreen></iframe>
+<YTVideo video_id="gUOwZkL09BE" />
 
 # Caracteristici #
 Acest tip este definit de o lungime și de posibilitatea de a accesa orice element al său specificând poziția pe care ne-o dorim folosind parantezele pătrate (```[ ]```) între care vom specifica această poziție.
@@ -31,22 +32,49 @@ Acest tip este definit de o lungime și de posibilitatea de a accesa orice eleme
 <Box attention>Ca în multe alte limbaje de programare, pozițiile într-un vector încep de la <strong>0</strong> și nu de la <strong>1</strong>. Asta înseamnă că primul element se vă găsi la poziția 0 adică <code>v1[0]</code> și nu <code>v1[1]</code>.</Box>
 
 <ClickAv>Rulează exemplu pentru a crea primul tău vector</ClickAv>
-<Algovis config_id="vectori-basics.json" av_selected="0"></Algovis>
+<Algovis>
+```js
+let vector = [1, 2, 3, 4];
+console.log(vector[0]);
+console.log(vector[1]);
+```
+</Algovis>
 
 # Iterare #
 De foarte multe ori, un program va avea nevoie să știe câte elemente se află într-o variabilă de tip vector iar pentru asta vom folosi proprietatea <code>length</code>. Cea mai uzuală construcție ce are nevoie să știe lungimea vectorului este cea de parcurgere adică vizitare a fiecărui element.
 
 <ClickAv>Rulează exemplul și observă cum se derulează parcurgerea</ClickAv>
-<Algovis config_id="vectori-basics.json" av_selected="1"></Algovis>
+<Algovis>
+```js
+let vector = ["A", "B", "C"];
+for (let i = 0; i < vector.length; i++) {
+    console.log(vector[i]);
+}
+```
+</Algovis>
 
 ## for-of / for-in ##
 O variantă alternativă la structura for clasică în care iterăm folosind un contor este **for-of**. Această construcție ne permite să extragem direct valorile colecției într-o variabilă pe care apoi să o utilizăm în corpul blocului for. 
 
 <ClickAv>Exemplul de mai sus rescris folosind for-of:</ClickAv>
-<Algovis config_id="vectori-basics.json"  av_selected="4"></Algovis>
+<Algovis>
+```js
+let vector = ["A", "B", "C"];
+for (let value of vector) {
+  console.log(value);
+}
+```
+</Algovis>
 
 <ClickAv>Varianta **for-in** este similară celei for-of, diferența fiind că aceasta ne va întoarce în variabila indexul elementului și nu valoarea sa.</ClickAv>
-<Algovis config_id="vectori-basics.json"  av_selected="5"></Algovis>
+<Algovis>
+```js
+let vector = ["A", "B", "C"];
+for (let index in vector) {
+  console.log(index);
+}
+```
+</Algovis>
 
 <P5Widget>
 ```
@@ -96,7 +124,34 @@ Pe lângă proprietatea <code>length</code>, variabilele de tip vector ne pun la
 <Arrow/> ```indexOf(element)``` - ne ajută să căutam un element într-o colecție întorcând prima poziție la care a fost întâlnit
 
 <ClickAv>Rulează pentru a observa cum funcționează metodele de mai sus:</ClickAv>
-<Algovis config_id="vectori-basics.json" av_selected="2"></Algovis>
+<Algovis>
+```js
+let vectorA = [1, 2, 3, 4];
+let vectorB = [11, 12, 13, 14, 15];
+
+console.log('Lungimea vectorului A este: ' + vectorA.length);
+
+vectorA.push(5); /*** Adaugăm o valoare nouă la sfârșitul colecției ***/
+console.log('Lungimea vectorului A este acum: ' + vectorA.length);
+
+vectorA[0] = 7; /*** Modificăm o valoare existentă ***/
+console.log(vectorA);
+
+let vectorC = vectorA.concat(vectorB);
+console.log('Lungimea vectorului C este: ' + vectorC.length);
+
+let ultimulElement = vectorC.pop();
+console.log('Ultimul element din vectorC a fost: ' + ultimulElement);
+
+let sectiune = vectorC.slice(0, 3); /*** Extragem elementele dintre indexul 0 si 3 ***/
+console.log(sectiune);
+
+let reverse = vectorC.reverse();
+console.log(reverse);
+
+console.log('Poziția elementului 2 este: ' + reverse.indexOf(2));
+```
+</Algovis>
 
 <Box attention>
 Când utilizăm funcțiile de manipulare a vectorilor trebuie să avem în vedere dacă funcția <strong>modifică</strong> sau nu continutul vectorului pe care este aplicată.
@@ -110,9 +165,19 @@ De ex., funcția <code>reverse</code> modifică vectorul pe care este aplicată 
 Pentru a șterge un element dintr-un vector, va trebui să folosim funcțiile <code>indexOf</code> pentru a identifica poziția pe care se află elementul apoi <code>splice</code> pentru a șterge efectiv elementul din vector.
 
 <ClickAv>Rulează pentru a șterge un element din vector</ClickAv>
-<Algovis config_id="vectori-basics.json" av_selected="3"></Algovis>
+<Algovis>
+```js
+let x = [1, -12, 3, 5, 2]
 
-<iframe style="aspect-ratio: 16/9; width:100%" src="https://www.youtube.com/embed/CrIyQhB__pE" title="Modifying Arrays | Computer Programming | Khan Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" credentialless allowfullscreen></iframe>
+let poz = x.indexOf(2); /*** Căutam poziția elementului cu valoarea 2 ***/
+
+if (poz != -1) { /*** Dacă am găsit cu element cu valoarea 2 ***/
+    x.splice(poz, 1); /*** Ștergem un element începând cu poziția pe care l-am găsit ***/
+}
+```
+</Algovis>
+
+<YTVideo video_id="CrIyQhB__pE" />
 
 # Vectori multidimensionali 
 Vectorii multidimensionali, cunoscuți și sub numele de **matrice** sau tablouri multidimensionale, sunt structuri de date care pot stoca elemente în mai mult de o dimensiune. 

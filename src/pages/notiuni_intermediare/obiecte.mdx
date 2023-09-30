@@ -28,7 +28,17 @@ Să luăm de exemplu caracteristicile unei sticle, cum ar fi: înălțime, volum
 Pentru a defini o variabilă de tip obiect vom folosi sintaxa normală declarării oricărei variabile (cuvântul cheie <code>let</code>) urmat de numele variabilei însă apoi vom folosi acolade (``` {} ```) pentru a specifica conținutul obiectului. Între aceste acolade vom putea declara și inițializa proprietățile obiectului.
 
 <ClickAv>Rulează exemplul și observă cum se construiește obiectul ```sticlaApa``` ce conține proprietățile ```volum``` și ```greutate```</ClickAv>
-<Algovis config_id="obiecte-basics.json" av_selected="0"></Algovis>
+<Algovis>
+```js
+let sticlaApa = {
+  'volum' : 500,
+  'greutate': 700
+};
+
+console.log(sticlaApa['volum']);
+console.log(sticlaApa.volum);
+```
+</Algovis>
 
 Pentru a citi sau modifica aceste proprietăți putem folosi oricare din următoarele construcții:
 - <code>nume_obiect[nume_proprietate]</code>, în cazul nostru <code>sticlaApa['volum']</code>
@@ -42,7 +52,17 @@ Proprietățile unui obiect se mai numesc și **câmpuri** și nu sunt altceva d
 O altă metodă prin care putem crea un obiect este folosind o <strong>funcție constructor</strong>. Această funcție va primi ca parametri valorile proprietăților obiectului și le va atribui apoi fiecărei proprietăți în parte.
 
 <ClickAv>Rulează exemplul și observă cum se construiește obiectul ```sticlaApa``` folosind o funcție constructor</ClickAv>
-<Algovis config_id="obiecte-basics.json" av_selected="1"></Algovis>
+<Algovis>
+```js
+function SticlaApa(v, g) {
+  this.volum = v;
+  this.greutate = g;
+}
+
+let sticlaApa = new SticlaApa(500, 700);
+console.log(sticlaApa.volum);
+```
+</Algovis>
 
 Funcția <code>SticlaApa</code> este funcția constructor ce ne va crea un obiect nou de tip ```SticlaApa``` (a se observa cuvântul cheie <code>new</code>). Acestă funcție primește 2 parametri, <code>v</code> și <code>g</code> aferenți proprietăților <code>volum</code> și <code>greutate</code>.
 
@@ -55,7 +75,26 @@ Variabila <code>this</code> este o variabila specială a limbajului Javascript c
 Avantajul folosirii unei funcții constructor este că putem specifica pe lângă valorile proprietăților și anumite **critierii de validare** ale acestora (cum ar fi să nu stocăm un volum negativ) sau executa orice alte instrucțiuni (cum ar fi afișarea unui mesaj). Folosind prima metodă, acest lucru nu este posibil, sintaxa ne permite doar să atribuim valori proprietăților.
 
 <ClickAv>Rulează exemplul și observă cum se pot specifica criteriile de validare</ClickAv>
-<Algovis config_id="obiecte-basics.json" av_selected="2"></Algovis>
+<Algovis>
+```js
+function SticlaApa(v, g) {
+  if (v < 0) {
+      this.volum = 0;
+      console.log('Nu se poate stoca un volum negativ');
+  }
+  else
+      this.volum = v;
+
+  this.greutate = g;    
+}
+
+let sticla1 = new SticlaApa(10, 15);
+let sticla2 = new SticlaApa(-10, 150);
+
+console.log(sticla1.volum);
+console.log(sticla2.volum);
+```
+</Algovis>
 
 ## Metode 
 Pe lângă câmpuri obiectele pot conține și metode care nu sunt altceva decât **funcții** ce efectuează diverse operații fie pe câmpurile obiectului fie pe alte date primite ca parametru.
@@ -76,20 +115,20 @@ numeObiect.<nume_metoda>();
 <Algovis>
 ```js
 let sticlaApa = {
-    'volum' : 500,
-    'greutate': 700,    
+  'volum' : 500,
+  'greutate': 700,    
 
-    volum_litri: function() {
-      return this.volum / 1000;
-    },
+  volum_litri: function() {
+    return this.volum / 1000;
+  },
 
-    setContinut : function(continut) {
-      this.continut = continut;
-    },
+  setContinut : function(continut) {
+    this.continut = continut;
+  },
 
-    print : function() {
-      console.log('Sticla cu ' + this.continut + ' de ' + this.volum_litri() + "l");
-    }
+  print : function() {
+    console.log('Sticla cu ' + this.continut + ' de ' + this.volum_litri() + "l");
+  }
 };
 
 console.log(sticlaApa.volum_litri());

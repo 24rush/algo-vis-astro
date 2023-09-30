@@ -8,6 +8,7 @@ import Arrow from '../../components/Content/Arrow.astro'
 import Check from '../../components/Content/Check.astro'
 import Algovis from "../../components/Content/Algovis.astro";
 import P5Widget from "../../components/P5Widget.astro";
+import YTVideo from '../../components/Content/YTVideo.astro'
 
 <Box knowledge>
 <strong>Ce vom descoperi în acest articol:</strong>
@@ -116,13 +117,39 @@ Reușim astfel să structurăm programul nostru în secvențe de instrucțiuni c
 
 <img src="../assets/imgs/black_box.png" class="img-box" />
 
-<Algovis config_id="functii-basics.json" av_selected="3"></Algovis>
+<Algovis>
+```js
+function solicita_numar(tip_numar) {
+	let numar = 0;
+	let este_valid = false;
+
+	while (!este_valid) {
+		numar = prompt(tip_numar);
+
+		if (tip_numar == 'negativ') {
+			este_valid = (numar <= 0);
+		} else {
+			este_valid = (numar >= 0);
+		}
+	}
+
+  return numar;
+}
+
+function numar_la_patrat(tip_numar) {	
+	return numar * numar; // sau return Math.pow(numar, 2);
+}
+
+console.log('Valoarea numarului pozitiv la patrat este ' + numar_la_patrat(solicita_numar('pozitiv')));
+console.log('Valoarea numarului negativ la patrat este ' + numar_la_patrat(solicita_numar('negativ')));
+```
+</Algovis>
 
 <Box info>
 Pe lângă funcțiile definite de noi, există o multitudine de alte funcții predefinite ale limbajul Javascript pe care le putea utiliza. Acest lucru ne scutește de efortul de a mai reimplementa cerințele acelor funcții de la 0 – putem accesa acele funcționalități doar prin simplul lor apel (ex. <em>Math.cos(), Math.round(), parseInt(), isNan(), console.log()</em> etc.)
 </Box>
 
-<iframe style="aspect-ratio: 16/9; width:100%" src="https://www.youtube.com/embed/5tmtBjdw62w" title="Functions | Computer Programming | Khan Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" credentialless allowfullscreen></iframe>
+<YTVideo video_id="5tmtBjdw62w" />
 
 # Parametri unei funcții #
 Parametri funcțiilor pot fi priviți ca fiind datele prin care putem comunica cu funcția și cu ajutorul cărora putem executa anumite instrucțiuni în corpul funcției. Acești parametrii se transformă de altfel în **variabile** în corpul funcției putând fi folosiți ca orice altă variabilă declarată în corpul ei. 
@@ -133,7 +160,18 @@ Un aspect foarte important de menționat este că orice modificare adusă acesto
 Acest lucru se întâmplă deoarece acestă listă de parametri a unei funcții este de fapt o **listă de copii** a variabilelor folosite atunci când se efectuează apelul funcției iar orice modificare adusă lor va fi făcută efectiv asupra copilor și nu asupra variabilelor menționate în apelul funcției.
 </Box>
 
-<Algovis config_id="functii-basics.json" av_selected="1"></Algovis>
+<Algovis>
+```js
+function dubleaza(numar) {	
+	numar = numar * 2;
+	console.log(numar);
+}
+
+let x = 5;
+dubleaza(x);
+console.log(x);
+```
+</Algovis>
 
 - Funcția <code>dubleaza</code> primește ca parametru un <code>numar</code> pe care noi încercăm să îl modificăm în speranța că după apelul acestei funcții de dublare, parametrul trimis își vă păstra valoarea modificată. 
 - Rulând exemplul vedem cum instrucțiunea <code>numar = numar * 2;</code> are doar efect local, modificând valoarea parametrului doar în corpul funcției însă o dată cu părăsirea acesteia, variabila <code>x</code> aferentă parametrului <code>numar</code> are aceeași valoare ca înainte de apelul funcției.

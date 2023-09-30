@@ -29,7 +29,20 @@ Atribuirea unei obiect altui obiect va duce la crearea unei **referințe** și n
 O <strong>referință</strong> poate fi privită ca un sinonim (alias) către obiectul sursă pe care îl referă. Cu alte cuvinte, referința nu are conținut propriu ci îl referă pe cel al obiectului sursă de aceea orice modificare adusă referinței va fi vizibilă obiectului referit.
 
 <ClickAv>Rulează exemplul și vezi ce se întâmplă când un obiect este atribuit altui obiect</ClickAv>
-<Algovis config_id="obiecte-basics.json" av_selected="5"></Algovis>
+<Algovis>
+```js
+function SticlaApa(v, g) {
+    this.volum = v;
+    this.greutate = g;
+}
+
+let sticla1 = new SticlaApa(500, 700);
+let sticla2 = sticla1;
+sticla2.volum = 1000;
+
+console.log(sticla1.volum);
+```
+</Algovis>
 
 În exemplul de mai sus observăm cum modificarea proprietății <code>sticla2.volum</code> va duce la modificarea proprietății  <code>sticla1.volum</code> întrucât <code>sticla2</code> este o referință a obiectului ```sticla1``` și nu o copie a sa.
 
@@ -39,7 +52,19 @@ Am discutat cum un parametru de tip primitiv (numeric, text) transmis unei func�
 Acest mecanism de transmitere a parametrilor în Javascript se numește <strong>prin valoare</strong> ceea ce face ca parametri pe care funcțiile îi primesc să fie de fapt niște copii ale variabilelor efectiv transmise la apelul funcției.
 
 <ClickAv>Rulează exemplul și observă cum variabila ```a``` este doar o copie a variabilei ```numar```</ClickAv>
-<Algovis config_id="obiecte-basics.json" av_selected="3"></Algovis>
+<Algovis>
+```js
+function foo(a) {
+  console.log(a);
+  a = 6;
+}
+
+let numar = 123;
+foo(numar);
+
+console.log(numar);
+```
+</Algovis>
 
 ## Transmiterea obiectelor ca parametri funcțiilor
 În cazul obiectelor, lucrurile stau puțin diferit. Chiar dacă transmiterea unui parametru de tip obiect se face tot prin valoare, această copie este acum **o copie a unei referințe** către obiectul nostru și nu un întreg duplicat al său ca în cazul tipurilor primitive. 
@@ -47,7 +72,19 @@ Acest mecanism de transmitere a parametrilor în Javascript se numește <strong>
 Aceasta diferență de transmitere a tipurilor obiect face că modificările aduse valorilor proprietăților să fie acum vizibile în afara funcției. 
 
 <ClickAv>Rulează exemplul și observă cum variabila ```a``` este acum o referință a variabilei ```numar``` iar modificările aduse ei vor fi vizibile după terminarea apelului functiei</ClickAv>
-<Algovis config_id="obiecte-basics.json" av_selected="4"></Algovis>
+<Algovis>
+```js
+function foo(a) {
+    console.log(a);
+    a.valoare = 6;
+}
+
+let numar = { 'valoare' : 123 };
+foo(numar);
+
+console.log(numar.valoare);
+```
+</Algovis>
 
 Chiar daca putem modifica proprietățile unui parametru de tip obiect, nu putem în schimb să modificăm complet obiectul cu unul nou, adică o atribuire <code>a = { }</code> nu va avea niciun efect întrucât modificăm o copie a unei referințe care se va pierde la ieșirea din funcție.
 

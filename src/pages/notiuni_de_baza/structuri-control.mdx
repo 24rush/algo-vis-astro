@@ -46,7 +46,17 @@ if (condiție) {
 }
 ```
 
-<Algovis config_id="structuri-control-basics.json" av_selected="0"></Algovis>
+<Algovis>
+```js
+let temperatura = prompt("Temperatura exterioara este ");
+
+if (temperatura < 0) {
+  alert('Temperatura de inghet')
+} else {
+  alert('Nu exista risc de inghet')
+}
+```
+</Algovis>
 
 ## Operatorul ternar ##
 Pentru structura if-else există o alternativă de exprimare a acesteia prin folosirea unui operator special și anume operatorul ternar. După cum îi spune și numele, este un operator ce solicită 3 operanzi, din acest motiv fiind special pentru că este singurul de acest fel.
@@ -62,9 +72,9 @@ Putem astfel exprima secvența de mai jos folosind o singură linie de cod:
 ```js
 let rezultat = 0;
 if (conditie) {
-    rezultat = expresie1;
+  rezultat = expresie1;
 } else {
-    rezultat = expresie2;
+  rezultat = expresie2;
 }
 ```
 
@@ -133,7 +143,13 @@ Ordinea în care se execută operațiile unei structuri for este următoarea:
 
 În exemplul următor se vor afișa toate numerele de la 1 până la 100.
 
-<Algovis config_id="structuri-control-basics.json"  av_selected="1"></Algovis>
+<Algovis>
+```js
+for (let i = 1; i <= 100; i++) {
+  console.log(i);
+}
+```
+</Algovis>
 
 - <code>let i = 1</code> este expresia inițială care ne declară o variabilă <code>i</code> pe care o și initializam cu 1.
 - <code>i &lt;&equals; 100</code> este expresia care ne indică cât timp se vă executa bucla, în acest caz vă fi executată cât timp ```i``` este mai mic decât 100
@@ -182,7 +198,16 @@ Parametri acestei structuri sunt:
 
 În secvență de mai jos, solicităm numere de la utilizator atât timp cât ultimul număr introdus a fost par. Bucla se va termina după introducerea primului numai impar.
 
-<Algovis config_id="structuri-control-basics.json" av_selected="3"></Algovis>
+<Algovis>
+```js
+let numar = prompt('Introdu un numar');
+
+while (numar % 2 == 0) {
+  console.log('Numarul este par');       
+  numar = prompt('Introdu iar un numar');
+}
+```
+</Algovis>
 
 <Box info>
 Structurile <strong>for</strong> și <strong>while</strong> sunt echivalente însă vom folosi cu precădere structura <em>for</em> atunci când știm exact de câte ori urmează să executăm corpul blocului iar pe cea <em>while</em> în caz contrar (numărul de pași ne este necunoscut și va fi determinat doar de câte ori condiția de testat a blocului while se va evalua la adevărat).
@@ -202,7 +227,21 @@ Un cuvânt cheie des utilizat în contextul structurilor repetitive este **break
 
 În exemplu de mai jos, introducem posibilitate de a întrerupe jocul atunci când este introdusă valoarea 0. Executarea instrucțiunii ```break``` va duce la întreruperea executării blocului ```while``` cu alte cuvinte vom părăsi corpul blocului.
 
-<Algovis config_id="structuri-control-basics.json" av_selected="4"></Algovis>
+<Algovis>
+```js
+let numar = prompt('Introdu un numar');
+while (numar % 2 == 0) {
+  console.log('Numar par');       
+
+  if (numar == 0) {
+      console.log('Terminare joc');
+      break;
+  }
+
+  numar = prompt('Introdu un numar');
+}
+```
+</Algovis>
 
 <Box info>Cuvânt cheie <code>break</code> va determina ieșirea din blocurile <code>switch, while, for, do-while</code></Box>
 
@@ -211,7 +250,19 @@ Un cuvânt cheie similar lui <em>break</em> este <strong>continue</strong> care 
 
 În exemplul de mai jos, vom afișa toate numerele impare de la 1 la 10 sărind la fiecare iterație peste afișarea celor pare.
 
-<Algovis config_id="structuri-control-basics.json" av_selected="5"></Algovis>
+<Algovis>
+```js
+let i = 0;
+while (i < 10) {
+  i++;
+  if (i % 2 == 0) {
+      continue;
+  }
+
+  console.log(i);
+}
+```
+</Algovis>
 
 # switch #
 Ultima structură pe care o vom prezenta nu este una repetitiva ci una decizională similară celei _if-else_. Aceasta se cheamă **switch** și arată astfel:
@@ -255,7 +306,30 @@ Chiar dacă cele două structuri obțin același rezultat, structura _switch_ ne
 
 Putem afirma atunci că structura _switch_ ne este utilă atunci când există o **varietate mare de posibilități** ce trebuie interpretate pentru o expresie iar o structură **if-else-if** nu ar arăta așa de ușor de înțeles pentru cineva care ne-ar citi codul ulterior.
 
-<Algovis config_id="structuri-control-basics.json" av_selected="2"></Algovis>
+<Algovis>
+```js
+let nume = prompt('Introdu nume')
+
+switch (nume) 
+{
+  case 'Maria':
+      console.log('Ii plac perele'); 
+      break;
+  case 'Remus':
+      console.log('Ii plac portocalele'); 
+      break;
+  case 'Adina':
+      console.log('Ii plac prunele'); 
+      break;
+  case 'Alex':
+  case 'Victor':
+      console.log('Le place kiwi'); 
+      break;
+  default:
+      console.log('Nu stiu ce fructe ii plac lui ' + nume); 
+}
+```
+</Algovis>
 
 Vom folosi structura **switch** atunci când dorim să testam egalitatea dintre o expresie și un set de valori constante (știute deja în momentul scrierii programului) dar nu și contra altor expresii (ce ar urma să fie determinate în timpul execuției). Dacă avem nevoie să testăm contra unor expresii atunci va trebui să folosim structura **if-else-if**.
 
