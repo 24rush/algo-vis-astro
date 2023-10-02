@@ -119,37 +119,38 @@ const hasExercise = hasItem("exercise");
     )
   }
 
-  <div class="content" style="display: flex; flex-direction: column;">
-    {
-      hasGpt && (
-        <a
-          href={CHECKLIST_CONFIG[sanitizedCurrentPage].gpt}
-          target="_blank"
-          rel="noopener"
-        >
-          <MainButton text>
-            <IconOpenAI
-              size={iconDimension}
-              color="rgb(59 130 246 / var(--tw-text-opacity))"
-            />
-            <span class="button-activity">Discută cu GPT</span>
-          </MainButton>
-        </a>
-      )
-    }
-    {
-      hasGptQuestions && (
-        <>
-          <span class="suggestions">Sugestii de intrebări:</span>
-          <ol class="mb-2">
-            {CHECKLIST_CONFIG[sanitizedCurrentPage].gpt_questions.map((q) => {
-              return <li class="suggested-question">{q}</li>;
-            })}
-          </ol>
-        </>
-      )
-    }
-
+  <div class="content" style="display: flex; flex-direction: column; row-gap: 10px;">
+    <div style="display:flex; flex-direction: column;">
+      {
+        hasGpt && (
+          <a
+            href={CHECKLIST_CONFIG[sanitizedCurrentPage].gpt}
+            target="_blank"
+            rel="noopener"
+          >
+            <MainButton text>
+              <IconOpenAI
+                size={iconDimension}
+                color="rgb(59 130 246 / var(--tw-text-opacity))"
+              />
+              <span class="button-activity">Discută cu GPT</span>
+            </MainButton>
+          </a>
+        )
+      }
+      {
+        hasGptQuestions && (
+          <>
+            <span class="suggestions">Sugestii de intrebări:</span>
+            <ol>
+              {CHECKLIST_CONFIG[sanitizedCurrentPage].gpt_questions.map((q) => {
+                return <li class="suggested-question">{q}</li>;
+              })}
+            </ol>
+          </>
+        )
+      }
+    </div>
     {
       hasExercise && (
         <Exercise
@@ -213,6 +214,7 @@ const hasExercise = hasItem("exercise");
       font-size: 80%;
       font-style: italic;
       margin-top: 0 !important;
+      margin-bottom: 0!important;
     }
 
     .button-activity {
@@ -222,20 +224,23 @@ const hasExercise = hasItem("exercise");
 </div>
 
 <script>
-  const checklistActivities = document.getElementById('checklistActivities');
-  const hookChecklistRightSidebar = document.getElementById('hookChecklistRightSidebar');
-  const hookChecklistMainPage = document.getElementById('hookChecklistMainPage');
+  const checklistActivities = document.getElementById("checklistActivities");
+  const hookChecklistRightSidebar = document.getElementById(
+    "hookChecklistRightSidebar"
+  );
+  const hookChecklistMainPage = document.getElementById(
+    "hookChecklistMainPage"
+  );
 
   const mediaQueryList = window.matchMedia("(max-width: 968px)");
 
   function handleOrientationChange(mql) {
-    if (mql.matches) { 
+    if (mql.matches) {
       // Mobile screen
       if (hookChecklistRightSidebar.contains(checklistActivities))
         hookChecklistRightSidebar.removeChild(checklistActivities);
       hookChecklistMainPage.appendChild(checklistActivities);
-    }
-    else { 
+    } else {
       // Large screen
       if (hookChecklistMainPage.contains(checklistActivities))
         hookChecklistMainPage.removeChild(checklistActivities);
@@ -245,5 +250,4 @@ const hasExercise = hasItem("exercise");
 
   handleOrientationChange(mediaQueryList);
   mediaQueryList.addEventListener("change", handleOrientationChange);
-
 </script>
