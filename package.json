@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "get_dependencies.bat & astro build",
+    "build": "astro build",
+    "local-build": "get_dependencies.bat & astro build",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -15,9 +16,11 @@
     "@astrojs/vue": "^2.0.1",
     "@docsearch/css": "^3.0.0",
     "@docsearch/react": "^3.0.0",
+    "@traptitech/markdown-it-katex": "^3.6.0",
     "@types/react": "^17.0.43",
     "bootstrap": "^5.3.1",
     "katex": "^0.16.8",
+    "markdown-it": "^13.0.1",
     "mustache": "^4.2.0",
     "preact": "^10.7.0",
     "react": "^18.0.0",

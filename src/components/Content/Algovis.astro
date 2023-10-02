@@ -1,5 +1,5 @@
 ---
-const { config_id, av_autoplay, av_selected, av_exercise } = Astro.props;
+const { config_id, av_autoplay, av_selected, av_exercise, av_lazy } = Astro.props;
 
 const av_src_id = Math.random()
     .toString(36)
@@ -14,7 +14,8 @@ const av_src_id = Math.random()
             config-id={config_id}
             av-selected={av_selected}
             av-exercise={av_exercise}
-            {av_autoplay}
+            av-autoplay={av_autoplay} 
+            av-lazy={av_lazy}
         >
             <slot />
         </div>

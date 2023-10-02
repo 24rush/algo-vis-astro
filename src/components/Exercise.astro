@@ -1,0 +1,238 @@
+---
+import Algovis from "./Content/Algovis.astro";
+import MainButton from "./../components/MainButton.astro";
+
+const iconDimension = 20;
+
+const randId = () => {
+     return Math.random().toString(36).replace(/[^a-z]+/g, '').slice(2, 10);
+};
+
+const fullscreenModalId = "exerciseFullscreenModal" + randId();
+
+import markdownit from "markdown-it";
+import markdownit_katex from "@traptitech/markdown-it-katex";
+
+const md = markdownit();
+md.use(markdownit_katex, { throwOnError: false, errorColor: " #cc0000" });
+
+const { exerciseFileName, exerciseData, inline } = Astro.props;
+
+import obiecte from "../../public/assets/algovis/exercises/obiecte.json";
+import structuri_control from "../../public/assets/algovis/exercises/structuri-control.json";
+import functii from "../../public/assets/algovis/exercises/functii.json";
+import vectori from "../../public/assets/algovis/exercises/vectori.json";
+import stringuri from "../../public/assets/algovis/exercises/stringuri.json";
+import operatori from "../../public/assets/algovis/exercises/operatori.json";
+import tipuri_date from "../../public/assets/algovis/exercises/tipuri-date.json";
+
+let exercises = exerciseData;
+
+if (exerciseFileName) {
+    switch (exerciseFileName) {
+        case "obiecte.json":
+            exercises = obiecte;
+            break;
+        case "operatori.json":
+            exercises = operatori;
+            break;
+        case "tipuri-date.json":
+            exercises = tipuri_date;
+            break;
+        case "structuri-control.json":
+            exercises = structuri_control;
+            break;
+        case "functii.json":
+            exercises = functii;
+            break;
+        case "vectori.json":
+            exercises = vectori;
+            break;
+        case "stringuri.json":
+            exercises = stringuri;
+            break;
+    }
+
+    let lang = "ro";
+    exercises = exercises[lang];
+}
+
+if (!exercises) {
+    throw "No data to render";
+}
+
+let slideIdx = 0;
+let frameIdx = 0;
+---
+
+<head>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css"
+        integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM"
+        crossorigin="anonymous"
+    />
+</head>
+
+<div
+    class={inline ? "" : "modal fade"}
+    data-bs-backdrop="false"
+    id={fullscreenModalId}
+    tabindex="-1"
+    aria-labelledby={fullscreenModalId + "Label"}
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button
+                    type="button"
+                    class="av-btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div
+                class="modal-body"
+                id={fullscreenModalId + "exerciseModalBody"}
+            >
+                <div
+                    id="carouselExampleDark"
+                    class="carousel carousel-dark slide"
+                >
+                    <div class="carousel-indicators">
+                        {
+                            exercises.map(() => (
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <span>{slideIdx + 1}</span>
+                                    <button
+                                        type="button"
+                                        data-bs-target="#carouselExampleDark"
+                                        data-bs-slide-to={slideIdx}
+                                        class={slideIdx++ == 0 ? "active" : ""}
+                                        aria-current="true"
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <div class="carousel-inner px-4">
+                        {
+                            exercises.map((exercise) => (
+                                <div
+                                    class={
+                                        "carousel-item " +
+                                        (frameIdx++ == 0 ? "active" : "")
+                                    }
+                                    data-bs-interval="0"
+                                >
+                                    <div set:html={md.render(exercise.desc)} />
+                                    <Algovis
+                                        style="padding-bottom: 1em;"
+                                        type="ieditor"
+                                        av_exercise={
+                                            exerciseFileName + ":" + exercise.id
+                                        }
+                                        av_lazy
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <button
+                        class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselExampleDark"
+                        data-bs-slide="prev"
+                    >
+                        <span
+                            class="carousel-control-prev-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselExampleDark"
+                        data-bs-slide="next"
+                    >
+                        <span
+                            class="carousel-control-next-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a>
+    <MainButton text id={exerciseFileName} av_class="av-exercise-opener" av_modal_target={fullscreenModalId}>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={iconDimension}
+            height={iconDimension}
+            fill="currentColor"
+            class="bi bi-keyboard"
+            viewBox="0 0 16 16"
+        >
+            <path
+                d="M14 5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12zM2 4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2z"
+            ></path>
+            <path
+                d="M13 10.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm0-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-5 0A.25.25 0 0 1 8.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 8 8.75v-.5zm2 0a.25.25 0 0 1 .25-.25h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5a.25.25 0 0 1-.25-.25v-.5zm1 2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-5-2A.25.25 0 0 1 6.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 6 8.75v-.5zm-2 0A.25.25 0 0 1 4.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 4 8.75v-.5zm-2 0A.25.25 0 0 1 2.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 8.75v-.5zm11-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-2 0a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm-2 0A.25.25 0 0 1 9.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 9 6.75v-.5zm-2 0A.25.25 0 0 1 7.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 7 6.75v-.5zm-2 0A.25.25 0 0 1 5.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 5 6.75v-.5zm-3 0A.25.25 0 0 1 2.25 6h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5A.25.25 0 0 1 2 6.75v-.5zm0 4a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5zm2 0a.25.25 0 0 1 .25-.25h5.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-5.5a.25.25 0 0 1-.25-.25v-.5z"
+            ></path>
+        </svg>
+        <span class="button-activity">Provocări</span>
+    </MainButton>
+</a>
+
+<style>
+    .carousel-indicators {
+        position: relative;
+        margin-top: 1rem;
+    }
+
+    .carousel-control-next,
+    .carousel-control-prev {
+        width: inherit;
+        bottom: inherit;
+        padding: 0.5rem;
+    }
+
+    .carousel-dark .carousel-indicators [data-bs-target] {
+        background-color: var(--bs-blue);
+    }
+
+    .carousel-indicators [data-bs-target] {
+        border-top: 0px;
+        border-bottom: 0px;
+    }
+
+    .carousel-indicators .active {
+        background-color: var(--attention-color) !important;
+    }
+
+    .carousel-indicators .activeLabel {
+        font-weight: 500;
+    }
+</style>
+
+<script>
+    import { Modal } from "bootstrap";
+
+    let exerciseOpeners = document.getElementsByClassName("av-exercise-opener");
+
+    for (let opener of exerciseOpeners) {
+        opener.addEventListener("click", () => {
+            let modal = new Modal(
+                document.getElementById(opener.getAttribute("data-av-modal-target")),
+                {
+                    keyboard: false,
+                }
+            );
+            modal.show();
+        });
+    }
+</script>

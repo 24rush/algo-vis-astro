@@ -1,9 +1,9 @@
 ---
-const { primary, secondary, text, id } = Astro.props;
+const { primary, secondary, text, id, av_class, av_modal_target } = Astro.props;
 
 const getClass = () => {
-  let defaultClass =
-    "px-3 py-2 rounded-md transition-all shadow-sm hover:bg-opacity-80 font-medium ";
+  let defaultClass = av_class +
+    " px-3 py-2 rounded-md transition-all shadow-sm hover:bg-opacity-80 font-medium ";
 
   if (primary)
     return defaultClass + "text-white bg-blue-500 hover:bg-opacity-80";
@@ -14,7 +14,7 @@ const getClass = () => {
 };
 ---
 
-<button class={getClass()} style="display: inline-flex;align-items: center;" id={id}>
+<button class={getClass()} style="display: inline-flex;align-items: center;" id={id} data-av-modal-target={av_modal_target}>
   <slot />
 </button>
 
