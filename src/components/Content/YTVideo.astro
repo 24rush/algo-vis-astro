@@ -2,10 +2,9 @@
 const { video_id } = Astro.props;
 ---
 
-<iframe id="youtube-video" allow="cross-origin-isolated" credentialless crossorigin="require-corp" style="aspect-ratio: 16/9; width:100%" src={"https://www.youtube.com/embed/" + video_id + "?origin=https://www.primiipasi.info"}></iframe>
+<div id="youtube-video" style="aspect-ratio: 16/9; width:100%"></div>
 
 <script src="./../assets/scripts/iframe_api.js" type="text/javascript"/>
-
 
 <script>
     let player = new window.YT.Player('youtube-video', {
