@@ -7,7 +7,7 @@ const gpt_box_id = Math.random()
     .slice(2, 10);
 ---
 
-<div class="accordion accordion-flush my-2">
+<div class="accordion accordion-flush my-2" id={"accordionFlush" + gpt_box_id}>
     <div class="accordion-item">
         <div
             class="accordion-header"
@@ -15,7 +15,7 @@ const gpt_box_id = Math.random()
             style="display: flex;flex-direction: row;align-items: center;"
         >
             <button
-                class="accordion-button collapsed scope-name-lg px-2"               
+                class="accordion-button collapsed scope-name-lg px-2"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target={"#flush-collapse" + gpt_box_id}
@@ -39,16 +39,11 @@ const gpt_box_id = Math.random()
                 </svg>
 
                 <div style="display: flex; flex-direction: column;">
-                    <span style="margin-left: 8px; font-style: normal; font-weight: 500;"
+                    <span
+                        style="margin-left: 8px; font-style: normal; font-weight: 500;"
                         >{title}</span
                     >
-                    {
-                        description && (
-                            <span class="prompt">                                
-                                {description}
-                            </span>
-                        )
-                    }
+                    {description && <span class="prompt">{description}</span>}
                 </div>
             </button>
         </div>
@@ -56,7 +51,7 @@ const gpt_box_id = Math.random()
             id={"flush-collapse" + gpt_box_id}
             class={"accordion-collapse " + (show ? "show" : "collapse")}
             aria-labelledby={"flush-heading" + gpt_box_id}
-            data-bs-parent="#accordionFlushExample"
+            data-bs-parent={"#accordionFlush" + gpt_box_id}
         >
             <div class="accordion-body">
                 <slot />

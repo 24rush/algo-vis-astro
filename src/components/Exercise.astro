@@ -220,13 +220,11 @@ let frameIdx = 0;
 </style>
 
 <script>
-    import { Modal } from "bootstrap";
-
     let exerciseOpeners = document.getElementsByClassName("av-exercise-opener");
 
     for (let opener of exerciseOpeners) {
         opener.addEventListener("click", () => {
-            let modal = new Modal(
+            let modal = new bootstrap.Modal(
                 document.getElementById(opener.getAttribute("data-av-modal-target")),
                 {
                     keyboard: false,
