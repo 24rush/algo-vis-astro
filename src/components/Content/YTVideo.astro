@@ -2,4 +2,8 @@
 const { video_id } = Astro.props;
 ---
 
-<iframe allow="cross-origin-isolated" credentialless crossorigin="anonymous" style="aspect-ratio: 16/9; width:100%" src={"https://www.youtube-nocookie.com/embed/" + video_id + "?origin=https://www.primiipasi.info"}></iframe>
+<iframe id="youtube-video" allow="cross-origin-isolated" credentialless crossorigin="anonymous" style="aspect-ratio: 16/9; width:100%" src={"https://www.youtube.com/embed/" + video_id + "?origin=https://www.primiipasi.info"}></iframe>
+
+<script src="./../assets/scripts/iframe_api.js" type="text/javascript"/>
+
+
