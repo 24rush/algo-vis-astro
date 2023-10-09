@@ -74,6 +74,12 @@
   background-color: var(--bs-btn-bg) !important;
 }
 
+.av-btn.active {
+  font-weight: 500;
+  background-color: #DEF94E !important;
+  border-width: 2px;
+}
+
 .av-btn-close {
   box-sizing: content-box;
   width: 1em;
