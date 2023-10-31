@@ -1,0 +1,250 @@
+---
+title: "10 lucruri pe care le poti face cu AlgoVis"
+layout: "../../layouts/PageLayout.astro"
+---
+import Arrow from '../../components/Content/Arrow.astro'
+import Algovis from "../../components/Content/Algovis.astro";
+import MainButton from "../../components/MainButton.astro";
+
+# Ce este Algovis?
+Algovis este _widget-ul_ ce te ajută să faci primii pași în info. El îți arată cum funcționează cele mai uzuale construcții ale limbajului Javascript făcând pași prin secvențe de cod.
+
+Mai jos găsești toate opțiunile disponibile pe interfața widget-ului:
+<img src="../assets/imgs/algovis.png" class="img-box" />
+
+# Ce pot face cu Algovis?
+
+## 1. Înțelege ce sunt variabile de tip primitiv și obiect
+
+<Arrow/>sari la lecțiile aferente: [Sintaxa unui limbaj de programare](./../notiuni_de_baza/sintaxa) și [Tipuri de date](./../notiuni_de_baza/tipuri-date)
+
+<Algovis av_lazy>
+```js
+let x = 5; /*** creăm variabila x a cărei valore inițială este 5***/
+x = 6; /*** modificăm conținutul variabilei x să fie acum 6***/
+console.log(x); /*** afișăm conținutul variabilei***/
+
+x = "Alin"; /*** modificăm tipul variabilei să conțină un text***/
+console.log(x);
+
+let nume = "Amalia"; /*** declarăm variabila nume cu valoarea Amalia de tip text.***/
+
+let y = x; /*** declarăm variabila y ca fiind o copie a variabilei x ***/
+let suma = x + y; /*** declarăm variabila suma ca fiind suma celor două variabile x și y ***/
+
+let info_joc = {
+         scor: 12412,
+         jucator: "Ionut",
+         ultim_nivel_jucat: 4
+   };
+console.log(info_joc.scor);
+```
+</Algovis>
+
+## 2. Declara și executa funcții
+<Arrow/>sari la lecția aferentă: [Funcții](./../notiuni_intermediare/functii)
+
+<Algovis av_lazy>
+```js
+function printName(name) {
+    console.log("Hello, " + name + "!");
+}
+
+printName("Alin");
+printName("Ionut");
+
+```
+</Algovis>
+
+## 3. Folosi operatori și compune expresii
+<Arrow/>sari la lecția aferentă: [Operatori și expresii](./../notiuni_de_baza/operatori)
+
+<Algovis av_lazy>
+```js
+let x = 4; 
+let sum = x + 12; 
+sum = x + 5; 
+
+x += 2; 
+x *= 3; 
+const n = 7; 
+let s = n + 3; 
+let r = s % 2; 
+
+let u = 1;
+u++; 
+let c = u--; 
+
+let s1 = "Hello ";
+let s2 = "world"
+console.log(s1 + s2); 
+
+let mai_mare = 4 > 12; 
+
+let a = 5; 
+console.log(a == 5); 
+
+console.log(3 > 5);
+console.log(a > 3 && a % 2 == 1); 
+
+let b = true;
+console.log(!b); 
+```
+</Algovis>
+
+## 4. Solicita valori de la utilizator și folosi în structuri de control
+<Arrow/>sari la lecția aferentă: [Structuri de control și repetitive](./../notiuni_de_baza/structuri-control)
+
+<Algovis av_lazy>
+```js
+let temperatura = prompt("Temperatura exterioara este ");
+
+if (temperatura < 0) {
+  alert('Temperatura de inghet')
+} else {
+  alert('Nu exista risc de inghet')
+}
+
+```
+</Algovis>
+
+## 5. Folosi structuri repetitive
+<Arrow/>sari la lecția aferentă: [Structuri de control și repetitive](./../notiuni_de_baza/structuri-control)
+
+<Algovis av_lazy>
+```js
+let repeta = prompt("Valoare repetitii");
+
+for (let i = 1; i <= parseInt(repeta); i++) {
+  console.log(i);
+}
+
+while (repeta > 1) {  
+    console.log(repeta);
+    repeta /= 2;
+}
+```
+</Algovis>
+
+## 6. Observa cum funcționează operațiile de bază pe vectori / stive / cozi
+<Arrow/>sari la lecțiile aferente: [Vectori](./../notiuni_intermediare/vectori) sau [Stive / cozi](./../notiuni_intermediare/stiva_coada)
+
+<Algovis av_lazy>
+```js
+let vector = ["A", "B", "C"];
+for (let i = 0; i < vector.length; i++) {
+    console.log(vector[i]);
+}
+
+let stack = [1, 2, 3, 4];
+
+// Adaugam elementul 5
+stack.push(5);
+
+// Eliminam primul element
+stack.pop(); // 5
+
+let queue = [1, 2, 3, 4];
+
+// Adaugam elementul 5
+queue.push(5);
+
+// Eliminam primul element
+queue.shift(); // 5
+```
+</Algovis>
+
+## 7. Observă vizibilitatea variabilelor în funcție de blocul în care se află
+<Arrow/>sari la lecția aferentă: [Domeniul variabilelor
+](./../notiuni_intermediare/scopuri)
+
+<Algovis av_lazy>
+```js
+function boo() {
+  let x = 5;
+  x = 6;
+}
+
+let x = 1;
+console.log(x);
+
+boo();
+```
+</Algovis>
+
+## 8. Întelege ce sunt referințele
+<Algovis av_lazy>
+```js
+function SticlaApa(v, g) {
+    this.volum = v;
+    this.greutate = g;
+}
+
+let sticla1 = new SticlaApa(500, 700);
+let sticla2 = sticla1;
+sticla2.volum = 1000;
+
+console.log(sticla1.volum);
+
+function foo(a) {
+    console.log(a);
+    a.valoare = 6;
+}
+
+let numar = { 'valoare' : 123 };
+foo(numar);
+
+console.log(numar.valoare);
+
+```
+</Algovis>
+
+## 9. Crea și vizualiza grafuri
+<Arrow/>sari la lecția aferentă: [Domeniul variabilelor
+](./../notiuni_avansate/grafuri)
+
+<Algovis av_lazy>
+```js
+let lista_adiacenta = {
+    1: [2, 3, 4],
+    2: [1],
+    3: [1, 4],
+    4: [3, 1]
+};
+
+let graf = new Graph();
+graf.fromAdjacencyList(lista_adiacenta);
+
+
+```
+</Algovis>
+
+## 10. Crea și vizualiza arbori
+<Arrow/>sari la lecția aferentă: [Arbori
+](./../notiuni_avansate/arbori)
+
+<Algovis av_lazy>
+```js
+let gentree = new BinarySearchTree();
+gentree.generate(8);
+
+// Creaza un arbore manual
+let tree = new BinaryTree();
+let root = tree.createRoot(10);
+let rootLeftChild = new BinaryTreeNode(5);
+let rootRightChild = new BinaryTreeNode(15);
+
+root.left = rootLeftChild;
+root.right = rootRightChild;
+
+let rootLeftLeftChild = new BinaryTreeNode(12);
+root.left.left = rootLeftLeftChild;
+
+```
+</Algovis>
+
+Acum că ai văzut cate lucruri poți face au Algovis, începe explorarea cu prima lecție.
+
+<MainButton primary>
+  <a href="../notiuni_de_baza/sintaxa" style="color: white;">↩ Du-mă la prima lecție</a>
+</MainButton>

@@ -3,7 +3,7 @@ import "../../public/assets/styles/av-wp-styles.css";
 import "../../public/assets/styles/av-styles.css";
 import "../styles/main.scss";
 
-import { Picture, Image } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 import astronautImage from "../../public/assets/imgs/astronaut.png";
 import jsImage from "../../public/assets/imgs/javascript-logo.png";
 
@@ -121,12 +121,18 @@ const sizesJSLogo = "(min-width: 40px) 8vw, 12vw";
                 Vezi cum funcționează un program 'pe interior' rulând fiecare
                 instrucțiune pas cu pas. În ritmul tău.
               </p>
+                            
+              <div class="my-2 text-lg">
+                <a href="blog/10-lucruri-pe-care-le-poti-face-cu-algovis">
+                  Uite 10 lucruri pe care le poți învăța
+                </a>              
+              </div>
 
               <Counters />
               
               <div class="pt-6 gap-2" style="display: flex; justify-content: center;">
                 <MainButton primary>
-                  <a href="notiuni_de_baza/programarea">Mergi la prima lecție</a>
+                  <a href="notiuni_de_baza/sintaxa">Mergi la prima lecție</a>
                 </MainButton>
 
                 <MainButton secondary>          
@@ -299,6 +305,7 @@ function draw() {
           @apply block;
         }
       }
+      
     </style>
   </body>
 </html>

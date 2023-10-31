@@ -1,4 +1,4 @@
-<div class="counters my-8">
+<div class="my-8 counters">
     <div
         style="display: flex; flex-direction: row; justify-content: space-around;"
     >
@@ -43,12 +43,12 @@ for (let counter of document.querySelectorAll("[class^=av-counter]")) {
 <style scoped>
     .counters {
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        margin-bottom: 1em;
         color: white;
-        width: 80%;
-        margin: auto;
+        align-items: stretch;
+        align-content: stretch;
+        flex-wrap: wrap;
+        flex-direction: column;
     }
     .counter-container {
         text-align: center;
